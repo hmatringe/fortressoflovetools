@@ -1,0 +1,27 @@
+<h1><%= @order.name %> - Quantity: <%= @order.qtty.nil? ? "no product yet." : @order.qtty %></h1>
+<p><%= link_to "See all orders", orders_path %></p>
+
+<%# simple_form_for @order_lines_create_path do |ol| %>
+  <%# ol.input :qtty %>
+  <%# ol.button :submit %>
+<%# end %>
+
+<h3>Products</h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>SKU</th>
+    <th>name</th>
+    <th>qtty</th>
+    <th>price per unit</th>
+  </tr>
+  <% @order.products.each do |product| %>
+    <tr>
+      <td><%= product.SKU %></td>
+      <td><%= product.name %></td>
+      <td><%= product.qtty %></td>
+      <td>Not available yet.</td>
+    </tr>
+  <% end %>
+</table>
+<%= "This order contains no product yet." if @order.products.empty?%>

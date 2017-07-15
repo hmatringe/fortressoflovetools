@@ -1,0 +1,44 @@
+<h1><%= @product.name  %> - <%= @product.size %> - <%= @product.SKU %></h1>
+<h3>You can not edit or delete this product.</h3>
+<p><%= link_to "See all SKUs", products_path %></p>
+
+
+<table class="table table-striped">
+  <tr>
+    <th>name</th>
+    <th>size</th>
+    <th>color</th>
+    <th>structure</th>
+    <th>category</th>
+    <th>SKU</th>
+    <th>parentSKU</th>
+  </tr>
+
+  <tr>
+    <td><%= @product.name %></td>
+    <td><%= @product.size %></td>
+    <td><%= @product.color %></td>
+    <td><%= @product.structure %></td>
+    <td><%= @product.category %></td>
+    <td><%= @product.SKU %></td>
+    <td><%= @product.parentSKU %></td>
+  </tr>
+</table>
+
+<h3>Orders</h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>name</th>
+    <th>qtty</th>
+    <th>price per unit</th>
+  </tr>
+  <% @product.orders.each do |order| %>
+    <tr>
+      <td><%= order.name %></td>
+      <td><%= order.qtty %></td>
+      <td>Not available yet</td>
+    </tr>
+  <% end %>
+</table>
+<%= "This product was never ordered yet." if @product.orders.empty?%>
