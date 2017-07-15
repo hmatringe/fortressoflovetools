@@ -7,13 +7,13 @@ class OrdersController < ApplicationController
 
   def show
     @order_line = OrderLine.new
+    @order_line.order = @order
   end
 
   def create
     @order = Order.new(order_params)
     if @order.save
-      redirect_to @order
-      # render :index
+      redirect_to :back
       flash[:notice] = "Order successfully created"
     else
       render :index

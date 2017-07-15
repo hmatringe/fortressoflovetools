@@ -1,0 +1,5 @@
+<%= simple_form_for [@order, @order_line] do |ol| %>
+  <%= ol.input :qtty %>
+  <%= ol.association :product, label_method: :select_label %>
+  <%= ol.button :submit %>
+<% end %>
