@@ -12,6 +12,10 @@ class OrderLinesController < ApplicationController
   end
 
   def destroy
+    @order_line = OrderLine.find(params[:id])
+    @order = Order.find(@order_line.order_id)
+    @order_line.destroy
+    redirect_to @order
   end
 
   private
