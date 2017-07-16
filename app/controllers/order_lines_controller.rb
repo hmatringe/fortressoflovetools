@@ -1,8 +1,9 @@
 class OrderLinesController < ApplicationController
   def create
-    @order = Order.find(params["order_id"])
+    set_order
     @order_line = OrderLine.new(order_line_params)
     @order_line.order = @order
+    increment_order_qtty
     if @order_line.save
       flash[:notice] = "Product saved"
     else
@@ -14,6 +15,7 @@ class OrderLinesController < ApplicationController
   def destroy
     @order_line = OrderLine.find(params[:id])
     @order = Order.find(@order_line.order_id)
+    decrement_order_qtty
     @order_line.destroy
     redirect_to @order
   end
@@ -22,5 +24,19 @@ class OrderLinesController < ApplicationController
 
   def order_line_params
     params.require(:order_line).permit(:id,:qtty,:product_id,:order_id)
+  end
+
+  def increment_order_qtty
+    @order.qtty = @order.qtty.to_i + @order_line.qtty
+    @order.save
+  end
+
+  def decrement_order_qtty
+    @order.qtty = @order.qtty.to_i - @order_line.qtty
+    @order.save
+  end
+
+  def set_order
+    @order = Order.find(params["order_id"])
   end
 end
