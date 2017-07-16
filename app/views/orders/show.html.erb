@@ -15,7 +15,7 @@
   </tr>
   <% @order.order_lines.each do |ol| %>
     <tr>
-      <td><%= ol.product.SKU %></td>
+      <td><%= link_to ol.product.SKU, product_path(ol.product) %></td>
       <td><%= ol.product.name %></td>
       <td><%= ol.qtty %></td>
       <td>Not available yet.</td>

@@ -3,8 +3,8 @@ class OrderLinesController < ApplicationController
     set_order
     @order_line = OrderLine.new(order_line_params)
     @order_line.order = @order
-    increment_order_qtty
     if @order_line.save
+      increment_order_qtty
       flash[:notice] = "Product saved"
     else
       flash[:alert] = "Product already exists"
