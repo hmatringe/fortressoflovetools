@@ -1,26 +1,36 @@
-<h1><%= @order.name %> - Quantity: <%= @order.qtty.nil? ? "no product yet." : @order.qtty %></h1>
-<p><%= link_to "See all orders", orders_path %></p>
+<div class="container">
+  <h1><%= @order.name %> - Quantity: <%= @order.qtty.nil? ? "no product yet." : @order.qtty %></h1>
+  <h3>Currency: <%= @order.purchase_or_production_invoice_currency %></h3>
+  <h3>Invoice reference: <%= @order.purchase_or_production_invoice_reference %></h3>
+  <p><%= link_to "See all orders", orders_path %></p>
 
-<%= render "order_lines/form" %>
+  <%= render "order_lines/form" %>
 
-<h3>Products</h3>
+  <h3>Products</h3>
 
-<table class="table table-striped">
-  <tr>
-    <th>SKU</th>
-    <th>name</th>
-    <th>qtty</th>
-    <th>price per unit</th>
-    <th>Delete</th>
-  </tr>
-  <% @order.order_lines.each do |ol| %>
+  <table class="table table-striped">
     <tr>
-      <td><%= link_to ol.product.SKU, product_path(ol.product) %></td>
-      <td><%= ol.product.name %></td>
-      <td><%= ol.qtty %></td>
-      <td>Not available yet.</td>
-      <td><%= link_to "Delete", ol, method: :delete, class: "destroy"  %></td>
+      <th>SKU</th>
+      <th>name</th>
+      <th>qtty</th>
+      <th>production cost per unit in invoice currency</th>
+      <th>production cost per unit</th>
+      <th>additional costs per unit</th>
+      <th>total costs per unit</th>
+      <th>Delete</th>
     </tr>
-  <% end %>
-</table>
-<%= "This order contains no product yet." if @order.products.empty?%>
+    <% @order.order_lines.each do |ol| %>
+      <tr>
+        <td><%= link_to ol.product.SKU, product_path(ol.product) %></td>
+        <td><%= ol.product.name %></td>
+        <td><%= ol.qtty %></td>
+        <td><%= number_to_currency(ol.production_cost_per_unit_invoice_currency, unit: "#{@order.purchase_or_production_invoice_currency}", format: "%n %u") %></td>
+        <td><%= number_to_currency(ol.production_cost_per_unit_accounting_currency, unit: "DKK", format: "%n %u") %></td>
+        <td>na</td>
+        <td>na</td>
+        <td><%= link_to "Delete", ol, method: :delete, class: "destroy"  %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= "This order contains no product yet." if @order.products.empty?%>
+</div>

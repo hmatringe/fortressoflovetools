@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714170108) do
+ActiveRecord::Schema.define(version: 20170725114240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20170714170108) do
     t.integer  "qtty"
     t.integer  "order_id"
     t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                                            null: false
+    t.datetime "updated_at",                                                            null: false
+    t.decimal  "production_cost_per_unit_invoice_currency",    precision: 11, scale: 4
+    t.decimal  "production_cost_per_unit_accounting_currency", precision: 11, scale: 4
     t.index ["order_id"], name: "index_order_lines_on_order_id", using: :btree
     t.index ["product_id"], name: "index_order_lines_on_product_id", using: :btree
   end
@@ -28,8 +30,10 @@ ActiveRecord::Schema.define(version: 20170714170108) do
   create_table "orders", force: :cascade do |t|
     t.string   "name"
     t.integer  "qtty"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "purchase_or_production_invoice_currency"
+    t.string   "purchase_or_production_invoice_reference"
   end
 
   create_table "products", force: :cascade do |t|

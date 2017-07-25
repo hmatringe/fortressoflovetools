@@ -23,7 +23,7 @@ class OrderLinesController < ApplicationController
   private
 
   def order_line_params
-    params.require(:order_line).permit(:id,:qtty,:product_id,:order_id)
+    params.require(:order_line).permit(:id,:qtty,:product_id,:order_id,:production_cost_per_unit_invoice_currency,:production_cost_per_unit_accounting_currency)
   end
 
   def increment_order_qtty
