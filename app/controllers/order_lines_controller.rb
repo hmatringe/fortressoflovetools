@@ -5,9 +5,9 @@ class OrderLinesController < ApplicationController
     @order_line.order = @order
     if @order_line.save
       increment_order_qtty
-      flash[:notice] = "Product saved"
+      flash[:notice] = "Product added"
     else
-      flash[:alert] = "Product already exists"
+      flash[:alert] = "Product already added"
     end
     redirect_to @order
   end

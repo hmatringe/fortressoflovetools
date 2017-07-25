@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 
   def show
     @order_line = OrderLine.new
+    @invoice = Invoice.new
     @order_line.order = @order
   end
 

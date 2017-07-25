@@ -1,0 +1,19 @@
+
+  <div class="row">
+    <div class="col-xs-6">
+      <%= simple_form_for [@order, @invoice] do |inv| %>
+        <%= inv.input :amount_in_invoice_currency %>
+        <%= inv.input :invoice_currency %>
+        <%= inv.input :amount_in_accounting_currency %>
+        <%= inv.input :reference %>
+        </div>
+        <div class="col-xs-6">
+        <%= inv.input :url %>
+        <%= inv.input :issue_date %>
+        <%= inv.input :due_date %>
+        <%= inv.input :payment_date %>
+    </div>
+  </div>
+        <%= inv.button :submit, 'Add an invoice' %>
+      <% end %>
+
