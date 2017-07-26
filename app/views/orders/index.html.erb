@@ -1,19 +1,21 @@
-<h1>All the orders</h1>
-<%= simple_form_for @order do |o| %>
-  <%= o.input :name %>
-  <%= o.button :submit %>
-<% end %>
-
-<table class="table table-striped">
-  <tr>
-    <th>name</th>
-    <th>qtty</th>
-  </tr>
-  <% @orders.each do |order| %>
-    <tr>
-      <td><%= link_to order.name, order_path(order) %></td>
-      <td><%= order.qtty %></td>
-    </tr>
+<div class="container">
+  <h1>All the orders</h1>
+  <%= simple_form_for @order do |o| %>
+    <%= o.input :name %>
+    <%= o.button :submit %>
   <% end %>
-</table>
+
+  <table class="table table-striped">
+    <tr>
+      <th>name</th>
+      <th>qtty</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.name, order_path(order) %></td>
+        <td><%= order.qtty %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 

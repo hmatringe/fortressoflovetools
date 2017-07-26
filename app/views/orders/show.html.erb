@@ -34,7 +34,7 @@
         <td><%= inv.reference %></td>
         <td><%= number_to_currency(inv.amount_in_invoice_currency, unit: "#{inv.invoice_currency}", format: "%n %u") %></td>
         <td><%= number_to_currency(inv.amount_in_accounting_currency, unit: "DKK", format: "%n %u") %></td>
-        <td><%= number_to_currency(inv.amount_in_accounting_currency.to_f/300, unit: "DKK", format: "%n %u") %></td>
+        <td><%= number_to_currency(inv.amount_in_accounting_currency.to_f/@order.qtty, unit: "DKK", format: "%n %u") %></td>
         <td><%= link_to "Delete", inv, method: :delete, class: "destroy"  %></td>
       </tr>
     <% end %>

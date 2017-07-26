@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :inventories, only: [:index, :show, :new, :create]
+
   resources :orders, only: [:index, :show, :edit, :create] do
     resources :order_lines, only: [:create]
     resources :invoices, only: [:create]

@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Inventories</h1>
+
+  <% @inventories.each do |inventory| %>
+    <%= link_to "Inventory of the :#{inventory.date}", inventory_path(inventory) %>
+  <% end %>
+</div>
