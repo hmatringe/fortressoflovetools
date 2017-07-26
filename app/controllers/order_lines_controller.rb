@@ -1,6 +1,6 @@
 class OrderLinesController < ApplicationController
+  before_action :set_order, only: [:create]
   def create
-    set_order
     @order_line = OrderLine.new(order_line_params)
     @order_line.order = @order
     if @order_line.save
@@ -22,6 +22,10 @@ class OrderLinesController < ApplicationController
 
   private
 
+  def set_order
+    @order = Order.find(params["order_id"])
+  end
+
   def order_line_params
     params.require(:order_line).permit(:id,:qtty,:product_id,:order_id,:production_cost_per_unit_invoice_currency,:production_cost_per_unit_accounting_currency)
   end
@@ -36,7 +40,4 @@ class OrderLinesController < ApplicationController
     @order.save
   end
 
-  def set_order
-    @order = Order.find(params["order_id"])
-  end
 end

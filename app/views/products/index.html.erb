@@ -1,24 +1,26 @@
-<h1>All the products</h1>
+<div class="container">
+  <h1>All the products</h1>
 
-<table class="table table-striped">
-  <tr>
-    <th>name</th>
-    <th>size</th>
-    <th>color</th>
-    <th>structure</th>
-    <th>category</th>
-    <th>SKU</th>
-    <th>parentSKU</th>
-  </tr>
-  <% @products.each do |product| %>
+  <table class="table table-striped">
     <tr>
-      <td><%= product.name %></td>
-      <td><%= product.size %></td>
-      <td><%= product.color %></td>
-      <td><%= product.structure %></td>
-      <td><%= product.category %></td>
-      <td><%= link_to product.SKU, product_path(product) %></td>
-      <td><%= product.parentSKU %></td>
+      <th>name</th>
+      <th>size</th>
+      <th>color</th>
+      <th>structure</th>
+      <th>category</th>
+      <th>SKU</th>
+      <th>parentSKU</th>
     </tr>
-  <% end %>
-</table>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.size %></td>
+        <td><%= product.color %></td>
+        <td><%= product.structure %></td>
+        <td><%= product.category %></td>
+        <td><%= link_to product.SKU, product_path(product) %></td>
+        <td><%= product.parentSKU %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

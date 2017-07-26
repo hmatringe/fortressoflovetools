@@ -1,7 +1,23 @@
 <div class="container">
-  <h1>Inventories</h1>
-
-  <% @inventories.each do |inventory| %>
-    <%= link_to "Inventory of the :#{inventory.date}", inventory_path(inventory) %>
+  <h1>All the inventories</h1>
+  <%= simple_form_for @inventory do |o| %>
+    <%= o.input :date %>
+    <%= o.button :submit %>
   <% end %>
+
+
+  <table class="table table-striped">
+    <tr>
+      <th>Inventories</th>
+      <th>Quantity</th>
+      <th>Value</th>
+    </tr>
+    <% @inventories.each do |inventory| %>
+      <tr>
+        <td><%= link_to "Inventory of the #{inventory.date}", inventory_path(inventory) %></td>
+        <td>na</td>
+        <td>na</td>
+      </tr>
+    <% end %>
+  </table>
 </div>

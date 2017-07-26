@@ -1,5 +1,30 @@
 <div class="container">
   <h1>Inventory of the <%= @inventory.date %></h1>
-
-
+  <p><%= link_to "See all inventories", inventories_path %></p>
+  <hr>
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>Add a product count</h3>
+      <p>You can add each product only once per inventory.</p>
+      <%= render "inventory_primary_lines/form" %>
+    </div>
+  </div>
+  <hr>
+  <h3>Product counts</h3>
+  <table class="table table-striped">
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Total Value</th>
+      <th>Actions</th>
+    </tr>
+    <% @inventory.inventory_primary_lines.each do |ipl| %>
+      <tr>
+        <td><%= ipl.product.select_label %></td>
+        <td><%= ipl.qtty %></td>
+        <td>na</td>
+        <td><%= link_to "Delete", ipl, method: :delete, class: "destroy"  %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>

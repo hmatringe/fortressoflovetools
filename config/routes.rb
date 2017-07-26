@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :inventories, only: [:index, :show, :new, :create]
+  resources :inventories, only: [:index, :show, :create] do
+    resources :inventory_primary_lines, only: [:create]
+  end
+  resources :inventory_primary_lines, only: :destroy
 
   resources :orders, only: [:index, :show, :edit, :create] do
     resources :order_lines, only: [:create]
@@ -8,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :order_lines, only: :destroy
   resources :invoices, only: :destroy
+
   resources :products, only: [:index, :show, :new, :create]
   devise_for :users
   root to: 'pages#home'
