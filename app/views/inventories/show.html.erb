@@ -22,7 +22,7 @@
       <tr>
         <td><%= ipl.product.select_label %></td>
         <td><%= ipl.qtty %></td>
-        <td>na</td>
+        <td><%= number_to_currency(ipl.average_inventory_value_per_unit, unit: "DKK", format: "%n %u") %></td>
         <td><%= link_to "Delete", ipl, method: :delete, class: "destroy"  %></td>
       </tr>
     <% end %>

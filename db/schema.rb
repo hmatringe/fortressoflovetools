@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726125644) do
+ActiveRecord::Schema.define(version: 20170726192114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(version: 20170726125644) do
   create_table "inventory_primary_lines", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "inventory_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                                                                null: false
+    t.datetime "updated_at",                                                                null: false
     t.string   "qtty"
+    t.decimal  "average_inventory_value_per_unit", precision: 11, scale: 4, default: "0.0"
     t.index ["inventory_id"], name: "index_inventory_primary_lines_on_inventory_id", using: :btree
     t.index ["product_id"], name: "index_inventory_primary_lines_on_product_id", using: :btree
   end
@@ -49,10 +50,12 @@ ActiveRecord::Schema.define(version: 20170726125644) do
     t.integer  "qtty"
     t.integer  "order_id"
     t.integer  "product_id"
-    t.datetime "created_at",                                                            null: false
-    t.datetime "updated_at",                                                            null: false
+    t.datetime "created_at",                                                                            null: false
+    t.datetime "updated_at",                                                                            null: false
     t.decimal  "production_cost_per_unit_invoice_currency",    precision: 11, scale: 4
     t.decimal  "production_cost_per_unit_accounting_currency", precision: 11, scale: 4
+    t.decimal  "total_costs_per_unit",                         precision: 11, scale: 4, default: "0.0"
+    t.date     "arrival_in_stock_date"
     t.index ["order_id"], name: "index_order_lines_on_order_id", using: :btree
     t.index ["product_id"], name: "index_order_lines_on_product_id", using: :btree
   end
@@ -66,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170726125644) do
     t.string   "purchase_or_production_invoice_reference"
     t.decimal  "additional_costs_per_unit",                precision: 11, scale: 4
     t.decimal  "additional_costs",                         precision: 11, scale: 4
+    t.date     "arrival_in_stock_date"
   end
 
   create_table "products", force: :cascade do |t|

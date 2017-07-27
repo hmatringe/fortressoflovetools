@@ -32,12 +32,12 @@ class OrderLinesController < ApplicationController
 
   def increment_order_qtty
     @order.qtty = @order.qtty.to_i + @order_line.qtty
-    @order.save
+    compute_additional_costs_per_unit
   end
 
   def decrement_order_qtty
     @order.qtty = @order.qtty.to_i - @order_line.qtty
-    @order.save
+    compute_additional_costs_per_unit
   end
 
 end

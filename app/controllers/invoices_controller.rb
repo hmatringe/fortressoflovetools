@@ -44,8 +44,16 @@ class InvoicesController < ApplicationController
     compute_additional_costs_per_unit
   end
 
-  def compute_additional_costs_per_unit
-    @order.additional_costs_per_unit = @order.additional_costs.to_f / @order.qtty
-    @order.save
-  end
+  # def compute_additional_costs_per_unit
+  #   @order.additional_costs_per_unit = @order.additional_costs.to_f / @order.qtty
+  #   @order.save
+  #   update_order_lines_total_costs_per_unit
+  # end
+
+  # def update_order_lines_total_costs_per_unit
+  #   @order.order_lines.each do |ol|
+  #     ol.total_costs_per_unit = ol.production_cost_per_unit_accounting_currency + @order.additional_costs_per_unit
+  #     ol.save
+  #   end
+  # end
 end
