@@ -2,6 +2,7 @@
   <h1>All the orders</h1>
   <%= simple_form_for @order do |o| %>
     <%= o.input :name %>
+    <%= o.input :arrival_in_stock_date, label: "Date of arrival in stock" %>
     <%= o.button :submit %>
   <% end %>
 

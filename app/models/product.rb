@@ -6,4 +6,22 @@ class Product < ApplicationRecord
   def select_label
     "#{self.name} - size:#{self.size } - #{self.color} - #{self.SKU}"
   end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |p|
+        csv << p.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      # Product.create! row.to_hash to just import new products each time
+      product = find_by(SKU: row["SKU"]) || new
+      product.attributes = row.to_hash
+      product.save
+    end
+  end
 end

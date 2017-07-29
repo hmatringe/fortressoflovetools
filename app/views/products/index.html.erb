@@ -1,25 +1,58 @@
 <div class="container">
   <h1>All the products</h1>
+  <p>
+    Download:
+    <%= link_to "CSV", products_path(format: "csv") %> |
+    <%= link_to "Excel", products_path(format: "xls") %>
+  </p>
+  <div class="row">
+    <div class="col-xs-8">
+    <h2 class="text-center">Create a new product</h2>
+      <div class="col-xs-6">
+      <%= simple_form_for @product do |o| %>
+        <%= o.input :SKU, label: "SKU" %>
+        <%= o.input :parentSKU, label: "Parent SKU" %>
+        <%= o.input :name %>
+        <%= o.input :size %>
+      </div>
+      <div class="col-xs-6">
+        <%= o.input :color %>
+        <%= o.input :structure %>
+        <%= o.input :category %>
+          <%= o.button :submit %>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-xs-4">
+    <h2 class="text-center">Import from csv</h2>
+      <%= form_tag import_products_path, multipart: true do %>
+        <%= file_field_tag :file %> <br>
+        <%= submit_tag "Import" %>
+      <% end %>
+    </div>
+  </div>
 
   <table class="table table-striped">
     <tr>
+      <th>SKU</th>
+      <th>parentSKU</th>
       <th>name</th>
       <th>size</th>
       <th>color</th>
       <th>structure</th>
       <th>category</th>
-      <th>SKU</th>
-      <th>parentSKU</th>
+      <th>Actions</th>
     </tr>
     <% @products.each do |product| %>
       <tr>
+        <td><%= link_to product.SKU, product_path(product) %></td>
+        <td><%= product.parentSKU %></td>
         <td><%= product.name %></td>
         <td><%= product.size %></td>
         <td><%= product.color %></td>
         <td><%= product.structure %></td>
         <td><%= product.category %></td>
-        <td><%= link_to product.SKU, product_path(product) %></td>
-        <td><%= product.parentSKU %></td>
+        <td><%= link_to "Delete", product, method: :delete, class: "destroy"  %></td>
       </tr>
     <% end %>
   </table>

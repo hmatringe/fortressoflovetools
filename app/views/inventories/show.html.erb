@@ -1,16 +1,29 @@
 <div class="container">
   <h1>Inventory of the <%= @inventory.date %></h1>
+  <p>
+    Download:
+    <%= link_to "CSV", inventory_inventory_primary_lines_path(@inventory, format: "csv") %> |
+    <%= link_to "Excel", inventory_inventory_primary_lines_path(@inventory, format: "xls") %>
+  </p>
   <p><%= link_to "See all inventories", inventories_path %></p>
   <hr>
   <div class="row">
     <div class="col-xs-6">
-      <h3>Add a product count</h3>
+      <h3>Add an inventory line</h3>
       <p>You can add each product only once per inventory.</p>
       <%= render "inventory_primary_lines/form" %>
     </div>
+    <div class="col-xs-6">
+    <h2 class="text-center">Import from csv</h2>
+    <p>Your csv file must contain one headers row with 2 columns exactly named: "SKU" and "Quantity"</p>
+      <%= form_tag import_inventory_inventory_primary_lines_path(@inventory), multipart: true do %>
+        <%= file_field_tag :file %> <br>
+        <%= submit_tag "Import" %>
+      <% end %>
+    </div>
   </div>
   <hr>
-  <h3>Product counts</h3>
+  <h3>Inventory lines</h3>
   <table class="table table-striped">
     <tr>
       <th>Product</th>

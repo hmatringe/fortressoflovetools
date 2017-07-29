@@ -1,5 +1,5 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, only: [:show]
+  before_action :set_inventory, only: [:show, :destroy]
   def index
     @inventories = Inventory.all
     @inventory = Inventory.new
@@ -13,11 +13,16 @@ class InventoriesController < ApplicationController
   def create
     @inventory = Inventory.new(inventory_params)
     if @inventory.save
-      render :show
+      redirect_to @inventory
     else
       render :index
       flash[:notice] = "Order not created"
     end
+  end
+
+  def destroy
+    @inventory.destroy
+    redirect_to inventories_path
   end
 
   private
@@ -26,7 +31,7 @@ class InventoriesController < ApplicationController
   end
 
   def inventory_params
-    params.require(:inventory).permit(:id,:date)
+    params.require(:inventory).permit(:date)
   end
 
 end

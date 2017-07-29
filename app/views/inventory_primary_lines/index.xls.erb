@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Stock_Value_<%= @inventory.date.strftime("%Y-%m-%d") %>">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">SKU</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Quantity in stock as of <%= @inventory.date.strftime("%Y-%m-%d") %></Data></Cell>
+        <Cell><Data ss:Type="String">Value per unit (in DKK)</Data></Cell>
+        <Cell><Data ss:Type="String">Subtotal (in DKK)</Data></Cell>
+      </Row>
+    <% @inventory.inventory_primary_lines.each do |ipl| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= ipl.product.SKU %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= ipl.product.name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= ipl.qtty %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= number_with_precision(ipl.average_inventory_value_per_unit, precision: 2) %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= number_with_precision(ipl.average_inventory_value_per_unit.to_f * ipl.qtty.to_i, precision: 2) %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

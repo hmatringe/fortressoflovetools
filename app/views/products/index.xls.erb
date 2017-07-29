@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Products_<%= Date.today.strftime("%Y-%m-%d") %>">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">SKU</Data></Cell>
+        <Cell><Data ss:Type="String">parentSKU</Data></Cell>
+        <Cell><Data ss:Type="String">name</Data></Cell>
+        <Cell><Data ss:Type="String">size</Data></Cell>
+        <Cell><Data ss:Type="String">color</Data></Cell>
+        <Cell><Data ss:Type="String">structure</Data></Cell>
+        <Cell><Data ss:Type="String">category</Data></Cell>
+      </Row>
+    <% @products.each do |product| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= product.SKU %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.parentSKU %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.size %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.color %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.structure %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.category %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

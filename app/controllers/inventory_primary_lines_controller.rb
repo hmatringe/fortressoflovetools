@@ -1,5 +1,23 @@
 class InventoryPrimaryLinesController < ApplicationController
-  before_action :set_inventory, only: [:create]
+  before_action :set_inventory, only: [:create, :import]
+  def index
+    @inventory = Inventory.find(params["inventory_id"])
+    # @inventory_primary_lines = @inventory.inventory_primary_lines
+    respond_to do |format|
+      format.html
+      # format.csv { render text: @products.to_csv } #to display in browser
+      format.csv { send_data @inventory.inventory_primary_lines.to_csv } #to download the csv
+      format.xls #{ send_data @inventory.inventory_primary_lines.to_csv(col_sep: "\t") } #to download the csv
+      raise
+    end
+    # raise
+  end
+
+  def import
+    InventoryPrimaryLine.import(params[:file],@inventory.id)
+    redirect_to inventory_path(@inventory), notice: "Products imported."
+  end
+
   def create
     @inventory_primary_line = InventoryPrimaryLine.new(inventory_primary_line_params)
     @inventory_primary_line.inventory = @inventory
