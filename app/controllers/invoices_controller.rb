@@ -1,4 +1,13 @@
 class InvoicesController < ApplicationController
+
+  def index
+    @invoices = Invoice.all
+    @paid_invoices ||= @invoices.paid
+    @over_due ||= @invoices.unpaid.due_date_passed
+    @due_within_30_days ||= @invoices.unpaid.due_within_30_days
+    @due_in_more_than_30_days ||= @invoices.unpaid.due_in_more_than_30_days
+  end
+
   def create
     set_order
     @invoice = Invoice.new(invoice_params)

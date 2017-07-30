@@ -22,6 +22,8 @@ module Fortressoflovetools
     config.generators do |generate|
       generate.assets false
       generate.helper false
+      config.active_job.queue_adapter = :sidekiq
+
     end
 
     # Settings in config/environments/* take precedence over those specified here.
