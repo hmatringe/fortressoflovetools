@@ -8,7 +8,7 @@
 #   config.redis = { db: 1 }
 # end
 
-class OurWorker < ApplicationJob
+class OurWorker
   include Sidekiq::Worker
 
   def perform(complexity)
