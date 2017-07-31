@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://localhost:3000/invoices -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TODO</title>
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="INcRHVN3zy0QETIjlVuhqDsw4zJUg3KouIXRc5Bu1nFtr4kj8EbVo4DKotygEgWAYgMPqIfPIrssgZIIaSBUjA==">
+    <meta name="action-cable-url" content="/cable">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:3000/assets/favicon-92b109357b1edbaeb8ebd302f2a0ad8a1ab5173494ee92ff8fbd4e9cb7866598.ico">
+    <link rel="stylesheet" media="all" href="./TODO_files/application-695c63fb56924d1853c170e205d0fddd957252bc23e2ba2d697304ecf7e28da8.css">
+  </head>
+  <body>
+    <div class="navbar-wagon">
+  <!-- Logo -->
+  <a class="navbar-wagon-brand" href="http://localhost:3000/">
+    <img src="./TODO_files/logo-7503965f57527ed84af8d8e378fbd4eac363d7c2957087df25708a271702bb5f.png" alt="Logo">
+</a>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <!-- Search form -->
+    <form action="http://localhost:3000/invoices" class="navbar-wagon-search">
+      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
+      <button type="submit" class="navbar-wagon-search-btn">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+
+    <!-- Different navigation if login or not -->
+
+      <!-- Notification -->
+      <a class="navbar-wagon-item navbar-wagon-link" href="http://localhost:3000/invoices#">
+        <div class="badge-container">
+          <i class="fa fa-envelope-o"></i>
+          <div class="badge badge-blue">3</div>
+        </div>
+</a>
+      <!-- Profile picture and dropdown -->
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <img class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown" src="./TODO_files/30x30" alt="30x30">
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <a href="http://localhost:3000/invoices#">
+                <i class="fa fa-user"></i> Profile
+</a>            </li>
+            <li>
+              <a href="http://localhost:3000/invoices#">
+                <i class="fa fa-home"></i>  Home
+</a>            </li>
+            <li>
+              <a rel="nofollow" data-method="delete" href="http://localhost:3000/users/sign_out">
+                <i class="fa fa-sign-out"></i>  Log out
+</a>            </li>
+          </ul>
+        </div>
+      </div>
+
+
+    <!-- Button (call-to-action) -->
+    <a class="navbar-wagon-item navbar-wagon-button btn" href="http://localhost:3000/invoices#">Post stuff</a>
+  </div>
+
+  <!-- Dropdown list appearing on mobile only -->
+  <div class="navbar-wagon-item hidden-md hidden-lg">
+    <div class="dropdown">
+      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li><a href="http://localhost:3000/invoices#">Some mobile link</a></li>
+        <li><a href="http://localhost:3000/invoices#">Other one</a></li>
+        <li><a href="http://localhost:3000/invoices#">Other one</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    
+    <div class="container">
+  <h1>All the invoices</h1>
+    <h1>Overdue</h1>
+    <table class="table table-striped">
+      <tbody><tr>
+        <th>Reference</th>
+        <th>URL</th>
+        <th>Order</th>
+        <th>Amount in invoice currency</th>
+        <th>Amount in DKK</th>
+        <th>Issue Date</th>
+        <th>Due Date</th>
+        <th>Payment Date</th>
+      </tr>
+        <tr>
+          <td>MISSING Shipment UPS</td>
+          <td></td>
+          <td><a href="http://localhost:3000/orders/15">AW 16/17</a></td>
+          <td>2436.0</td>
+          <td>2436.0</td>
+          <td>2016-09-01</td>
+          <td>2016-09-01</td>
+          <td></td>
+        </tr>
+    </tbody></table>
+
+    <h1>Due within 30 days</h1>
+    <table class="table table-striped">
+      <tbody><tr>
+        <th>Reference</th>
+        <th>URL</th>
+        <th>Order</th>
+        <th>Amount in invoice currency</th>
+        <th>Amount in DKK</th>
+        <th>Issue Date</th>
+        <th>Due Date</th>
+        <th>Payment Date</th>
+      </tr>
+        <tr>
+          <td>63238507.pdf Transport</td>
+          <td></td>
+          <td><a href="http://localhost:3000/orders/2">SS17</a></td>
+          <td>3509.97</td>
+          <td>3509.97</td>
+          <td>2017-03-01</td>
+          <td>2017-08-13</td>
+          <td></td>
+        </tr>
+    </tbody></table>
+
+
+    <h1>Paid</h1>
+    <table class="table table-striped">
+      <tbody><tr>
+        <th>Reference</th>
+        <th>URL</th>
+        <th>Order</th>
+        <th>Amount in invoice currency</th>
+        <th>Amount in DKK</th>
+        <th>Issue Date</th>
+        <th>Due Date</th>
+        <th>Payment Date</th>
+      </tr>
+        <tr>
+          <td>Missing  1,85€ per box</td>
+          <td></td>
+          <td><a href="http://localhost:3000/orders/3">SS16</a></td>
+          <td>925.0</td>
+          <td>6882.0</td>
+          <td>2016-03-01</td>
+          <td>2016-03-01</td>
+          <td>2016-03-01</td>
+        </tr>
+        <tr>
+          <td>Missing Shipment</td>
+          <td></td>
+          <td><a href="http://localhost:3000/orders/3">SS16</a></td>
+          <td>9000.0</td>
+          <td>9000.0</td>
+          <td>2016-03-01</td>
+          <td>2016-03-01</td>
+          <td>2016-03-01</td>
+        </tr>
+        <tr>
+          <td>MISSING Insoles -should be 1,85€ per box</td>
+          <td></td>
+          <td><a href="http://localhost:3000/orders/15">AW 16/17</a></td>
+          <td>555.0</td>
+          <td>4129.2</td>
+          <td>2016-09-01</td>
+          <td>2016-09-01</td>
+          <td>2016-09-01</td>
+        </tr>
+        <tr>
+          <td>SS17 Ordine Finale Invoice_1.pdf</td>
+          <td></td>
+          <td><a href="http://localhost:3000/orders/2">SS17</a></td>
+          <td>44.4</td>
+          <td>330.34</td>
+          <td>2017-03-01</td>
+          <td>2017-03-01</td>
+          <td>2017-03-01</td>
+        </tr>
+        <tr>
+          <td>INVOICE 80.pdf Insoles</td>
+          <td></td>
+          <td><a href="http://localhost:3000/orders/2">SS17</a></td>
+          <td>231.52</td>
+          <td>1722.51</td>
+          <td>2017-03-01</td>
+          <td>2017-03-01</td>
+          <td>2017-03-01</td>
+        </tr>
+    </tbody></table>
+
+</div>
+
+    <script src="./TODO_files/application-53ff2a819a137dba536124badac57a3fbc68ebf32169a66dba15977ab29fc686.js"></script>
+  
+
+</body></html>

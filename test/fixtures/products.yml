@@ -1,0 +1,24 @@
+RMSS16-001-Black-36:
+  name: 'hope'
+  size: 36
+  color: 'Black'
+  structure: 'RMSS16-001'
+  category: 'Pumps'
+  SKU: 'RMSS16-001-Black-36'
+  parentSKU: 'RMSS16-001-Black-Hope'
+RMSS16-001-Black-37:
+  name: 'hope'
+  size: 37
+  color: 'Black'
+  structure: 'RMSS16-001'
+  category: 'Pumps'
+  SKU: 'RMSS16-001-Black-37'
+  parentSKU: 'RMSS16-001-Black-Hope'
+RMSS16-001-Black-38:
+  name: 'hope'
+  size: 38
+  color: 'Black'
+  structure: 'RMSS16-001'
+  category: 'Pumps'
+  SKU: 'RMSS16-001-Black-38'
+  parentSKU: 'RMSS16-001-Black-Hope'
