@@ -10,6 +10,9 @@ gem 'rails', '5.0.3'
 gem 'redis'
 gem 'sidekiq'
 gem 'sidekiq-failures', github: 'mhfs/sidekiq-failures'
+gem 'postmark-rails'
+
+
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -22,6 +25,7 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem "letter_opener"
 end
 
 group :development, :test do
