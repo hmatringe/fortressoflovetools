@@ -1,0 +1,28 @@
+.cogs_sec_navbar {
+  margin: $navbar-height 0 0 0;
+
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+  border-bottom: 1px solid #BDBDBD;
+  padding: 0 0 0 85px;
+}
+
+.cogs_sec_navbar_item {
+  color: #BDBDBD;
+  font-size: bold;
+  padding: 15px 40px;
+  &:hover {
+    color: $brand-color;
+  }
+  &:active {
+  }
+}
+
+.cogs_sec_navbar_item-current {
+    color: $brand-color;
+    background-color: #EDE7F6;
+    border-bottom: 2px solid $brand-color;
+    font-size: bolder;
+}

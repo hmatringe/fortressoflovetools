@@ -1,0 +1,31 @@
+.cogs_breadcrumb {
+  padding: 10px 20px 15px 125px;
+  list-style: none;
+  background-color: $grue;
+  // font-size: 14px;
+  margin-top: $navbar-height + $sec_navbar-height 0 0 0;
+}
+
+/* Display list items side by side */
+.cogs_breadcrumb li {
+    display: inline;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+.cogs_breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: ">";
+}
+
+/* Add a color to all links inside the list */
+.cogs_breadcrumb li a {
+    color: $brand-color;
+    text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+.cogs_breadcrumb li a:hover {
+    color: #512DA8;
+    text-decoration: underline;
+}

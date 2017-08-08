@@ -1,3 +1,17 @@
+<div class="cogs_sec_navbar">
+    <%= link_to "Products", products_path, class: "cogs_sec_navbar_item" %>
+    <%= link_to "Purchase Orders", orders_path, class: "cogs_sec_navbar_item" %>
+    <%= link_to "Invoices", invoices_path, class: "cogs_sec_navbar_item" %>
+    <%= link_to "Inventories", inventories_path, class: "cogs_sec_navbar_item cogs_sec_navbar_item-current" %>
+    <%= link_to "COGS", cogs_path, class: "cogs_sec_navbar_item" %>
+</div>
+
+<ul class="cogs_breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li><%= link_to "Inventories", inventories_path %></li>
+  <li class="active"><%= @inventory.date  %></li>
+</ul>
+
 <div class="container">
   <h1>Inventory of the <%= @inventory.date %></h1>
   <p>
@@ -17,8 +31,8 @@
     <h2 class="text-center">Import from csv</h2>
     <p>Your csv file must contain one headers row with 2 columns exactly named: "SKU" and "Quantity"</p>
       <%= form_tag import_inventory_inventory_primary_lines_path(@inventory), multipart: true do %>
-        <%= file_field_tag :file %> <br>
-        <%= submit_tag "Import" %>
+        <%= file_field_tag :file, class: "" %> <br>
+        <%= submit_tag "Import", class: "cogs_btn" %>
       <% end %>
     </div>
   </div>

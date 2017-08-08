@@ -1,8 +1,21 @@
+<div class="cogs_sec_navbar">
+    <%= link_to "Products", products_path, class: "cogs_sec_navbar_item" %>
+    <%= link_to "Purchase Orders", orders_path, class: "cogs_sec_navbar_item" %>
+    <%= link_to "Invoices", invoices_path, class: "cogs_sec_navbar_item" %>
+    <%= link_to "Inventories", inventories_path, class: "cogs_sec_navbar_item cogs_sec_navbar_item-current" %>
+    <%= link_to "COGS", cogs_path, class: "cogs_sec_navbar_item" %>
+</div>
+
+<!-- <ul class="cogs_breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li class="active">Products</li>
+</ul> -->
+
 <div class="container">
   <h1>All the inventories</h1>
   <%= simple_form_for @inventory do |o| %>
     <%= o.input :date %>
-    <%= o.button :submit %>
+    <%= o.button :submit, class: "cogs_btn" %>
   <% end %>
 
 
