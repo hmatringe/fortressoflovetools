@@ -8,22 +8,22 @@
     <Table>
       <Row>
         <Cell><Data ss:Type="String">SKU</Data></Cell>
-        <Cell><Data ss:Type="String">parentSKU</Data></Cell>
+        <!-- <Cell><Data ss:Type="String">parentSKU</Data></Cell> -->
         <Cell><Data ss:Type="String">name</Data></Cell>
-        <Cell><Data ss:Type="String">size</Data></Cell>
+        <!-- <Cell><Data ss:Type="String">size</Data></Cell>
         <Cell><Data ss:Type="String">color</Data></Cell>
         <Cell><Data ss:Type="String">structure</Data></Cell>
-        <Cell><Data ss:Type="String">category</Data></Cell>
+        <Cell><Data ss:Type="String">category</Data></Cell> -->
       </Row>
     <% @products.each do |product| %>
       <Row>
         <Cell><Data ss:Type="String"><%= product.SKU %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= product.parentSKU %></Data></Cell>
+        <!-- <Cell><Data ss:Type="String"><%= product.parentSKU %></Data></Cell> -->
         <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= product.size %></Data></Cell>
+        <!-- <Cell><Data ss:Type="String"><%= product.size %></Data></Cell>
         <Cell><Data ss:Type="String"><%= product.color %></Data></Cell>
         <Cell><Data ss:Type="String"><%= product.structure %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= product.category %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.category %></Data></Cell> -->
       </Row>
     <% end %>
     </Table>

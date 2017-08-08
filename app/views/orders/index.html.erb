@@ -12,24 +12,19 @@
 </ul> -->
 
 <div class="container">
-  <h1>All the orders</h1>
-  <%= simple_form_for @order do |o| %>
-    <%= o.input :name %>
-    <%= o.input :arrival_in_stock_date, label: "Date of arrival in stock" %>
-    <%= o.button :submit, class: "cogs_btn" %>
-  <% end %>
+  <h1><%= current_user.company %>'s purchase orders</h1>
 
-  <table class="table table-striped">
-    <tr>
-      <th>name</th>
-      <th>qtty</th>
-    </tr>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= link_to order.name, order_path(order) %></td>
-        <td><%= order.qtty %></td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="row">
+    <div class="col-xs-6 cogs_box_wrapper">
+      <div class="col-xs-12 cogs_box">
+        <%= render "index_add_order" %>
+      </div>
+    </div>
+    <div class="col-xs-6 cogs_box_wrapper">
+      <div class="col-xs-12 cogs_box">
+        <%= render "index_orders" %>
+      </div>
+    </div>
+  </div>
 </div>
 

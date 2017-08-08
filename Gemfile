@@ -12,8 +12,6 @@ gem 'sidekiq'
 gem 'sidekiq-failures', github: 'mhfs/sidekiq-failures'
 gem 'postmark-rails'
 
-
-
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'

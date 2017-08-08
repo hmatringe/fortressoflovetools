@@ -1,0 +1,6 @@
+<h3 class="">Upload many products (.csv file)</h3>
+
+<%= form_tag import_products_path, multipart: true do %>
+  <%= file_field_tag :file %> <br>
+  <%= submit_tag "Upload", class: "cogs_btn" %>
+<% end %>

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
   # respond_to :html, :json, :csv
   def index
-    @products = Product.all.order(:SKU)
+    @products = Product.all.order("created_at DESC")
     @product = Product.new
     # respond_with(@products) // JSON works
     respond_to do |format|
@@ -28,7 +28,8 @@ class ProductsController < ApplicationController
   def create
       @product = Product.new(product_params)
     if @product.save
-      redirect_to @product
+      # redirect_to @product
+      redirect_to products_path
     else
       render :new
     end
@@ -46,6 +47,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:SKU)
+    params.require(:product).permit(:SKU, :name)
   end
 end

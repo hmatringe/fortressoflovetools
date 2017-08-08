@@ -1,0 +1,6 @@
+<h3 class="">Add a purchase order</h3>
+<%= simple_form_for @order, html: {class: "form-inline"} do |o| %>
+  <%= o.input :name, label: false, placeholder: "name", input_html: {style: "width: 100px"}, required: true %>
+  <%= o.input :arrival_in_stock_date, label: "Date of arrival in stock" %>
+  <%= o.submit "Add", class: "cogs_btn" %>
+<% end %>

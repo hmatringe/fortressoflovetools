@@ -4,6 +4,8 @@
     <%= image_tag "logo.png" %>
   <% end %>
 
+
+
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
@@ -27,7 +29,7 @@
       <%# end %>
       <!-- User info -->
       <div class="navbar-wagon-item">
-        <p><%= current_user.company %></p>
+        <strong class= "navbar-wagon-item"><%= current_user.company %></strong>
       </div>
 
       <!-- Profile picture and dropdown -->
