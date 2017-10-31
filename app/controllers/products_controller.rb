@@ -36,9 +36,10 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
+    # @product.destroy
     redirect_to products_path
-    flash[:notice] = "Product successfully deleted"
+    # flash[:notice] = "Product successfully deleted"
+    flash[:notice] = "Product can only be deleted by admins"
   end
 
   private

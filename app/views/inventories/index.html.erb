@@ -23,14 +23,14 @@
     <tr>
       <th>Inventories</th>
       <th>Quantity</th>
-      <th>Value</th>
+      <!-- <th>Value</th> -->
       <th>Actions</th>
     </tr>
     <% @inventories.each do |inventory| %>
       <tr>
-        <td><%= link_to "Inventory of the #{inventory.date}", inventory_path(inventory) %></td>
-        <td>na</td>
-        <td>na</td>
+        <td><%= link_to "Inventory #{inventory.id} of the #{inventory.date}", inventory_path(inventory) %></td>
+        <td><%= inventory.sum_self %></td>
+        <!-- <td>na</td> -->
         <td><%= link_to "Delete", inventory, method: :delete, class: "destroy"  %></td>
       </tr>
     <% end %>

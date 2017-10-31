@@ -9,4 +9,8 @@ class PagesController < ApplicationController
 
   def cogs
   end
+
+  def fetched_temp
+  	@FetchedSalesOrders = FetchedSalesOrder.all
+  end
 end

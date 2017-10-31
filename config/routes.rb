@@ -26,5 +26,12 @@ Rails.application.routes.draw do
   end
   get "components", to: 'pages#components'
   get "cogs", to: 'pages#cogs'
-
+  get "fetched_temp", to: 'pages#fetched_temp'
+  # constraints subdomain: "hooks" do
+  #   post '/:integration_name' => 'webhooks#receive', as: :receive_webhooks
+  # end
+  scope '/webhooks', controller: :webhooks do
+    post :receive_test
+    post :receive_fetched_sales_orders
+  end
 end

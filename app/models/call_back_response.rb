@@ -1,0 +1,2 @@
+class CallBackResponse < ApplicationRecord
+end

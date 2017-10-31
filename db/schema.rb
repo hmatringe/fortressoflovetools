@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807140407) do
+ActiveRecord::Schema.define(version: 20171023110607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "call_back_responses", force: :cascade do |t|
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fetched_sales_orders", force: :cascade do |t|
+    t.integer  "woocommerce_sales_order_id"
+    t.json     "body"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "inventories", force: :cascade do |t|
     t.date     "date"

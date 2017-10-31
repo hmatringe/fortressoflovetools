@@ -29,7 +29,10 @@
     </div>
     <div class="col-xs-6">
     <h2 class="text-center">Import from csv</h2>
-    <p>Your csv file must contain one headers row with 2 columns exactly named: "SKU" and "Quantity"</p>
+      <p>Your csv file must contain one headers row with 2 columns exactly named:<br>
+      "SKU" and "Quantity"<br>
+      The separator must be a comma:<br>
+      ","</p>
       <%= form_tag import_inventory_inventory_primary_lines_path(@inventory), multipart: true do %>
         <%= file_field_tag :file, class: "" %> <br>
         <%= submit_tag "Import", class: "cogs_btn" %>

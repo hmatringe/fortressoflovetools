@@ -1,7 +1,7 @@
 class InventoriesController < ApplicationController
   before_action :set_inventory, only: [:show, :destroy]
   def index
-    @inventories = Inventory.all
+    @inventories = Inventory.all.order(date: :desc)
     @inventory = Inventory.new
   end
 
