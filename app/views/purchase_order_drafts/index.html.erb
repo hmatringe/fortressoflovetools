@@ -1,0 +1,6 @@
+
+<br><br><br><br>
+<h1>PurchaseOrderDrafts</h1>
+<% @purchase_order_drafts.each do |pod| %>
+	<%= "#{pod.name} - #{pod.supplier} - #{pod.supply_period_days} - inventory date: #{pod.inventory.date}" %>
+<% end %>

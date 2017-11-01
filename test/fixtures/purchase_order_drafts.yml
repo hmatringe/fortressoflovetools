@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  supply_period_days: 1
+  supplier: MyString
+  inventory: one
+
+two:
+  name: MyString
+  supply_period_days: 1
+  supplier: MyString
+  inventory: two

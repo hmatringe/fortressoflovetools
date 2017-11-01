@@ -1,0 +1,6 @@
+
+<br><br><br><br>
+<h1>PurchaseOrderDraftLines</h1>
+<% @purchase_order_draft_lines.each do |podl| %>
+	<%= "#{podl.SKU} - #{podl.qtty_in_stock} - #{podl.order_qtty} - #{podl.qtty_after_order_qtty} - #{podl.sold_in_supply_period_days} - #{podl.days_of_sales_after_order} - #{podl.days_of_sales_after_order}" %>
+<% end %>

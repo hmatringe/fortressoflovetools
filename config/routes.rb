@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show, :new, :create, :destroy] do
     collection { post :import }
   end
+  resources :sales_order_lines, only: [:index] do
+    collection { post :import}
+  end
+  resources :purchase_order_drafts
+  resources :purchase_order_draft_lines
   devise_for :users
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
