@@ -1,2 +1,39 @@
-<h1>PurchaseOrderDraftLines#edit</h1>
-<p>Find me in app/views/purchase_order_draft_lines/edit.html.erb</p>
+<br><br><br><br>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			
+		<h3 class="text-center">Purchase Order Draft Line </h3>
+		<div class="cogs_box_wrapper">
+			<div class="cogs_box text-center">
+				<strong>
+					<%= @product.select_label %>
+				</strong>
+				<br>
+				<br>
+				Sales speed =
+				<strong class="color-green">
+					<%= @purchase_order_draft_line.sales_speed.round 2 %>
+				</strong>
+				sales per day within the last <%= @pod.supply_period_days %> days
+				<br>
+				<br>
+				Recommended quantity to order:
+				<strong class="color-green">
+					<%= @purchase_order_draft_line.recommended_qtty.round %>
+				</strong>
+			</div>
+		</div>
+		<%= simple_form_for @purchase_order_draft_line do |podl| %>
+      <%= podl.input :order_qtty, label: "Quantity to order" %>
+      <%= podl.input :days_out_of_stock, label: "Days out of stock, out of the Supply Period - #{@pod.supply_period_days} days" %>
+      <%= podl.input :qtty_in_stock, label: "Quantity in stock: Careful! This modification is permanent and will override historical inventory data for this Purchase Order Draft" %>
+      <%= podl.input :sold_in_supply_period_days, label: "Units sold in the last #{@pod.supply_period_days} days: Careful! This modification is permanent and will override historical sales data" %>
+      <%= podl.input :comments %>
+      <%= podl.input :status, collection: PurchaseOrderDraftLine.statuses, label_method: :first, value_method: :first, as: :radio_buttons %>
+			<%= podl.button :submit, class: "cogs_btn" %>
+		<% end %>
+
+		</div>
+	</div>
+</div>

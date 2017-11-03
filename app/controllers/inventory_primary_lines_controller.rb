@@ -8,7 +8,6 @@ class InventoryPrimaryLinesController < ApplicationController
       # format.csv { render text: @products.to_csv } #to display in browser
       format.csv { send_data @inventory.inventory_primary_lines.to_csv } #to download the csv
       format.xls #{ send_data @inventory.inventory_primary_lines.to_csv(col_sep: "\t") } #to download the csv
-      raise
     end
     # raise
   end

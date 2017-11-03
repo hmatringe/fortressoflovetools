@@ -1,2 +1,8 @@
 <h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<%= simple_form_for @purchase_order_draft do |pod| %>
+	<%= pod.input :name %>
+	<%= pod.input :supply_period_days %>
+	<%= pod.input :supplier %>
+	<%= pod.input :inventory_id %>
+	<%= pod.button :submit %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101061111) do
+ActiveRecord::Schema.define(version: 20171103205143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,9 +92,10 @@ ActiveRecord::Schema.define(version: 20171101061111) do
     t.string   "color"
     t.string   "structure"
     t.string   "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "parentSKU"
+    t.integer  "supplier_id"
   end
 
   create_table "purchase_order_draft_lines", force: :cascade do |t|
@@ -102,21 +103,26 @@ ActiveRecord::Schema.define(version: 20171101061111) do
     t.string   "SKU"
     t.integer  "qtty_in_stock"
     t.integer  "order_qtty"
-    t.string   "qtty_after_order_qtty"
     t.integer  "sold_in_supply_period_days"
     t.integer  "days_of_sales_after_order"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "days_out_of_stock"
+    t.float    "sales_speed"
+    t.integer  "qtty_after_order"
+    t.integer  "status",                     default: 0
+    t.text     "comments"
+    t.integer  "product_id"
     t.index ["purchase_order_draft_id"], name: "index_purchase_order_draft_lines_on_purchase_order_draft_id", using: :btree
   end
 
   create_table "purchase_order_drafts", force: :cascade do |t|
     t.string   "name"
     t.integer  "supply_period_days"
-    t.string   "supplier"
     t.integer  "inventory_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "supplier_id"
     t.index ["inventory_id"], name: "index_purchase_order_drafts_on_inventory_id", using: :btree
   end
 
@@ -127,6 +133,12 @@ ActiveRecord::Schema.define(version: 20171101061111) do
     t.string   "woocommerce_order_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -154,6 +166,9 @@ ActiveRecord::Schema.define(version: 20171101061111) do
   add_foreign_key "invoices", "orders"
   add_foreign_key "order_lines", "orders"
   add_foreign_key "order_lines", "products"
+  add_foreign_key "products", "suppliers"
+  add_foreign_key "purchase_order_draft_lines", "products"
   add_foreign_key "purchase_order_draft_lines", "purchase_order_drafts"
   add_foreign_key "purchase_order_drafts", "inventories"
+  add_foreign_key "purchase_order_drafts", "suppliers"
 end

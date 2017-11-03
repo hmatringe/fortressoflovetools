@@ -5,7 +5,7 @@ class CreatePurchaseOrderDraftLines < ActiveRecord::Migration[5.0]
       t.string :SKU
       t.integer :qtty_in_stock
       t.integer :order_qtty
-      t.string :qtty_after_order_qtty
+      t.string :qtty_after_order
       t.integer :sold_in_supply_period_days
       t.integer :days_of_sales_after_order
 

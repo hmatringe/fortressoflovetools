@@ -6,4 +6,8 @@
   font-style: bold;
   margin: 5px;
   background-color: white;
+  &:focus,&:hover,&:active {
+  	text-decoration: none;
+  	color: $brand-color;
+  }
 }
