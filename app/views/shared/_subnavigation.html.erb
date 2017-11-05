@@ -1,0 +1,46 @@
+<%
+  steps = [
+    :products,
+    :purchase_orders,
+    :invoices,
+    :inventories,
+    :sales_orders,
+    :purchase_order_drafts,
+    :cogs
+  ]
+
+  labels = {
+    products: "Products",
+    purchase_orders: "Purchase Orders",
+    invoices: "Invoices",
+    inventories: "Inventories",
+    sales_orders: "Sales Orders",
+    purchase_order_drafts: "Purchase Order Drafts",
+    cogs: "COGS"
+  }
+
+  paths = {
+    products: products_path,
+    purchase_orders: orders_path,
+    invoices: invoices_path,
+    inventories: inventories_path,
+    sales_orders: sales_order_lines_path,
+    purchase_order_drafts: purchase_order_drafts_path,
+    cogs: cogs_path
+  }
+
+  index = steps.index current
+%>
+<div class="cogs_sec_navbar">
+	<% steps.each do |step| %>
+		<a class="cogs_sec_navbar_item <%= "cogs_sec_navbar_item-current" if current == step %> " href=<%= paths[step] %>> <%= labels[step] %> </a>
+  <% end %>
+</div>
+<!-- <div>
+	<ul class="cogs_breadcrumb">
+	  <li><%#= link_to "", root_path %></li>
+	  <a href="/inventories">Inventories</a>
+	  <li><%#= link_to "Inventories", inventories_path %></li>
+	  <li class="active"><%#= request.env['PATH_INFO'] %></li>
+	</ul>
+</div> -->

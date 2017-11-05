@@ -1,18 +1,34 @@
-<div class="cogs_sec_navbar">
-    <%= link_to "Products", products_path, class: "cogs_sec_navbar_item" %>
-    <%= link_to "Purchase Orders", orders_path, class: "cogs_sec_navbar_item" %>
-    <%= link_to "Invoices", invoices_path, class: "cogs_sec_navbar_item" %>
-    <%= link_to "Inventories", inventories_path, class: "cogs_sec_navbar_item" %>
-    <%= link_to "COGS", cogs_path, class: "cogs_sec_navbar_item" %>
-</div>
-
+<%= render partial: "shared/subnavigation", locals: { current: nil} %>
 <div class="container">
-  <h1>Pages#home</h1>
-  <p>Find me in app/views/pages/home.html.erb</p>
-  <h3><%= link_to "orders", orders_path %></h3>
-  <h3><%= link_to "products", products_path %></h3>
-  <h3><%= link_to "inventories", inventories_path %></h3>
-  <h3><%= link_to "invoices", invoices_path %></h3>
-  <h3><%= link_to "sales order lines", sales_order_lines_path %></h3>
-  <h3><%= link_to "purchase order drafts", purchase_order_drafts_path %></h3>
+  <h3><%= link_to "Products", products_path %></h3>
+  <div>
+    Add here all the products, with their attributes. NEVER modify an SKU.
+  </div>
+  <h3><%= link_to "Purchase Orders", orders_path %></h3>
+  <div>
+    Enter here all the COGS (production costs per unit, logistics, etc).
+  </div>
+  <h3><%= link_to "Invoices", invoices_path %></h3>
+  <div>
+    Upload here all invoices and manage payment deadline.
+  </div>
+  <h3><%= link_to "Inventories", inventories_path %></h3>
+  <div>
+    Save here all inventories.
+  </div>
+  <h3><%= link_to "Sales Orders", sales_order_lines_path %></h3>
+  <div>
+    Sales orders are fetched automatically here from Woocommerce API.
+    Correct them and get instant stats by periods of your choice.
+    WORK IN PROGRESS
+  </div>
+  <h3><%= link_to "Purchase Order Drafts", purchase_order_drafts_path %></h3>
+  <div>
+    Get recommendations on ideal purchase quantities from historic sales to avoid out-of-stocks and minimize working capital. 
+  </div>
+  <h3><%= link_to "COGS", cogs_path %></h3>
+  <div>
+    See here Roccamore's Cost Of Goods Sold.
+    WORK IN PROGRESS
+  </div>
 </div>
