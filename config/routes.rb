@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   resources :inventory_primary_lines, only: :destroy
 
-  resources :orders, only: [:index, :show, :edit, :create] do
+  resources :orders, only: [:index, :show, :create] do
     resources :order_lines, only: [:create]
     resources :invoices, only: [:create]
   end

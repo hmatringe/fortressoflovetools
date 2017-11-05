@@ -1,39 +1,80 @@
-<br><br><br><br>
-<div class="container">
+
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-xs-8 col-xs-offset-2">
-			
 		<h3 class="text-center">Purchase Order Draft Line </h3>
-		<div class="cogs_box_wrapper">
-			<div class="cogs_box text-center">
-				<strong>
-					<%= @product.select_label %>
-				</strong>
-				<br>
-				<br>
-				Sales speed =
-				<strong class="color-green">
-					<%= @purchase_order_draft_line.sales_speed.round 2 %>
-				</strong>
-				sales per day within the last <%= @pod.supply_period_days %> days
-				<br>
-				<br>
-				Recommended quantity to order:
-				<strong class="color-green">
-					<%= @purchase_order_draft_line.recommended_qtty.round %>
-				</strong>
+    <table class="table table-striped">
+      <tr>
+        <th>SKU</th>
+        <th>Qtty in Stock</th>
+        <th>Qtty to Order</th>
+        <th>Qtty after order</th>
+        <th>Units Sold</th>
+        <th>Out of Stock (days)</th>
+        <th>Sales per Day</th>
+        <th>Days of sales after order</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td><%= @podl.product.select_label %></td>
+        <td class="<%= "color-red" if @podl.qtty_in_stock == 0 %>">
+          <%= @podl.qtty_in_stock %>
+        </td>
+        <td><%= @podl.order_qtty %></td>
+        <td><%= @podl.qtty_after_order %></td>
+        <td><%= @podl.sold_in_supply_period_days %></td>
+        <td><%= @podl.days_out_of_stock %></td>
+        <td><%= @podl.sales_speed.round 2 %></td>
+        <td
+        class="color-<%= @podl.days_of_sales_after_order >= @pod.supply_period_days%>"
+        >
+          <%= @podl.days_of_sales_after_order %>
+        </td>
+        <td
+        class="color-<%= @podl.status ==  "finalized" %>"
+        >
+          <%= @podl.status %></td>
+      </tr>
+    </table>
+
+
+
+		<div class="col-xs-4">
+			<div class="cogs_box_wrapper">
+				<div class="cogs_box">
+					Sales speed =
+					<strong class="color-green">
+						<%= @podl.sales_speed.round 2 %>
+					</strong>
+					sales per day
+					<br>
+					(within the last <%= @pod.supply_period_days %> days)
+					<br>
+					<br>
+					Recommended quantity to order:
+					<strong class="color-green">
+						<%= @podl.recommended_qtty.round %>
+					</strong>
+				</div>
 			</div>
 		</div>
-		<%= simple_form_for @purchase_order_draft_line do |podl| %>
-      <%= podl.input :order_qtty, label: "Quantity to order" %>
-      <%= podl.input :days_out_of_stock, label: "Days out of stock, out of the Supply Period - #{@pod.supply_period_days} days" %>
-      <%= podl.input :qtty_in_stock, label: "Quantity in stock: Careful! This modification is permanent and will override historical inventory data for this Purchase Order Draft" %>
-      <%= podl.input :sold_in_supply_period_days, label: "Units sold in the last #{@pod.supply_period_days} days: Careful! This modification is permanent and will override historical sales data" %>
-      <%= podl.input :comments %>
-      <%= podl.input :status, collection: PurchaseOrderDraftLine.statuses, label_method: :first, value_method: :first, as: :radio_buttons %>
-			<%= podl.button :submit, class: "cogs_btn" %>
-		<% end %>
 
+		<div class="col-xs-4">
+			<%= simple_form_for @podl do |podl| %>
+	      <%= podl.input :order_qtty, label: "Quantity to order" %>
+	      <%= podl.input :days_out_of_stock, label: "Days out of stock, out of the Supply Period - #{@pod.supply_period_days} days" %>
+	      <%= podl.input :qtty_in_stock, label: "Quantity in stock", class: "color" %>
+	      <h6 class="color-orange">Caution: this modification is permanent and will override historical inventory data for this Purchase Order Draft</h6>
+	      <%= podl.input :sold_in_supply_period_days, label: "Units sold in the last #{@pod.supply_period_days} days." %>
+	      <h6 class="color-orange"> Caution: this modification is permanent and will override historical sales data.</h6>
 		</div>
-	</div>
+
+		<div class="col-xs-4">
+	      <%= podl.input :comments %>
+	      <%= podl.input :status, collection: PurchaseOrderDraftLine.statuses, label_method: :first, value_method: :first, as: :radio_buttons %>
+				<%= podl.button :submit, name: "Update_Type", value: "Refresh" , class: "cogs_btn" %>
+				<%= podl.button :submit, name: "Update_Type", value: "Save", class: "cogs_btn" %>
+			<% end %>
+		</div>
+
+  </div>
 </div>

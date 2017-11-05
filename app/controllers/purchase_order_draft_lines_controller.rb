@@ -2,8 +2,7 @@ class PurchaseOrderDraftLinesController < ApplicationController
   before_action :set_purchase_order_draft_line, only: [:edit]
 
   def edit
-    @pod ||= PurchaseOrderDraft.find(@purchase_order_draft_line.purchase_order_draft_id)
-    @product ||= Product.where(SKU: @purchase_order_draft_line.SKU).last
+    @pod ||= PurchaseOrderDraft.find(@podl.purchase_order_draft_id)
   end
 
   def update
@@ -15,13 +14,18 @@ class PurchaseOrderDraftLinesController < ApplicationController
     else
       flash[:alert] = "Purchase Order Draft Line could not be Updated"
     end
-    redirect_to @podl.purchase_order_draft
+    case params[:Update_Type]
+    when "Refresh"
+      redirect_to edit_purchase_order_draft_line_path(@podl)
+    when "Save"
+      redirect_to @podl.purchase_order_draft
+    end
   end
 
   private
 
   def set_purchase_order_draft_line
-    @purchase_order_draft_line = PurchaseOrderDraftLine.find(params[:id])
+    @podl = PurchaseOrderDraftLine.find(params[:id])
   end
 
   def purchase_order_draft_line_params
