@@ -2,14 +2,12 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :destroy]
   # respond_to :html, :json, :csv
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.all.order(:SKU)
     @product = Product.new
-    # respond_with(@products) // JSON works
     respond_to do |format|
       format.html
-      # format.csv { render text: @products.to_csv } #to display in browser
-      format.csv { send_data @products.to_csv } #to download the csv
-      format.xls #{ send_data @products.to_csv(col_sep: "\t") } #to download the csv
+      format.csv { send_data @products.to_csv }
+      format.xls
     end
   end
 
@@ -39,7 +37,9 @@ class ProductsController < ApplicationController
 
   end
   def update
-
+    @product = Product.find(params[:id])
+    @product.update(product_params)
+    @product.save ? redirect_to(products_path) : (render :edit)
   end
   def destroy
     @product.destroy

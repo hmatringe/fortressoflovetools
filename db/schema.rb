@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103205143) do
+ActiveRecord::Schema.define(version: 20171111134652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,10 +92,17 @@ ActiveRecord::Schema.define(version: 20171103205143) do
     t.string   "color"
     t.string   "structure"
     t.string   "category"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "parentSKU"
     t.integer  "supplier_id"
+    t.integer  "heal_thickness"
+    t.boolean  "platform"
+    t.string   "material"
+    t.string   "heal_height"
+    t.string   "closing_type"
+    t.bigint   "EAN"
+    t.string   "woocommerce_product_id"
   end
 
   create_table "purchase_order_draft_lines", force: :cascade do |t|

@@ -21,3 +21,8 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+
+// Tables
+.table > tbody > tr > td {
+	vertical-align: middle !important;
+}
