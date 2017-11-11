@@ -18,17 +18,17 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= link_to product.SKU, product_path(product) %></td>
-        <td><%= product.name.capitalize %></td>
-        <td><%= product.EAN %></td>
-        <td><%= product.size %></td>
-        <td><%= product.color %></td>
-        <td><%= product.structure %></td>
-        <td><%= product.category %></td>
-        <td><%= product.heal_thickness %></td>
-        <td><%= product.heal_height %></td>
-        <td><%= product.platform %></td>
-        <td><%= product.material %></td>
-        <td><%= product.closing_type %></td>
+        <td><%= product.name && product.name.capitalize %></td>
+        <td><%= product.EAN && product.EAN %></td>
+        <td><%= product.size && product.size %></td>
+        <td><%= product.color && product.color %></td>
+        <td><%= product.structure && product.structure %></td>
+        <td><%= product.category && product.category %></td>
+        <td><%= product.heal_thickness && product.heal_thickness %></td>
+        <td><%= product.heal_height && product.heal_height %></td>
+        <td><%= product.platform && product.platform %></td>
+        <td><%= product.material && product.material %></td>
+        <td><%= product.closing_type && product.closing_type %></td>
         <td><%= product.supplier && product.supplier.name  %></td>
         <td><%= link_to "Edit", edit_product_path(product), class: "cogs_btn" %></td>
 
