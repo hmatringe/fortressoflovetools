@@ -1,0 +1,16 @@
+<%= render partial: "shared/subnavigation", locals: { current: :purchase_order_drafts} %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+			<h1>New Purchase Order Drafts</h1>
+			<%= simple_form_for @purchase_order_draft do |pod| %>
+				<%= pod.input :name %>
+				<%= pod.input :supply_period_days %>
+				<%= pod.association :inventory, label_method: :select_label %>
+				<%= pod.association :supplier %>
+				<%= pod.button :submit, class: "cogs_btn" %>
+			<% end %> 
+    </div>
+  </div>
+</div>

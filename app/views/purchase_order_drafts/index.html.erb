@@ -1,0 +1,22 @@
+<%= render partial: "shared/subnavigation", locals: { current: :purchase_order_drafts} %>
+
+<div class="container">
+	<h1 class="text-center">Purchase Order Drafts</h1>
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Supplier</th>
+        <th>Supply Period in Days</th>
+        <th>Inventory</th>
+      </tr>
+			<% @purchase_order_drafts.each do |pod| %>
+        <tr>
+          <td><%= link_to pod.name, purchase_order_draft_path(pod) %></td>
+          <td><%= pod.supplier.name %></td>
+          <td><%= pod.supply_period_days %></td>
+          <td><%= link_to "inventory date: #{pod.inventory.date}", inventory_path(pod.inventory) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "New Purchase Order Draft",new_purchase_order_draft_path, class: "cogs_btn" %>
+</div>

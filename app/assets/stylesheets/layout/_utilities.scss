@@ -1,9 +1,7 @@
-/* -------------------------------------
- * Utilities classes
- * These are examples of utilities classes
- * Feel free to change them and create your own
- * ------------------------------------- */
-
+.main-container{
+  min-height: 100vh;
+  padding-top: $navbar-height;
+}
 // Paddings
 .padded {
   padding-top: 5em;
@@ -22,4 +20,9 @@
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+// Tables
+.table > tbody > tr > td {
+	vertical-align: middle !important;
 }

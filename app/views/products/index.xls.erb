@@ -7,23 +7,35 @@
   <Worksheet ss:Name="Products_<%= Date.today.strftime("%Y-%m-%d") %>">
     <Table>
       <Row>
+        <Cell><Data ss:Type="String">id</Data></Cell>
         <Cell><Data ss:Type="String">SKU</Data></Cell>
-        <!-- <Cell><Data ss:Type="String">parentSKU</Data></Cell> -->
-        <Cell><Data ss:Type="String">name</Data></Cell>
-        <!-- <Cell><Data ss:Type="String">size</Data></Cell>
-        <Cell><Data ss:Type="String">color</Data></Cell>
-        <Cell><Data ss:Type="String">structure</Data></Cell>
-        <Cell><Data ss:Type="String">category</Data></Cell> -->
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Size</Data></Cell>
+        <Cell><Data ss:Type="String">Color</Data></Cell>
+        <Cell><Data ss:Type="String">Structure</Data></Cell>
+        <Cell><Data ss:Type="String">Category</Data></Cell>
+        <Cell><Data ss:Type="String">Heal Thickness</Data></Cell>
+        <Cell><Data ss:Type="String">Heal Height</Data></Cell>
+        <Cell><Data ss:Type="String">Platform</Data></Cell>
+        <Cell><Data ss:Type="String">Material</Data></Cell>
+        <Cell><Data ss:Type="String">Closing Type</Data></Cell>
+        <Cell><Data ss:Type="String">Supplier</Data></Cell>
       </Row>
     <% @products.each do |product| %>
       <Row>
+        <Cell><Data ss:Type="String"><%= product.id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= product.SKU %></Data></Cell>
-        <!-- <Cell><Data ss:Type="String"><%= product.parentSKU %></Data></Cell> -->
         <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
-        <!-- <Cell><Data ss:Type="String"><%= product.size %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.size %></Data></Cell>
         <Cell><Data ss:Type="String"><%= product.color %></Data></Cell>
         <Cell><Data ss:Type="String"><%= product.structure %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= product.category %></Data></Cell> -->
+        <Cell><Data ss:Type="String"><%= product.category %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.heal_thickness %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.heal_height %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.platform %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.material %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.closing_type %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.supplier && product.supplier.name %></Data></Cell>
       </Row>
     <% end %>
     </Table>

@@ -2,9 +2,11 @@ class Product < ApplicationRecord
   has_many :order_lines, dependent: :destroy
   has_many :orders, through: :order_lines
   has_many :inventory_primary_lines, dependent: :destroy
+  belongs_to :supplier, optional: true
+  has_many :purchase_order_draft_lines
 
   def select_label
-    "#{self.name} - size:#{self.size } - #{self.color} - #{self.SKU}"
+    "#{self.name.capitalize} - Size: #{self.size } - #{self.color} - #{self.SKU}"
   end
 
   def self.to_csv(options = {})

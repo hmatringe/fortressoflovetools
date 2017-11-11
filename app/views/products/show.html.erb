@@ -1,3 +1,5 @@
+<%= render partial: "shared/subnavigation", locals: { current: :products} %>
+
 <div class="container">
   <h1><%= @product.name  %> - <%= @product.size %> - <%= @product.SKU %></h1>
 
@@ -12,7 +14,7 @@
       <th>structure</th>
       <th>category</th>
       <th>SKU</th>
-      <th>parentSKU</th>
+      <th>Supplier</th>
     </tr>
 
     <tr>
@@ -22,7 +24,7 @@
       <td><%= @product.structure %></td>
       <td><%= @product.category %></td>
       <td><%= @product.SKU %></td>
-      <td><%= @product.parentSKU %></td>
+      <td><%= @product.supplier %></td>
     </tr>
   </table>
 

@@ -1,43 +1,33 @@
-<div class="cogs_sec_navbar">
-    <%= link_to "Products", products_path, class: "cogs_sec_navbar_item cogs_sec_navbar_item-current" %>
-    <%= link_to "Purchase Orders", orders_path, class: "cogs_sec_navbar_item" %>
-    <%= link_to "Invoices", invoices_path, class: "cogs_sec_navbar_item" %>
-    <%= link_to "Inventories", inventories_path, class: "cogs_sec_navbar_item" %>
-    <%= link_to "COGS", cogs_path, class: "cogs_sec_navbar_item" %>
-</div>
+<%= render partial: "shared/subnavigation", locals: { current: :products} %>
 
-<!-- <ul class="cogs_breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li class="active">Products</li>
-</ul> -->
-
-<div class="container">
-  <h1><%= current_user.company %>'s products</h1>
-
-  <hr>
-
-  <%= link_to products_path(format: "csv"), class: "cogs_btn" do %>
-    <i class="fa fa-download" aria-hidden="true"></i> CSV
-  <% end %>
-  <%= link_to products_path(format: "xls"), class: "cogs_btn" do %>
-    <i class="fa fa-download" aria-hidden="true"></i> Excel
-  <% end %>
-
-  <hr>
-
+<div class="container-fluid">
+      <h1>Products</h1>
+  
   <div class="row">
-    <div class="col-xs-6 cogs_box_wrapper">
-      <div class="col-xs-12 cogs_box">
-       <%= render "index_add_product" %>
-      </div>
-      <div class="col-xs-12 cogs_box">
-        <%= render "index_import_products" %>
+    
+    <div class="col-xs-12 col-md-6">
+      <%= link_to products_path(format: "csv"), class: "cogs_btn" do %>
+        <i class="fa fa-download" aria-hidden="true"></i> CSV
+      <% end %>
+      <%= link_to products_path(format: "xls"), class: "cogs_btn" do %>
+        <i class="fa fa-download" aria-hidden="true"></i> Excel
+      <% end %>
+      <%= link_to "Add a product", new_product_path, class: "cogs_btn" %>
+    </div>
+    
+    <div class="col-xs-12 col-md-6">
+      <div class="cogs_box">
+        <h4 class="">Upload many products (.csv file)</h4>
+        <%= form_tag import_sales_order_lines_path, multipart: true do %>
+          <%= file_field_tag :file %> <br>
+          <%= submit_tag "Upload", class: "cogs_btn" %>
+        <% end %>
       </div>
     </div>
-    <div class="col-xs-6 cogs_box_wrapper">
-      <div class="col-xs-12 cogs_box">
-        <%= render "index_products" %>
-      </div>
-    </div>
+
   </div>
+  
+  <hr>
+
+  <%= render "index_products" %>
 </div>

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807140407) do
+ActiveRecord::Schema.define(version: 20171111134652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "call_back_responses", force: :cascade do |t|
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fetched_sales_orders", force: :cascade do |t|
+    t.integer  "woocommerce_sales_order_id"
+    t.json     "body"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "inventories", force: :cascade do |t|
     t.date     "date"
@@ -79,9 +92,60 @@ ActiveRecord::Schema.define(version: 20170807140407) do
     t.string   "color"
     t.string   "structure"
     t.string   "category"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "parentSKU"
+    t.integer  "supplier_id"
+    t.integer  "heal_thickness"
+    t.boolean  "platform"
+    t.string   "material"
+    t.string   "heal_height"
+    t.string   "closing_type"
+    t.bigint   "EAN"
+    t.string   "woocommerce_product_id"
+  end
+
+  create_table "purchase_order_draft_lines", force: :cascade do |t|
+    t.integer  "purchase_order_draft_id"
+    t.string   "SKU"
+    t.integer  "qtty_in_stock"
+    t.integer  "order_qtty"
+    t.integer  "sold_in_supply_period_days"
+    t.integer  "days_of_sales_after_order"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "days_out_of_stock"
+    t.float    "sales_speed"
+    t.integer  "qtty_after_order"
+    t.integer  "status",                     default: 0
+    t.text     "comments"
+    t.integer  "product_id"
+    t.index ["purchase_order_draft_id"], name: "index_purchase_order_draft_lines_on_purchase_order_draft_id", using: :btree
+  end
+
+  create_table "purchase_order_drafts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "supply_period_days"
+    t.integer  "inventory_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "supplier_id"
+    t.index ["inventory_id"], name: "index_purchase_order_drafts_on_inventory_id", using: :btree
+  end
+
+  create_table "sales_order_lines", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "qtty"
+    t.string   "SKU"
+    t.string   "woocommerce_order_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "suppliers", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "parentSKU"
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,4 +173,9 @@ ActiveRecord::Schema.define(version: 20170807140407) do
   add_foreign_key "invoices", "orders"
   add_foreign_key "order_lines", "orders"
   add_foreign_key "order_lines", "products"
+  add_foreign_key "products", "suppliers"
+  add_foreign_key "purchase_order_draft_lines", "products"
+  add_foreign_key "purchase_order_draft_lines", "purchase_order_drafts"
+  add_foreign_key "purchase_order_drafts", "inventories"
+  add_foreign_key "purchase_order_drafts", "suppliers"
 end

@@ -1,28 +1,37 @@
 <table class="table table-striped">
     <tr>
       <th>SKU</th>
-      <!-- <th>parentSKU</th> -->
-      <th>name</th>
-      <!-- <th>size</th>
-      <th>color</th>
-      <th>structure</th>
-      <th>category</th> -->
-      <th></th>
+      <th>Name</th>
+      <th>EAN</th>
+      <th>Size</th>
+      <th>Color</th>
+      <th>Structure</th>
+      <th>Category</th>
+      <th>Heal Thickness</th>
+      <th>Heal Height</th>
+      <th>Platform</th>
+      <th>Material</th>
+      <th>Closing Type</th>
+      <th>Supplier</th>
+      <th>Actions</th>
     </tr>
     <% @products.each do |product| %>
       <tr>
         <td><%= link_to product.SKU, product_path(product) %></td>
-        <!-- <td><%# product.parentSKU %></td> -->
-        <td><%= product.name %></td>
-        <!-- <td><%# product.size %></td>
-        <td><%# product.color %></td>
-        <td><%# product.structure %></td>
-        <td><%# product.category %></td> -->
-        <td><%= link_to product, method: :delete, class: "destroy"  do %>
-          <i class="fa fa-trash" data-toggle="tooltip" title="Delete product. This action can not be undone!" aria-hidden="true"></i>
-        <% end %>
-        </td>
-        <!-- <td><%# link_to "Delete", product, method: :delete, class: "destroy"  %></td> -->
+        <td><%= product.name.capitalize %></td>
+        <td><%= product.EAN %></td>
+        <td><%= product.size %></td>
+        <td><%= product.color %></td>
+        <td><%= product.structure %></td>
+        <td><%= product.category %></td>
+        <td><%= product.heal_thickness %></td>
+        <td><%= product.heal_height %></td>
+        <td><%= product.platform %></td>
+        <td><%= product.material %></td>
+        <td><%= product.closing_type %></td>
+        <td><%= product.supplier && product.supplier.name  %></td>
+        <td><%= link_to "Edit", edit_product_path(product), class: "cogs_btn" %></td>
+
       </tr>
     <% end %>
   </table>

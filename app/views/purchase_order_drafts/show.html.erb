@@ -1,0 +1,65 @@
+<%= render partial: "shared/subnavigation", locals: { current: :purchase_order_drafts} %>
+
+<div class="text-center">
+	<h1>Purchase Order Draft: <%= @purchase_order_draft.name %></h1>
+	<h5>
+    Created:
+    <strong>
+    <%= @purchase_order_draft.created_at.to_date %> 
+    </strong><br>
+    Supplier: 
+    <strong>
+    <%= @purchase_order_draft.supplier %>
+    </strong><br>
+    Supply Period in Days:
+    <strong>
+      <%= @purchase_order_draft.supply_period_days %>
+    </strong><br>
+    Inventory: 
+    <strong>
+    <%= link_to "#{@purchase_order_draft.inventory.date}", inventory_path(@purchase_order_draft.inventory) %>
+    </strong><br>
+	</h5>
+</div>
+<div class="container-fluid">
+  <div class="row">
+  	<h3 class="text-center">Purchase Order Draft Lines</h3>
+    <table class="table table-striped">
+      <tr>
+        <th>SKU</th>
+        <th>Qtty in Stock</th>
+        <th>Qtty to Order</th>
+        <th>Qtty after order</th>
+        <th>Units Sold</th>
+        <th>Out of Stock (days)</th>
+        <th>Sales per Day</th>
+        <th>Days of sales after order</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+			<% @purchase_order_draft.purchase_order_draft_lines && @purchase_order_draft.purchase_order_draft_lines.order(:SKU).each do |podl| %>
+        <tr>
+          <td><%= podl.product.select_label %></td>
+          <td class="<%= "color-red" if podl.qtty_in_stock == 0 %>">
+            <%= podl.qtty_in_stock %>
+          </td>
+          <td><%= podl.order_qtty %></td>
+          <td><%= podl.qtty_after_order %></td>
+          <td><%= podl.sold_in_supply_period_days %></td>
+          <td><%= podl.days_out_of_stock %></td>
+          <td><%= podl.sales_speed.round 2 %></td>
+          <td
+          class="color-<%= podl.days_of_sales_after_order >= @purchase_order_draft.supply_period_days%>"
+          >
+            <%= podl.days_of_sales_after_order %>
+          </td>
+          <td
+          class="color-<%= podl.status ==  "finalized" %>"
+          >
+            <%= podl.status %></td>
+          <td><%= link_to "Edit", edit_purchase_order_draft_line_path(podl), class: "cogs_btn" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
