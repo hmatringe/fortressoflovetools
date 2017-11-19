@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col.md-8 col-md-offset-2">
+      <h3><%= @invoice.reference %></h3>
+      <%= @invoice.invoice_currency %> <br>
+      <%= @invoice.amount_in_accounting_currency %> <br>
+      <%= @invoice.url %> <br>
+      <%= @invoice.issue_date %> <br>
+      <%= @invoice.due_date %> <br>
+      <%= @invoice.payment_date %> <br>
+      <% if @invoice.document? %>
+            <%= image_path = cl_image_tag @invoice.document.path, format: :pdf  %>
+            <br>
+            <br>
+            <br>
+            <%= "http://res.cloudinary.com/roccamore/image" + image_path %>
+      <% end %>
+    </div>
+  </div>
+</div>
