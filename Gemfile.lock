@@ -71,6 +71,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.2.1)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     cliver (0.3.2)
     cloudinary (1.8.1)
       aws_cf_signer
@@ -257,6 +261,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   capybara
+  carrierwave (~> 1.2)
   cloudinary
   devise
   figaro

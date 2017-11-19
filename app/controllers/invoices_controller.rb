@@ -32,7 +32,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:id,:amount_in_invoice_currency,:invoice_currency,:amount_in_accounting_currency,:reference,:url,:issue_date,:due_date,:payment_date)
+    params.require(:invoice).permit(:id,:amount_in_invoice_currency,:invoice_currency,:amount_in_accounting_currency,:reference,:url,:issue_date,:due_date,:payment_date, :document)
   end
 
   def set_order
@@ -52,17 +52,4 @@ class InvoicesController < ApplicationController
     @order.additional_costs -= @invoice.amount_in_accounting_currency
     compute_additional_costs_per_unit
   end
-
-  # def compute_additional_costs_per_unit
-  #   @order.additional_costs_per_unit = @order.additional_costs.to_f / @order.qtty
-  #   @order.save
-  #   update_order_lines_total_costs_per_unit
-  # end
-
-  # def update_order_lines_total_costs_per_unit
-  #   @order.order_lines.each do |ol|
-  #     ol.total_costs_per_unit = ol.production_cost_per_unit_accounting_currency + @order.additional_costs_per_unit
-  #     ol.save
-  #   end
-  # end
 end
