@@ -20,10 +20,15 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 
+# attachements
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
+
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem "letter_opener"
+  gem 'letter_opener'
 end
 
 group :development, :test do
