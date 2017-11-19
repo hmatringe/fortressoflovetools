@@ -1,20 +1,47 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col.md-8 col-md-offset-2">
+    <div class="col-xs-12 col-md-6 col-md-offset-2">
       <h3><%= @invoice.reference %></h3>
-      <%= @invoice.invoice_currency %> <br>
-      <%= @invoice.amount_in_accounting_currency %> <br>
-      <%= @invoice.url %> <br>
-      <%= @invoice.issue_date %> <br>
-      <%= @invoice.due_date %> <br>
-      <%= @invoice.payment_date %> <br>
+      <h6><%= link_to "Back to order #{@order.name}", order_path(@order), class: "Destroy" %></h6>
+      <table class="table table-striped">
+          <tr>
+            <th>Amount in Invoice Currency:</th>
+            <th>Currency: </th>
+            <th>Amount in Accounting Currency: </th>
+            <th>Issue Date: </th>
+            <th>Due Date: </th>
+            <th>Payment Date: </th>
+          </tr>
+          <tr>
+            <td>
+              <%= @invoice.amount_in_invoice_currency %>
+            </td>
+            <td>
+              <%= @invoice.invoice_currency %> <br>
+            </td>
+            <td>
+              <%= @invoice.amount_in_accounting_currency %> <br>
+            </td>
+            <td>
+              <%= @invoice.issue_date %> <br>
+            </td>
+            <td>
+              <%= @invoice.due_date %> <br>
+            </td>
+            <td>
+              <%= @invoice.payment_date %> <br>
+            </td>
+          </tr>
+      </table>
+    </div>
+    
+    <div class="col-xs-12 col-md-2">
       <% if @invoice.document? %>
-            <%= image_path = cl_image_tag @invoice.document.path, format: :pdf  %>
-            <br>
-            <br>
-            <br>
-            <%= "http://res.cloudinary.com/roccamore/image" + image_path %>
+        <%= link_to "http://res.cloudinary.com/roccamore/#{@invoice.document.file.identifier}", target: "_blank" do %>
+          <%= image_tag @invoice.document.url(:thumb)  %>
+        <% end %>
       <% end %>
     </div>
   </div>
 </div>
+

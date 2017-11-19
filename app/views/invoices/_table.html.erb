@@ -1,0 +1,25 @@
+<% unless invoices.blank? %>
+  <h1><%= title %></h1>
+  <table class="table table-striped">
+    <tr>
+      <th>Reference</th>
+      <th>Order</th>
+      <th>Amount in invoice currency</th>
+      <th>Amount in DKK</th>
+      <th>Issue Date</th>
+      <th>Due Date</th>
+      <th>Payment Date</th>
+    </tr>
+    <% invoices.order(:issue_date).each do |invoice| %>
+      <tr>
+        <td><%= invoice.reference %></td>
+        <td><%= link_to invoice.order.name, order_path(invoice.order) %></td>
+        <td><%= invoice.amount_in_invoice_currency %></td>
+        <td><%= invoice.amount_in_accounting_currency %></td>
+        <td><%= invoice.issue_date %></td>
+        <td><%= invoice.due_date %></td>
+        <td><%= invoice.payment_date %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

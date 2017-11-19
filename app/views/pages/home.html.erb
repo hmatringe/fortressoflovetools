@@ -1,24 +1,6 @@
 
 <%= render partial: "shared/subnavigation", locals: { current: nil} %>
 
-<br><br><br>
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <%#= link_to "Download test pdf", "http://res.cloudinary.com/roccamore/image/upload/test_pdf.pdf", target: "_blank" %>
-
-      <%= link_to  "http://res.cloudinary.com/roccamore/image/upload/test_pdf.pdf", target: "_blank" do %>
-        <%= cl_image_tag("test_pdf.png", width: 200, height: 250, crop: :fit) %>
-        
-      <% end %>
-
-      <%#= cl_image_tag("test_pdf.pdf") %>
-    </div>
-  </div>
-</div>
-
-
 <div class="container">
   <h3><%= link_to "Products", products_path %></h3>
   <div>

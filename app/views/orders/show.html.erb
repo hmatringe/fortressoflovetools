@@ -15,15 +15,17 @@
       <%= render "order_lines/form" %>
     </div>
     <div class="col-xs-6">
-        <h3>Add an invoice</h3>
-        <p>Each invoice amount is equally divided by the order product quantity and added to each produt as an additional cost per unit.</p>
-        <%= render "invoices/form" %>
+        
     </div>
   </div>
 
   <hr>
 
   <h3>Order invoices</h3>
+  <div class="cogs_btn_wrapper">
+    <%= link_to "Add an Invoice", new_order_invoice_path(@order), class: "cogs_btn" %>
+  </div>
+
   <table class="table table-striped">
     <tr>
       <th>Reference</th>
@@ -38,7 +40,11 @@
         <td><%= number_to_currency(inv.amount_in_invoice_currency, unit: "#{inv.invoice_currency}", format: "%n %u") %></td>
         <td><%= number_to_currency(inv.amount_in_accounting_currency, unit: "DKK", format: "%n %u") %></td>
         <td><%= number_to_currency(inv.amount_in_accounting_currency.to_f/@order.qtty, unit: "DKK", format: "%n %u") %></td>
-        <td><%= link_to "Delete", inv, method: :delete, class: "destroy"  %></td>
+        <td>
+          <%= link_to "Show", order_invoice_path(@order, inv), class: "destroy"  %>
+          |
+          <%= link_to "Delete", inv, method: :delete, class: "destroy"  %>
+        </td>
       </tr>
     <% end %>
   </table>

@@ -1,5 +1,7 @@
 class InvoicesController < ApplicationController
-
+  before_action :set_order, only: [:new, :create, :show]
+  before_action :set_invoice, only: [:show, :destroy]
+  
   def index
     @invoices = Invoice.all
     @paid_invoices ||= @invoices.paid
@@ -8,8 +10,14 @@ class InvoicesController < ApplicationController
     @due_in_more_than_30_days ||= @invoices.unpaid.due_in_more_than_30_days
   end
 
+  def show
+  end
+
+  def new
+    @invoice = Invoice.new
+  end
+
   def create
-    set_order
     @invoice = Invoice.new(invoice_params)
     @invoice.order = @order
     if @invoice.save
@@ -22,7 +30,6 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    @invoice = Invoice.find(params[:id])
     @order = Order.find(@invoice.order_id)
     decrement_order_additional_costs
     @invoice.destroy
@@ -38,6 +45,10 @@ class InvoicesController < ApplicationController
   def set_order
     @order = Order.find(params["order_id"])
   end
+  def set_invoice
+    @invoice = Invoice.find(params[:id])
+  end
+
 
   def increment_order_additional_costs
     if @order.additional_costs.nil?

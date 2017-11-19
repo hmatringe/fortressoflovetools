@@ -1,13 +1,18 @@
-.cogs_btn {
+.cogs_btn{
   border-radius: 3px;
   border: 1px solid $brand-color;
   color: $brand-color;
   padding: 6px 12px;
   font-style: bold;
   margin: 10px 5px;
-  background-color: white;
+  display: block;
   &:focus,&:hover,&:active {
   	text-decoration: none;
   	color: $brand-color;
+  }
+  &_wrapper{
+    display: flex;
+    align-items: center;
+    height: 100%;
   }
 }
