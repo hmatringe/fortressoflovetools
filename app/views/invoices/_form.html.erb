@@ -7,7 +7,6 @@
       <%= inv.input :reference %>
       </div>
       <div class="col-xs-6">
-      <%= inv.input :url %>
       <%= inv.input :issue_date %>
       <%= inv.input :due_date %>
       <%= inv.input :payment_date %>
@@ -15,11 +14,5 @@
       <%= inv.input :document_cache, as: :hidden %>
   </div>
 </div>
-<%= inv.button :submit, 'Add an invoice' %>
+<%= inv.button :submit, 'Add an invoice', class: "cogs_btn" %>
 <% end %>
-
-<%= link_to "http://res.cloudinary.com/roccamore/#{Invoice.last.document.file.identifier}", target: "_blank" do %>
-  <%= image_tag Invoice.last.document.url(:thumb)  %>
-<% end %>
-<%#= cl_image_tag("yisqyl1yloes2z6btxpc.pdf", width: 200, height: 250, crop: :fit) %>
-<!-- orders/image/upload/v1511100616/yisqyl1yloes2z6btxpc.pdf -->

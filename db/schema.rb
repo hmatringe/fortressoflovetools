@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119154255) do
+ActiveRecord::Schema.define(version: 20171119160339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20171119154255) do
     t.string   "invoice_currency"
     t.decimal  "amount_in_accounting_currency", precision: 11, scale: 4
     t.string   "reference"
-    t.string   "url"
     t.date     "issue_date"
     t.date     "due_date"
     t.date     "payment_date"
