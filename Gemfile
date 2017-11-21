@@ -24,6 +24,10 @@ gem 'uglifier'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 
+#admin
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+
 
 group :development do
   gem 'better_errors'
