@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119160339) do
+ActiveRecord::Schema.define(version: 20171126140206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20171119160339) do
     t.decimal  "amount_in_invoice_currency",    precision: 11, scale: 4
     t.string   "invoice_currency"
     t.decimal  "amount_in_accounting_currency", precision: 11, scale: 4
-    t.string   "reference"
     t.date     "issue_date"
     t.date     "due_date"
     t.date     "payment_date"
@@ -76,12 +75,12 @@ ActiveRecord::Schema.define(version: 20171119160339) do
   create_table "orders", force: :cascade do |t|
     t.string   "name"
     t.integer  "qtty"
-    t.datetime "created_at",                                                        null: false
-    t.datetime "updated_at",                                                        null: false
-    t.string   "purchase_or_production_invoice_currency"
-    t.string   "purchase_or_production_invoice_reference"
-    t.decimal  "additional_costs_per_unit",                precision: 11, scale: 4
-    t.decimal  "additional_costs",                         precision: 11, scale: 4
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "invoice_currency"
+    t.string   "invoice_reference"
+    t.decimal  "additional_costs_per_unit", precision: 11, scale: 4
+    t.decimal  "additional_costs",          precision: 11, scale: 4
     t.date     "arrival_in_stock_date"
   end
 
