@@ -5,6 +5,20 @@ class Product < ApplicationRecord
   belongs_to :supplier, optional: true
   has_many :purchase_order_draft_lines
 
+  validates :SKU, presence: true
+  validates :name, presence: true
+  validates :size, presence: true
+  validates :color, presence: true
+  validates :structure, presence: true
+  validates :category, presence: true
+  validates :heal_thickness, presence: true
+  validates :platform, presence: true
+  validates :material, presence: true
+  validates :heal_height, presence: true
+  validates :closing_type, presence: true
+  validates :EAN, presence: true
+  validates :woocommerce_product_id, presence: true
+
   def select_label
     "#{self.name.capitalize} - Size: #{self.size } - #{self.color} - #{self.SKU}"
   end
