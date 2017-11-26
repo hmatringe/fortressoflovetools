@@ -1,7 +1,9 @@
 class InventoryPrimaryLine < ApplicationRecord
   belongs_to :product
   belongs_to :inventory
+  
   validates :inventory, uniqueness: { scope: :product}
+  validates :qtty, presence: true
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

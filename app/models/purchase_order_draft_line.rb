@@ -2,6 +2,17 @@ class PurchaseOrderDraftLine < ApplicationRecord
   belongs_to :purchase_order_draft
   belongs_to :product
   before_save :update_days_of_sales_after_order
+
+  # not strictly necessary, but safeguard for future view modifications
+  validates :SKU, presence: true
+  validates :qtty_in_stock, presence: true
+  validates :order_qtty, presence: true
+  validates :sold_in_supply_period_days, presence: true
+  validates :days_of_sales_after_order, presence: true
+  validates :days_out_of_stock, presence: true
+  validates :sales_speed, presence: true
+  validates :qtty_after_order, presence: true
+  validates :status, presence: true
   
   enum status: [ :processing, :finalized ]
 
