@@ -5,7 +5,7 @@
 <p>Per unit: <%= @order.additional_costs_per_unit %></p>
 <p>Arrival in stock: <%= @order.arrival_in_stock_date ? @order.arrival_in_stock_date : "not arrived in stock yet" %></p>
   <h1><%= @order.name %> - Quantity: <%= @order.qtty.nil? ? "no product yet." : @order.qtty %></h1>
-  <h4>Currency: <%= @order.purchase_or_production_invoice_currency %> - Invoice reference: <%= @order.purchase_or_production_invoice_reference %></h4>
+  <h4>Currency: <%= @order.invoice_currency %> - Invoice reference: <%= @order.invoice_reference %></h4>
   <p><%= link_to "See all orders", orders_path %></p>
   <hr>
   <div class="row">
@@ -65,7 +65,7 @@
         <td><%= link_to ol.product.SKU, product_path(ol.product) %></td>
         <td><%= ol.product.name %></td>
         <td><%= ol.qtty %></td>
-        <td><%= number_to_currency(ol.production_cost_per_unit_invoice_currency, unit: "#{@order.purchase_or_production_invoice_currency}", format: "%n %u") %></td>
+        <td><%= number_to_currency(ol.production_cost_per_unit_invoice_currency, unit: "#{@order.invoice_currency}", format: "%n %u") %></td>
         <td><%= number_to_currency(ol.production_cost_per_unit_accounting_currency, unit: "DKK", format: "%n %u") %></td>
         <td><%= number_to_currency(ol.order.additional_costs_per_unit, unit: "DKK", format: "%n %u") %></td>
         <td><%= number_to_currency(ol.total_costs_per_unit, unit: "DKK", format: "%n %u") %></td>

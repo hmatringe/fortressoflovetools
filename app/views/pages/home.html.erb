@@ -1,36 +1,41 @@
 
+<% if user_signed_in? %>
 <%= render partial: "shared/subnavigation", locals: { current: nil} %>
-
 <div class="container">
-  <h3><%= link_to "Products", products_path %></h3>
-  <div>
-    Add here all the products, with their attributes. NEVER modify an SKU.
-  </div>
-  <h3><%= link_to "Purchase Orders", orders_path %></h3>
-  <div>
-    Enter here all the COGS (production costs per unit, logistics, etc).
-  </div>
-  <h3><%= link_to "Invoices", invoices_path %></h3>
-  <div>
-    Upload here all invoices and manage payment deadline.
-  </div>
-  <h3><%= link_to "Inventories", inventories_path %></h3>
-  <div>
-    Save here all inventories.
-  </div>
-  <h3><%= link_to "Sales Orders", sales_order_lines_path %></h3>
-  <div>
-    Sales orders are fetched automatically here from Woocommerce API.
-    Correct them and get instant stats by periods of your choice.
-    WORK IN PROGRESS
-  </div>
-  <h3><%= link_to "Purchase Order Drafts", purchase_order_drafts_path %></h3>
-  <div>
-    Get recommendations on ideal purchase quantities from historic sales to avoid out-of-stocks and minimize working capital. 
-  </div>
-  <h3><%= link_to "COGS", cogs_path %></h3>
-  <div>
-    See here Roccamore's Cost Of Goods Sold.
-    WORK IN PROGRESS
-  </div>
+      <h3><%= link_to "Products", products_path %></h3>
+      <div>
+        Add here all the products, with their attributes. NEVER modify an SKU.
+      </div>
+      <h3><%= link_to "Purchase Orders", orders_path %></h3>
+      <div>
+        Enter here all the COGS (production costs per unit, logistics, etc).
+      </div>
+      <h3><%= link_to "Invoices", invoices_path %></h3>
+      <div>
+        Upload here all invoices and manage payment deadline.
+      </div>
+      <h3><%= link_to "Inventories", inventories_path %></h3>
+      <div>
+        Save here all inventories.
+      </div>
+      <h3><%= link_to "Sales Orders", sales_order_lines_path %></h3>
+      <div>
+        Sales orders are fetched automatically here from Woocommerce API.
+        Correct them and get instant stats by periods of your choice.
+        WORK IN PROGRESS
+      </div>
+      <h3><%= link_to "Purchase Order Drafts", purchase_order_drafts_path %></h3>
+      <div>
+        Get recommendations on ideal purchase quantities from historic sales to avoid out-of-stocks and minimize working capital. 
+      </div>
+      <h3><%= link_to "COGS", cogs_path %></h3>
+      <div>
+        See here Roccamore's Cost Of Goods Sold.
+        WORK IN PROGRESS
+      </div>
+  <% else %>
+    <div class="text-center welcome-unlogged-wrapper">
+      <%= link_to "Hello stranger, time to login", new_user_session_path, class: "navbar-wagon-item navbar-wagon-link welcome-unlogged-message" %>
+    </div>
+  <% end %>
 </div>
