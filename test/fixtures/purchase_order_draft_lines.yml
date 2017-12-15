@@ -5,7 +5,6 @@ one:
   SKU: MyString
   qtty_in_stock: 1
   order_qtty: 1
-  qtty_after_order_qtty: MyString
   sold_in_supply_period_days: 1
   days_of_sales_after_order: 1
 
@@ -14,6 +13,5 @@ two:
   SKU: MyString
   qtty_in_stock: 1
   order_qtty: 1
-  qtty_after_order_qtty: MyString
   sold_in_supply_period_days: 1
   days_of_sales_after_order: 1
