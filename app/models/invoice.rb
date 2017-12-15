@@ -9,6 +9,7 @@ class Invoice < ApplicationRecord
   validates :issue_date, presence: true
   validates :due_date, presence: true
   validates :document, presence: true
+  validates :reference, presence: true, uniqueness: true
 
 
   scope :due_date_passed, -> { where("due_date < ?", Date.today) }
