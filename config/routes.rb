@@ -31,5 +31,7 @@ Rails.application.routes.draw do
   end
   get "components", to: 'pages#components'
   get "cogs", to: 'pages#cogs'
-
+  scope '/hooks', controller: :webhooks do
+    post :receive_fetched_sales_orders
+  end
 end

@@ -1,0 +1,2 @@
+class FetchedSalesOrder < ApplicationRecord
+end
