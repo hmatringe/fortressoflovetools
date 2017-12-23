@@ -1,13 +1,14 @@
-# puts "Seed starting"
-# classes = [Product]
-# # classes = [OrderLine]
-# classes.each do |c|
-#   c.destroy_all
-# end
-# puts "All records deleted"
+puts "Seed starting"
+classes = [Product, Supplier]
+# classes = [OrderLine]
+classes.each do |c|
+  c.destroy_all
+end
+puts "All records deleted"
+puts "creating suppliers"
 
-
-
+Supplier.create name: "Florans"
+Supplier.create name: "Gianna Meliani"
 # puts "Creating products"
 
 # Product.create(name:'hope',size:36,color:'Black',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Black-36',parentSKU:'RMSS16-001-Black-Hope')
@@ -311,3 +312,4 @@
 # # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-41').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
 
 # # puts "All OrderLines Created"
+

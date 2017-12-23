@@ -18,8 +18,8 @@ class PurchaseOrderDraftsController < ApplicationController
       products = Product.all.reject { |p| p.supplier != @purchase_order_draft.supplier}
       sold_in_supply_period_days = 11
       products.each do |p|
-        # getting qtty from selected inventory
-        qtty_in_stock = if @purchase_order_draft.inventory.inventory_primary_lines.where(product_id:p.id).pluck(:qtty)[0].to_i
+          # getting qtty from selected inventory
+          qtty_in_stock = if @purchase_order_draft.inventory.inventory_primary_lines.where(product_id:p.id).pluck(:qtty)[0].to_i
            @purchase_order_draft.inventory.inventory_primary_lines.where(product_id:p.id).pluck(:qtty)[0].to_i
          else
           0

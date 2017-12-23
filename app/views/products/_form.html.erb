@@ -1,0 +1,35 @@
+<%= simple_form_for @product do |pod| %>
+
+<!-- <div class="col-xs-6 col-xs-offset-3">
+  <%# if @product.errors.any? %>
+    <div class="errors-container">
+      <ul>
+        <%# @product.errors.full_messages.each do |message| %>
+          <li><%#= message %></li>
+        <%# end %>
+      </ul>
+    </div>
+  <%# end %>
+</div> -->
+  
+<div class="col-xs-12 col-md-6">
+	<%= pod.input :name %>
+	<%= pod.input :SKU %>
+	<%= pod.input :parentSKU %>
+	<%= pod.input :size, collection: (36..41) %>
+	<%= pod.input :color %>
+	<%= pod.input :structure %>
+	<%= pod.input :category, collection: %w( pumps boots )  %>
+	<%= pod.association :supplier %>
+</div>
+<div class="col-xs-12 col-md-6">
+	<%= pod.input :heal_thickness %>
+	<%= pod.input :platform, as: :radio_buttons %>
+	<%= pod.input :material, collection: %w( napa suede combo ) %>
+	<%= pod.input :heal_height %>
+	<%= pod.input :closing_type, collection: %w( laces strap zip elastic) %>
+	<%= pod.input :EAN %>
+	<%= pod.input :woocommerce_product_id %>
+	<%= pod.button :submit, class: "cogs_btn" %>
+<% end %>
+</div>

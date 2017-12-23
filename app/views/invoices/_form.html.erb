@@ -9,7 +9,7 @@
       <div class="col-xs-6">
       <%= inv.input :issue_date %>
       <%= inv.input :due_date %>
-      <%= inv.input :payment_date %>
+      <%= inv.input :payment_date, include_blank: true %>
       <%= inv.input :document  %>
       <%= inv.input :document_cache, as: :hidden %>
   </div>

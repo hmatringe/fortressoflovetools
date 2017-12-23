@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: inventory_primary_lines
+#
+#  id                               :integer          not null, primary key
+#  product_id                       :integer
+#  inventory_id                     :integer
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  qtty                             :string
+#  average_inventory_value_per_unit :decimal(11, 4)   default(0.0)
+#
+
 class InventoryPrimaryLine < ApplicationRecord
   belongs_to :product
   belongs_to :inventory

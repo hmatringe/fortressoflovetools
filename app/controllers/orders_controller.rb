@@ -28,6 +28,6 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:name, :qtty)
+    params.require(:order).permit(:name, :qtty, :arrival_in_stock_date)
   end
 end
