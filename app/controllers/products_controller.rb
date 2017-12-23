@@ -30,6 +30,7 @@ class ProductsController < ApplicationController
       redirect_to products_path
     else
       render :new
+      # raise
     end
   end
 
@@ -39,7 +40,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     @product.update(product_params)
-    @product.save ? redirect_to(products_path) : (render :edit)
+    @product.save ? redirect_to(product_path(@product)) : (render :edit)
   end
   def destroy
     @product.destroy
@@ -53,6 +54,21 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:SKU, :name, :parentSKU, :size, :color, :structure, :category, :supplier_id)
+    params.require(:product).permit(:SKU,
+                                    :name,
+                                    :parentSKU,
+                                    :size,
+                                    :color,
+                                    :structure,
+                                    :category,
+                                    :supplier_id,
+                                    :heal_thickness,
+                                    :platform,
+                                    :material,
+                                    :heal_height,
+                                    :closing_type,
+                                    :EAN,
+                                    :woocommerce_product_id,
+                                    :platform)
   end
 end

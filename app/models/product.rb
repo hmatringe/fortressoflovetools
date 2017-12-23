@@ -1,8 +1,32 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id                     :integer          not null, primary key
+#  SKU                    :string
+#  name                   :string
+#  size                   :string
+#  color                  :string
+#  structure              :string
+#  category               :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  parentSKU              :string
+#  supplier_id            :integer
+#  heal_thickness         :integer
+#  platform               :boolean
+#  material               :string
+#  heal_height            :string
+#  closing_type           :string
+#  EAN                    :integer
+#  woocommerce_product_id :string
+#
+
 class Product < ApplicationRecord
   has_many :order_lines, dependent: :destroy
   has_many :orders, through: :order_lines
   has_many :inventory_primary_lines, dependent: :destroy
-  belongs_to :supplier, optional: true
+  belongs_to :supplier
   has_many :purchase_order_draft_lines
 
   validates :SKU, presence: true
@@ -13,7 +37,7 @@ class Product < ApplicationRecord
   validates :category, presence: true
   validates :heal_thickness, presence: true
   validates :platform, presence: true
-  validates :material, presence: true
+  validates :material, presence: true#, inclusion: {in: %w(combo suede napa)} 
   validates :heal_height, presence: true
   validates :closing_type, presence: true
   validates :EAN, presence: true

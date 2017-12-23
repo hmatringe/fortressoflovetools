@@ -3,7 +3,7 @@
 <div class="container">
   <h1>All the invoices</h1>
   <%= render partial: "table", locals: { title: "Overdue", invoices: @over_due } %>
-  <%= render partial: "table", locals: { title: "Due within 30 days", invoices: @due_within_30_days } %>
   <%= render partial: "table", locals: { title: "Due in more than 30 days", invoices: @due_in_more_than_30_days } %>
+  <%= render partial: "table", locals: { title: "Due within 30 days", invoices: @due_within_30_days } %>
   <%= render partial: "table", locals: { title: "Paid invoices", invoices: @paid_invoices } %>
 </div>

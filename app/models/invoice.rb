@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: invoices
+#
+#  id                            :integer          not null, primary key
+#  amount_in_invoice_currency    :decimal(11, 4)
+#  invoice_currency              :string
+#  amount_in_accounting_currency :decimal(11, 4)
+#  issue_date                    :date
+#  due_date                      :date
+#  payment_date                  :date
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  order_id                      :integer
+#  document                      :string
+#  reference                     :string
+#
+
 class Invoice < ApplicationRecord
   belongs_to :order
 

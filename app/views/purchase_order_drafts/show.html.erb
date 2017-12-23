@@ -26,6 +26,7 @@
   	<h3 class="text-center">Purchase Order Draft Lines</h3>
     <table class="table table-striped">
       <tr>
+        <th>parent SKU</th>
         <th>SKU</th>
         <th>Qtty in Stock</th>
         <th>Qtty to Order</th>
@@ -39,6 +40,7 @@
       </tr>
 			<% @purchase_order_draft.purchase_order_draft_lines && @purchase_order_draft.purchase_order_draft_lines.order(:SKU).each do |podl| %>
         <tr>
+          <td><%= podl.product.parentSKU %></td>
           <td><%= podl.product.select_label %></td>
           <td class="<%= "color-red" if podl.qtty_in_stock == 0 %>">
             <%= podl.qtty_in_stock %>

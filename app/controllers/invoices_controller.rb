@@ -39,7 +39,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:id,:amount_in_invoice_currency,:invoice_currency,:amount_in_accounting_currency,:reference,:url,:issue_date,:due_date,:payment_date, :document)
+    params.require(:invoice).permit(:id,:amount_in_invoice_currency,:invoice_currency,:amount_in_accounting_currency,:reference,:issue_date,:due_date,:payment_date, :document)
   end
 
   def set_order

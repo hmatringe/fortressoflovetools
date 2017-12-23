@@ -6,7 +6,9 @@
 <p>Arrival in stock: <%= @order.arrival_in_stock_date ? @order.arrival_in_stock_date : "not arrived in stock yet" %></p>
   <h1><%= @order.name %> - Quantity: <%= @order.qtty.nil? ? "no product yet." : @order.qtty %></h1>
   <h4>Currency: <%= @order.invoice_currency %> - Invoice reference: <%= @order.invoice_reference %></h4>
-  <p><%= link_to "See all orders", orders_path %></p>
+  <div class="cogs_btn_wrapper">
+    <%= link_to "See all orders", orders_path, class: "cogs_btn" %>
+  </div>
   <hr>
   <div class="row">
     <div class="col-xs-6">

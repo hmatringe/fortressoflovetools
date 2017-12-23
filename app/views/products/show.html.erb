@@ -3,8 +3,10 @@
 <div class="container">
   <h1><%= @product.name  %> - <%= @product.size %> - <%= @product.SKU %></h1>
 
-  <p><%= link_to "See all products", products_path %></p>
-
+  <div class="cogs_btn_wrapper">
+    <%= link_to "Back to All Products", products_path, class: "cogs_btn" %>
+    <%= link_to "Edit", edit_product_path(@product), class: "cogs_btn" %>
+  </div>
 
   <table class="table table-striped">
     <tr>
@@ -24,7 +26,7 @@
       <td><%= @product.structure %></td>
       <td><%= @product.category %></td>
       <td><%= @product.SKU %></td>
-      <td><%= @product.supplier %></td>
+      <td><%= @product.supplier.name %></td>
     </tr>
   </table>
 

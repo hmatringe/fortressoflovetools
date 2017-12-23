@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id                     :integer          not null, primary key
+#  SKU                    :string
+#  name                   :string
+#  size                   :string
+#  color                  :string
+#  structure              :string
+#  category               :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  parentSKU              :string
+#  supplier_id            :integer
+#  heal_thickness         :integer
+#  platform               :boolean
+#  material               :string
+#  heal_height            :string
+#  closing_type           :string
+#  EAN                    :integer
+#  woocommerce_product_id :string
+#
+
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
