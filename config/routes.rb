@@ -33,5 +33,6 @@ Rails.application.routes.draw do
   get "cogs", to: 'pages#cogs'
   scope '/hooks', controller: :webhooks do
     post :receive_fetched_sales_orders
+    get :received
   end
 end
