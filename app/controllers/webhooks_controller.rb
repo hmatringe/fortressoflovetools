@@ -12,4 +12,8 @@ class WebhooksController < ApplicationController
     order.save
   	render nothing: true
   end
+
+  def received
+    @fetched = FetchedSalesOrder.all
+  end
 end

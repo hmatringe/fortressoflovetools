@@ -10,19 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215200717) do
+ActiveRecord::Schema.define(version: 20171223104419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "call_back_responses", force: :cascade do |t|
-    t.string   "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "attachinary_files", force: :cascade do |t|
+    t.string   "attachinariable_type"
+    t.integer  "attachinariable_id"
+    t.string   "scope"
+    t.string   "public_id"
+    t.string   "version"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "format"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
   create_table "fetched_sales_orders", force: :cascade do |t|
-    t.integer  "woocommerce_sales_order_id"
+    t.string   "woocommerce_sales_order_id"
     t.json     "body"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -49,6 +58,7 @@ ActiveRecord::Schema.define(version: 20171215200717) do
     t.decimal  "amount_in_invoice_currency",    precision: 11, scale: 4
     t.string   "invoice_currency"
     t.decimal  "amount_in_accounting_currency", precision: 11, scale: 4
+    t.string   "reference"
     t.date     "issue_date"
     t.date     "due_date"
     t.date     "payment_date"
@@ -56,7 +66,6 @@ ActiveRecord::Schema.define(version: 20171215200717) do
     t.datetime "updated_at",                                             null: false
     t.integer  "order_id"
     t.string   "document"
-    t.string   "reference"
   end
 
   create_table "order_lines", force: :cascade do |t|
