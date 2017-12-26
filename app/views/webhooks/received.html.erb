@@ -1,3 +1,7 @@
-<% @fetched.each do |f| %>
-	<%= f.body %>
-<% end %>
+<ul>
+	<% @fetched.each do |f| %>
+		<li>
+			<%= f.body %>
+		</li>
+	<% end %>
+</ul>
