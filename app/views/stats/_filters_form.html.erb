@@ -1,0 +1,35 @@
+<div class="col-xs-12 col-md-3">
+	<%= simple_form_for :filters, method: :get do |f| %>
+		<%= f.input :date_start, as: :date %>
+</div>
+<div class="col-xs-12 col-md-3">
+		<%= f.input :date_end, as: :date %>
+</div>
+<div class="col-xs-12 col-md-3">
+		<%= f.input :country, priority: ["DK", "SE", "NO", "FR", "GB", "DE"] %>
+</div>
+<div class="col-xs-12 col-md-3">
+		<%#= f.input :coupon, collection: @coupons, label_method: :label_code %>
+		<div class="form-group select required filters_coupon">
+			<label class="control-label select required" for="filters_coupon">
+				<abbr title="required">
+						*
+				</abbr>
+				Coupon
+			</label>
+			<select class="form-control select required" name="filters[coupon]" id="filters_coupon">
+	    <option value="" disabled selected>
+	    	<%= @selected_coupon ? @selected_coupon : "Select your option" %>
+			</option>
+			<option value="no coupon">no coupon</option>
+			<%= @coupons.each do |coupon| %>
+				<option value="<%= coupon.code %>"><%= coupon.code %></option>
+			<% end %>
+		</select>
+		</div>
+		<%#= f.input :coupon, collection: @coupons %>
+</div>
+<div class="col-xs-12">
+		<%= f.submit "Apply", class: "cogs_btn" %>
+	<% end %>
+</div>

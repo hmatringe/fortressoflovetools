@@ -13,7 +13,7 @@
       <th>Material</th>
       <th>Closing Type</th>
       <th>Supplier</th>
-      <th>Actions</th>
+      <!-- <th>Actions</th> -->
     </tr>
     <% @products.each do |product| %>
       <tr>
@@ -30,7 +30,9 @@
         <td><%= product.material && product.material %></td>
         <td><%= product.closing_type && product.closing_type %></td>
         <td><%= product.supplier && product.supplier.name  %></td>
-        <td><%= link_to "Edit", edit_product_path(product), class: "cogs_btn" %></td>
+        <!-- <td> -->
+          <%#= link_to "Edit", edit_product_path(product), class: "cogs_btn" %>
+        <!-- </td> -->
 
       </tr>
     <% end %>

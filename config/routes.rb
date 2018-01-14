@@ -35,4 +35,5 @@ Rails.application.routes.draw do
     post :receive_fetched_sales_orders
     get :received
   end
+  get "stats", to: 'stats#main_stats'
 end

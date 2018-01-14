@@ -1,6 +1,5 @@
 puts "Seed starting"
-classes = [Product, Supplier]
-# classes = [OrderLine]
+classes = [Product, SalesOrder, SalesOrderLine]
 classes.each do |c|
   c.destroy_all
 end
@@ -9,307 +8,296 @@ puts "creating suppliers"
 
 Supplier.create name: "Florans"
 Supplier.create name: "Gianna Meliani"
-# puts "Creating products"
+Supplier.create name: "other"
+Supplier.create name: "unspecified"
 
-# Product.create(name:'hope',size:36,color:'Black',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Black-36',parentSKU:'RMSS16-001-Black-Hope')
-# Product.create(name:'hope',size:37,color:'Black',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Black-37',parentSKU:'RMSS16-001-Black-Hope')
-# Product.create(name:'hope',size:38,color:'Black',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Black-38',parentSKU:'RMSS16-001-Black-Hope')
-# Product.create(name:'hope',size:39,color:'Black',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Black-39',parentSKU:'RMSS16-001-Black-Hope')
-# Product.create(name:'hope',size:40,color:'Black',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Black-40',parentSKU:'RMSS16-001-Black-Hope')
-# Product.create(name:'hope',size:41,color:'Black',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Black-41',parentSKU:'RMSS16-001-Black-Hope')
-# Product.create(name:'eva dean',size:36,color:'Pink/Grey',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Pink/Grey-36',parentSKU:'RMSS16-001-Pink/Grey-Eva-Dean')
-# Product.create(name:'eva dean',size:37,color:'Pink/Grey',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Pink/Grey-37',parentSKU:'RMSS16-001-Pink/Grey-Eva-Dean')
-# Product.create(name:'eva dean',size:38,color:'Pink/Grey',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Pink/Grey-38',parentSKU:'RMSS16-001-Pink/Grey-Eva-Dean')
-# Product.create(name:'eva dean',size:39,color:'Pink/Grey',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Pink/Grey-39',parentSKU:'RMSS16-001-Pink/Grey-Eva-Dean')
-# Product.create(name:'eva dean',size:40,color:'Pink/Grey',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Pink/Grey-40',parentSKU:'RMSS16-001-Pink/Grey-Eva-Dean')
-# Product.create(name:'eva dean',size:41,color:'Pink/Grey',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Pink/Grey-41',parentSKU:'RMSS16-001-Pink/Grey-Eva-Dean')
-# Product.create(name:'annastasia',size:36,color:'Gold/Blush',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Gold/Blush-36',parentSKU:'RMSS16-001-Gold/Blush-Annastasia')
-# Product.create(name:'annastasia',size:37,color:'Gold/Blush',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Gold/Blush-37',parentSKU:'RMSS16-001-Gold/Blush-Annastasia')
-# Product.create(name:'annastasia',size:38,color:'Gold/Blush',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Gold/Blush-38',parentSKU:'RMSS16-001-Gold/Blush-Annastasia')
-# Product.create(name:'annastasia',size:39,color:'Gold/Blush',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Gold/Blush-39',parentSKU:'RMSS16-001-Gold/Blush-Annastasia')
-# Product.create(name:'annastasia',size:40,color:'Gold/Blush',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Gold/Blush-40',parentSKU:'RMSS16-001-Gold/Blush-Annastasia')
-# Product.create(name:'annastasia',size:41,color:'Gold/Blush',structure:'RMSS16-001',category:'Pumps',SKU:'RMSS16-001-Gold/Blush-41',parentSKU:'RMSS16-001-Gold/Blush-Annastasia')
-# Product.create(name:'diva diva',size:36,color:'Python',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Python-36',parentSKU:'RMSS16-002-Python-Diva-Diva')
-# Product.create(name:'diva diva',size:37,color:'Python',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Python-37',parentSKU:'RMSS16-002-Python-Diva-Diva')
-# Product.create(name:'diva diva',size:38,color:'Python',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Python-38',parentSKU:'RMSS16-002-Python-Diva-Diva')
-# Product.create(name:'diva diva',size:39,color:'Python',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Python-39',parentSKU:'RMSS16-002-Python-Diva-Diva')
-# Product.create(name:'diva diva',size:40,color:'Python',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Python-40',parentSKU:'RMSS16-002-Python-Diva-Diva')
-# Product.create(name:'diva diva',size:41,color:'Python',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Python-41',parentSKU:'RMSS16-002-Python-Diva-Diva')
-# Product.create(name:'gaia',size:36,color:'Blue',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Blue-36',parentSKU:'RMSS16-002-Blue-Gaia')
-# Product.create(name:'gaia',size:37,color:'Blue',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Blue-37',parentSKU:'RMSS16-002-Blue-Gaia')
-# Product.create(name:'gaia',size:38,color:'Blue',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Blue-38',parentSKU:'RMSS16-002-Blue-Gaia')
-# Product.create(name:'gaia',size:39,color:'Blue',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Blue-39',parentSKU:'RMSS16-002-Blue-Gaia')
-# Product.create(name:'gaia',size:40,color:'Blue',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Blue-40',parentSKU:'RMSS16-002-Blue-Gaia')
-# Product.create(name:'gaia',size:41,color:'Blue',structure:'RMSS16-002',category:'Pumps',SKU:'RMSS16-002-Blue-41',parentSKU:'RMSS16-002-Blue-Gaia')
-# Product.create(name:'miss presley',size:36,color:'Black',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Black-36',parentSKU:'RMSS16-005-Black-Miss-Presley')
-# Product.create(name:'miss presley',size:37,color:'Black',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Black-37',parentSKU:'RMSS16-005-Black-Miss-Presley')
-# Product.create(name:'miss presley',size:38,color:'Black',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Black-38',parentSKU:'RMSS16-005-Black-Miss-Presley')
-# Product.create(name:'miss presley',size:39,color:'Black',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Black-39',parentSKU:'RMSS16-005-Black-Miss-Presley')
-# Product.create(name:'miss presley',size:40,color:'Black',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Black-40',parentSKU:'RMSS16-005-Black-Miss-Presley')
-# Product.create(name:'miss presley',size:41,color:'Black',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Black-41',parentSKU:'RMSS16-005-Black-Miss-Presley')
-# Product.create(name:'electric ann',size:36,color:'Blue',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Blue-36',parentSKU:'RMSS16-005-Blue-Electric-Ann')
-# Product.create(name:'electric ann',size:37,color:'Blue',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Blue-37',parentSKU:'RMSS16-005-Blue-Electric-Ann')
-# Product.create(name:'electric ann',size:38,color:'Blue',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Blue-38',parentSKU:'RMSS16-005-Blue-Electric-Ann')
-# Product.create(name:'electric ann',size:39,color:'Blue',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Blue-39',parentSKU:'RMSS16-005-Blue-Electric-Ann')
-# Product.create(name:'electric ann',size:40,color:'Blue',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Blue-40',parentSKU:'RMSS16-005-Blue-Electric-Ann')
-# Product.create(name:'electric ann',size:41,color:'Blue',structure:'RMSS16-005',category:'Boots',SKU:'RMSS16-005-Blue-41',parentSKU:'RMSS16-005-Blue-Electric-Ann')
-# Product.create(name:'boss lady',size:36,color:'Black',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Black-36',parentSKU:'RMSS16-006-Black-Boss-Lady')
-# Product.create(name:'boss lady',size:37,color:'Black',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Black-37',parentSKU:'RMSS16-006-Black-Boss-Lady')
-# Product.create(name:'boss lady',size:38,color:'Black',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Black-38',parentSKU:'RMSS16-006-Black-Boss-Lady')
-# Product.create(name:'boss lady',size:39,color:'Black',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Black-39',parentSKU:'RMSS16-006-Black-Boss-Lady')
-# Product.create(name:'boss lady',size:40,color:'Black',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Black-40',parentSKU:'RMSS16-006-Black-Boss-Lady')
-# Product.create(name:'boss lady',size:41,color:'Black',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Black-41',parentSKU:'RMSS16-006-Black-Boss-Lady')
-# Product.create(name:'lisa lake',size:36,color:'Grey',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Grey-36',parentSKU:'RMSS16-006-Grey-Lisa-Lake')
-# Product.create(name:'lisa lake',size:37,color:'Grey',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Grey-37',parentSKU:'RMSS16-006-Grey-Lisa-Lake')
-# Product.create(name:'lisa lake',size:38,color:'Grey',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Grey-38',parentSKU:'RMSS16-006-Grey-Lisa-Lake')
-# Product.create(name:'lisa lake',size:39,color:'Grey',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Grey-39',parentSKU:'RMSS16-006-Grey-Lisa-Lake')
-# Product.create(name:'lisa lake',size:40,color:'Grey',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Grey-40',parentSKU:'RMSS16-006-Grey-Lisa-Lake')
-# Product.create(name:'lisa lake',size:41,color:'Grey',structure:'RMSS16-006',category:'Boots',SKU:'RMSS16-006-Grey-41',parentSKU:'RMSS16-006-Grey-Lisa-Lake')
-# Product.create(name:'hersilia',size:36,color:'Black',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Black-36',parentSKU:'RMAW16-17-001-Black-Hersilia')
-# Product.create(name:'hersilia',size:37,color:'Black',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Black-37',parentSKU:'RMAW16-17-001-Black-Hersilia')
-# Product.create(name:'hersilia',size:38,color:'Black',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Black-38',parentSKU:'RMAW16-17-001-Black-Hersilia')
-# Product.create(name:'hersilia',size:39,color:'Black',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Black-39',parentSKU:'RMAW16-17-001-Black-Hersilia')
-# Product.create(name:'hersilia',size:40,color:'Black',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Black-40',parentSKU:'RMAW16-17-001-Black-Hersilia')
-# Product.create(name:'hersilia',size:41,color:'Black',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Black-41',parentSKU:'RMAW16-17-001-Black-Hersilia')
-# Product.create(name:'serafina',size:36,color:'Cordovan',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Cordovan-36',parentSKU:'RMAW16-17-001-Cordovan-Serafina')
-# Product.create(name:'serafina',size:37,color:'Cordovan',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Cordovan-37',parentSKU:'RMAW16-17-001-Cordovan-Serafina')
-# Product.create(name:'serafina',size:38,color:'Cordovan',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Cordovan-38',parentSKU:'RMAW16-17-001-Cordovan-Serafina')
-# Product.create(name:'serafina',size:39,color:'Cordovan',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Cordovan-39',parentSKU:'RMAW16-17-001-Cordovan-Serafina')
-# Product.create(name:'serafina',size:40,color:'Cordovan',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Cordovan-40',parentSKU:'RMAW16-17-001-Cordovan-Serafina')
-# Product.create(name:'serafina',size:41,color:'Cordovan',structure:'RMAW16-17-001',category:'Pumps Lace',SKU:'RMAW16-17-001-Cordovan-41',parentSKU:'RMAW16-17-001-Cordovan-Serafina')
-# Product.create(name:'blue louise',size:36,color:'Eclipse',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Eclipse-36',parentSKU:'RMAW16-17-003-Eclipse-Blue-Louise')
-# Product.create(name:'blue louise',size:37,color:'Eclipse',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Eclipse-37',parentSKU:'RMAW16-17-003-Eclipse-Blue-Louise')
-# Product.create(name:'blue louise',size:38,color:'Eclipse',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Eclipse-38',parentSKU:'RMAW16-17-003-Eclipse-Blue-Louise')
-# Product.create(name:'blue louise',size:39,color:'Eclipse',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Eclipse-39',parentSKU:'RMAW16-17-003-Eclipse-Blue-Louise')
-# Product.create(name:'blue louise',size:40,color:'Eclipse',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Eclipse-40',parentSKU:'RMAW16-17-003-Eclipse-Blue-Louise')
-# Product.create(name:'blue louise',size:41,color:'Eclipse',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Eclipse-41',parentSKU:'RMAW16-17-003-Eclipse-Blue-Louise')
-# Product.create(name:'edith',size:36,color:'White',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-White-36',parentSKU:'RMAW16-17-003-White-Edith')
-# Product.create(name:'edith',size:37,color:'White',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-White-37',parentSKU:'RMAW16-17-003-White-Edith')
-# Product.create(name:'edith',size:38,color:'White',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-White-38',parentSKU:'RMAW16-17-003-White-Edith')
-# Product.create(name:'edith',size:39,color:'White',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-White-39',parentSKU:'RMAW16-17-003-White-Edith')
-# Product.create(name:'edith',size:40,color:'White',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-White-40',parentSKU:'RMAW16-17-003-White-Edith')
-# Product.create(name:'edith',size:41,color:'White',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-White-41',parentSKU:'RMAW16-17-003-White-Edith')
-# Product.create(name:'vanessa',size:36,color:'Cream',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Cream-36',parentSKU:'RMAW16-17-003-Cream-Vanessa')
-# Product.create(name:'vanessa',size:37,color:'Cream',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Cream-37',parentSKU:'RMAW16-17-003-Cream-Vanessa')
-# Product.create(name:'vanessa',size:38,color:'Cream',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Cream-38',parentSKU:'RMAW16-17-003-Cream-Vanessa')
-# Product.create(name:'vanessa',size:39,color:'Cream',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Cream-39',parentSKU:'RMAW16-17-003-Cream-Vanessa')
-# Product.create(name:'vanessa',size:40,color:'Cream',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Cream-40',parentSKU:'RMAW16-17-003-Cream-Vanessa')
-# Product.create(name:'vanessa',size:41,color:'Cream',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Cream-41',parentSKU:'RMAW16-17-003-Cream-Vanessa')
-# Product.create(name:'aura',size:36,color:'Black',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Black-36',parentSKU:'RMAW16-17-003-Black-Aura')
-# Product.create(name:'aura',size:37,color:'Black',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Black-37',parentSKU:'RMAW16-17-003-Black-Aura')
-# Product.create(name:'aura',size:38,color:'Black',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Black-38',parentSKU:'RMAW16-17-003-Black-Aura')
-# Product.create(name:'aura',size:39,color:'Black',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Black-39',parentSKU:'RMAW16-17-003-Black-Aura')
-# Product.create(name:'aura',size:40,color:'Black',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Black-40',parentSKU:'RMAW16-17-003-Black-Aura')
-# Product.create(name:'aura',size:41,color:'Black',structure:'RMAW16-17-003',category:'Pumps Lace',SKU:'RMAW16-17-003-Black-41',parentSKU:'RMAW16-17-003-Black-Aura')
-# Product.create(name:'?',size:36,color:'Black',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Black-36',parentSKU:'RMAW16-17-005-Black-?')
-# Product.create(name:'?',size:37,color:'Black',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Black-37',parentSKU:'RMAW16-17-005-Black-?')
-# Product.create(name:'?',size:38,color:'Black',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Black-38',parentSKU:'RMAW16-17-005-Black-?')
-# Product.create(name:'?',size:39,color:'Black',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Black-39',parentSKU:'RMAW16-17-005-Black-?')
-# Product.create(name:'?',size:40,color:'Black',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Black-40',parentSKU:'RMAW16-17-005-Black-?')
-# Product.create(name:'?',size:41,color:'Black',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Black-41',parentSKU:'RMAW16-17-005-Black-?')
-# Product.create(name:'?',size:36,color:'Asphalt',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Asphalt-36',parentSKU:'RMAW16-17-005-Asphalt-?')
-# Product.create(name:'?',size:37,color:'Asphalt',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Asphalt-37',parentSKU:'RMAW16-17-005-Asphalt-?')
-# Product.create(name:'?',size:38,color:'Asphalt',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Asphalt-38',parentSKU:'RMAW16-17-005-Asphalt-?')
-# Product.create(name:'?',size:39,color:'Asphalt',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Asphalt-39',parentSKU:'RMAW16-17-005-Asphalt-?')
-# Product.create(name:'?',size:40,color:'Asphalt',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Asphalt-40',parentSKU:'RMAW16-17-005-Asphalt-?')
-# Product.create(name:'?',size:41,color:'Asphalt',structure:'RMAW16-17-005',category:'Pumps Lace',SKU:'RMAW16-17-005-Asphalt-41',parentSKU:'RMAW16-17-005-Asphalt-?')
-# Product.create(name:'?',size:36,color:'Black',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Black-36',parentSKU:'RMAW16-17-007-Black-?')
-# Product.create(name:'?',size:37,color:'Black',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Black-37',parentSKU:'RMAW16-17-007-Black-?')
-# Product.create(name:'?',size:38,color:'Black',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Black-38',parentSKU:'RMAW16-17-007-Black-?')
-# Product.create(name:'?',size:39,color:'Black',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Black-39',parentSKU:'RMAW16-17-007-Black-?')
-# Product.create(name:'?',size:40,color:'Black',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Black-40',parentSKU:'RMAW16-17-007-Black-?')
-# Product.create(name:'?',size:41,color:'Black',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Black-41',parentSKU:'RMAW16-17-007-Black-?')
-# Product.create(name:'?',size:36,color:'Bark',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Bark-36',parentSKU:'RMAW16-17-007-Bark-?')
-# Product.create(name:'?',size:37,color:'Bark',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Bark-37',parentSKU:'RMAW16-17-007-Bark-?')
-# Product.create(name:'?',size:38,color:'Bark',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Bark-38',parentSKU:'RMAW16-17-007-Bark-?')
-# Product.create(name:'?',size:39,color:'Bark',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Bark-39',parentSKU:'RMAW16-17-007-Bark-?')
-# Product.create(name:'?',size:40,color:'Bark',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Bark-40',parentSKU:'RMAW16-17-007-Bark-?')
-# Product.create(name:'?',size:41,color:'Bark',structure:'RMAW16-17-007',category:'Pumps Lace',SKU:'RMAW16-17-007-Bark-41',parentSKU:'RMAW16-17-007-Bark-?')
-# Product.create(name:'princess',size:36,color:'Black',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-36',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero')
-# Product.create(name:'princess',size:37,color:'Black',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-37',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero')
-# Product.create(name:'princess',size:38,color:'Black',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-38',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero')
-# Product.create(name:'princess',size:39,color:'Black',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-39',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero')
-# Product.create(name:'princess',size:40,color:'Black',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-40',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero')
-# Product.create(name:'princess',size:41,color:'Black',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-41',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero')
-# Product.create(name:'unnamed',size:36,color:'MidNight',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-36',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight')
-# Product.create(name:'unnamed',size:37,color:'MidNight',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-37',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight')
-# Product.create(name:'unnamed',size:38,color:'MidNight',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-38',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight')
-# Product.create(name:'unnamed',size:39,color:'MidNight',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-39',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight')
-# Product.create(name:'unnamed',size:40,color:'MidNight',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-40',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight')
-# Product.create(name:'unnamed',size:41,color:'MidNight',structure:'',category:'',SKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-41',parentSKU:'RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight')
-# Product.create(name:'unnamed',size:36,color:'BlackGold',structure:'',category:'',SKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-36',parentSKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro')
-# Product.create(name:'unnamed',size:37,color:'BlackGold',structure:'',category:'',SKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-37',parentSKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro')
-# Product.create(name:'unnamed',size:38,color:'BlackGold',structure:'',category:'',SKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-38',parentSKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro')
-# Product.create(name:'unnamed',size:39,color:'BlackGold',structure:'',category:'',SKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-39',parentSKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro')
-# Product.create(name:'unnamed',size:40,color:'BlackGold',structure:'',category:'',SKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-40',parentSKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro')
-# Product.create(name:'unnamed',size:41,color:'BlackGold',structure:'',category:'',SKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-41',parentSKU:'RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro')
-# Product.create(name:'unnamed',size:36,color:'Ribes',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-36',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes')
-# Product.create(name:'unnamed',size:37,color:'Ribes',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-37',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes')
-# Product.create(name:'unnamed',size:38,color:'Ribes',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-38',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes')
-# Product.create(name:'unnamed',size:39,color:'Ribes',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-39',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes')
-# Product.create(name:'unnamed',size:40,color:'Ribes',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-40',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes')
-# Product.create(name:'unnamed',size:41,color:'Ribes',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-41',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes')
-# Product.create(name:'ninna rose',size:36,color:'Shadow',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-36',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow')
-# Product.create(name:'ninna rose',size:37,color:'Shadow',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-37',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow')
-# Product.create(name:'ninna rose',size:38,color:'Shadow',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-38',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow')
-# Product.create(name:'ninna rose',size:39,color:'Shadow',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-39',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow')
-# Product.create(name:'ninna rose',size:40,color:'Shadow',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-40',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow')
-# Product.create(name:'ninna rose',size:41,color:'Shadow',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-41',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow')
-# Product.create(name:'lovely lili',size:36,color:'Black',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-36',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero')
-# Product.create(name:'lovely lili',size:37,color:'Black',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-37',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero')
-# Product.create(name:'lovely lili',size:38,color:'Black',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-38',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero')
-# Product.create(name:'lovely lili',size:39,color:'Black',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-39',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero')
-# Product.create(name:'lovely lili',size:40,color:'Black',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-40',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero')
-# Product.create(name:'lovely lili',size:41,color:'Black',structure:'',category:'',SKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-41',parentSKU:'RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero')
-# Product.create(name:'mary knight',size:36,color:'Grey',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-36',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey')
-# Product.create(name:'mary knight',size:37,color:'Grey',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-37',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey')
-# Product.create(name:'mary knight',size:38,color:'Grey',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-38',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey')
-# Product.create(name:'mary knight',size:39,color:'Grey',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-39',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey')
-# Product.create(name:'mary knight',size:40,color:'Grey',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-40',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey')
-# Product.create(name:'mary knight',size:41,color:'Grey',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-41',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey')
-# Product.create(name:'karen',size:36,color:'Wine',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-36',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine')
-# Product.create(name:'karen',size:37,color:'Wine',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-37',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine')
-# Product.create(name:'karen',size:38,color:'Wine',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-38',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine')
-# Product.create(name:'karen',size:39,color:'Wine',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-39',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine')
-# Product.create(name:'karen',size:40,color:'Wine',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-40',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine')
-# Product.create(name:'karen',size:41,color:'Wine',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-41',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine')
-# Product.create(name:'zoe',size:36,color:'Black',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-36',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black')
-# Product.create(name:'zoe',size:37,color:'Black',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-37',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black')
-# Product.create(name:'zoe',size:38,color:'Black',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-38',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black')
-# Product.create(name:'zoe',size:39,color:'Black',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-39',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black')
-# Product.create(name:'zoe',size:40,color:'Black',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-40',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black')
-# Product.create(name:'zoe',size:41,color:'Black',structure:'',category:'',SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-41',parentSKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black')
-# puts "Products created"
+puts "creating products from csv"
+
+# Steps to upload from https://docs.google.com/spreadsheets/d/1dFg06HE4K1D1mvBd7D_Zg_mkr1_pNaq2SEyVNr6_xo4/edit#gid=0
+# 1 - export as csv
+# 2 - paste in lib/products_seed.csv
+# 3 - comment validations product.rb except SKU and EAN
+# 4 - db:seed
+# 5 - uncomment validations product.rb 
+
+# test product to test Woocommerce callback
+# test_product = Product.new SKU: "TESTSKU", EAN: "00000000000000", supplier: Supplier.where(name: "other").first
+# test_product.save!
+
+require 'csv'
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'products_seed.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  row.to_hash
+  pr = Product.new
+  pr.SKU = row["SKU"]
+  pr.name = row["name"]
+  pr.size = row["size"]
+  pr.color = row["color"]
+  pr.structure = row["structure"]
+  pr.category = row["category"]
+  pr.parentSKU = row["parentSKU"]
+  pr.supplier = Supplier.where(name: row["supplier"]).first || Supplier.where(name: "unspecified").first
+  pr.heal_thickness = row["heal_thickness"]
+  pr.platform = true if row["platform"] == "1"
+  pr.material = row["material"]
+  pr.heal_height = row["heal_height"]
+  pr.closing_type = row["closing_type"]
+  pr.EAN = row["EAN"]
+  pr.woocommerce_product_id = row["woocommerce_product_id"]
+  if pr.save!
+  	puts "#{pr.name} in size #{pr.size} successfully saved"
+	else 
+  	puts "Error saving #{pr.name} in size #{pr.size}"
+	end
+end
+
+puts "There are now #{Product.count} products in the database"
+
+puts "creating one SalesOrder and one SalesOrderLine from latest woocommerce API data manually copied 2018-01-02"
+
+require 'json'
+fetched_sales_orders_json = File.read(Rails.root.join('lib', 'seeds', 'fetched_sales_orders.json'))
+fetched_sales_orders_parsed = JSON.parse(fetched_sales_orders_json)
+fetched_sales_orders_parsed.each do |fso|
+	
+	date = Date.parse(fso["body"]["date_created"])
+	
+	so_attributes = {
+		date: date, 
+		country: fso["body"]["billing"]["country"],
+		woocommerce_id: fso["body"]["id"]
+	}
+	so = SalesOrder.new so_attributes
+	if so.save 
+		puts "Sales Order #{so.woocommerce_id} saved" 
+	else
+		puts "Error importing Sales Order #{so.woocommerce_id}" 
+	end
+	fso["body"]["line_items"].each do |li|
+		sol = SalesOrderLine.new
+		sol.date = date
+	  sol.qtty = li["quantity"].to_i
+	  sol.woocommerce_order_line_id = li["id"].to_i
+	  sol.sales_order = so
+	  sol.product = Product.where(EAN: li["sku"]).first
+	  sol.subtotal = li["subtotal"].to_d
+		sol.subtotal_tax = li["subtotal_tax"].to_d
+		sol.total = li["total"].to_d
+		sol.total_tax = li["total_tax"].to_d
+		sol.price = li["price"].to_d
+	  if sol.save!
+			puts "Sales Order Line #{sol.woocommerce_order_line_id} saved" 
+	  else
+			puts "Error importing Sales Order Line #{so1.woocommerce_order_line_id}" 
+	  end
+		
+		# coupons
+		fso["body"]["coupon_lines"].each do |cl|
+			if Coupon.where(code: cl["code"]).exists?
+				cp = Coupon.where(code: cl["code"]).first
+			else
+				cp = Coupon.create code: cl["code"]
+			end
+			cpl = CouponLine.new coupon: cp, sales_order_line: sol
+
+			if cpl.save!
+				puts "Coupon #{cpl.coupon.code} added to #{sol.woocommerce_order_line_id}" 
+		  else
+				puts "Error adding coupon #{cpl.coupon.code} to #{sol.woocommerce_order_line_id}" 
+		  end
+
+		end
+
+	end
+
+end
+puts "There are now #{SalesOrder.count} Sales Orders in the database"
+puts "There are now #{SalesOrderLine.count} Sales Orders Lines in the database"
 
 
-# # puts "Creating OrderLines"
 
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMAW16-17-001-Black-36').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:16,product_id:Product.where(SKU:'RMAW16-17-001-Black-37').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:28,product_id:Product.where(SKU:'RMAW16-17-001-Black-38').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:32,product_id:Product.where(SKU:'RMAW16-17-001-Black-39').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:16,product_id:Product.where(SKU:'RMAW16-17-001-Black-40').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMAW16-17-001-Black-41').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMAW16-17-001-Cordovan-36').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMAW16-17-001-Cordovan-37').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMAW16-17-001-Cordovan-38').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:16,product_id:Product.where(SKU:'RMAW16-17-001-Cordovan-39').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMAW16-17-001-Cordovan-40').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMAW16-17-001-Cordovan-41').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMAW16-17-003-Eclipse-36').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMAW16-17-003-Eclipse-37').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMAW16-17-003-Eclipse-38').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:16,product_id:Product.where(SKU:'RMAW16-17-003-Eclipse-39').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMAW16-17-003-Eclipse-40').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMAW16-17-003-Eclipse-41').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:0,product_id:Product.where(SKU:'RMAW16-17-003-White-36').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:1,product_id:Product.where(SKU:'RMAW16-17-003-White-37').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMAW16-17-003-White-38').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:6,product_id:Product.where(SKU:'RMAW16-17-003-White-39').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:3,product_id:Product.where(SKU:'RMAW16-17-003-White-40').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:1,product_id:Product.where(SKU:'RMAW16-17-003-White-41').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:0,product_id:Product.where(SKU:'RMAW16-17-003-Cream-36').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:1,product_id:Product.where(SKU:'RMAW16-17-003-Cream-37').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:6,product_id:Product.where(SKU:'RMAW16-17-003-Cream-38').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:16,product_id:Product.where(SKU:'RMAW16-17-003-Cream-39').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:10,product_id:Product.where(SKU:'RMAW16-17-003-Cream-40').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMAW16-17-003-Cream-41').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMAW16-17-003-Black-36').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMAW16-17-003-Black-37').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMAW16-17-003-Black-38').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:16,product_id:Product.where(SKU:'RMAW16-17-003-Black-39').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMAW16-17-003-Black-40').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMAW16-17-003-Black-41').first.id,order_id:15,production_cost_per_unit_invoice_currency:76,production_cost_per_unit_accounting_currency:565.44)
 
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-001-Black-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-001-Black-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-001-Black-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMSS16-001-Black-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-001-Black-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-001-Black-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-001-Pink/Grey-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-001-Pink/Grey-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-001-Pink/Grey-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMSS16-001-Pink/Grey-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-001-Pink/Grey-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-001-Pink/Grey-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-001-Gold/Blush-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-001-Gold/Blush-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-001-Gold/Blush-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMSS16-001-Gold/Blush-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-001-Gold/Blush-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-001-Gold/Blush-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:85,production_cost_per_unit_accounting_currency:632.4)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-002-Python-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:87,production_cost_per_unit_accounting_currency:647.28)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-002-Python-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:87,production_cost_per_unit_accounting_currency:647.28)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-002-Python-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:87,production_cost_per_unit_accounting_currency:647.28)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMSS16-002-Python-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:87,production_cost_per_unit_accounting_currency:647.28)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-002-Python-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:87,production_cost_per_unit_accounting_currency:647.28)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-002-Python-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:87,production_cost_per_unit_accounting_currency:647.28)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-002-Blue-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:82,production_cost_per_unit_accounting_currency:610.08)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-002-Blue-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:82,production_cost_per_unit_accounting_currency:610.08)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-002-Blue-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:82,production_cost_per_unit_accounting_currency:610.08)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMSS16-002-Blue-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:82,production_cost_per_unit_accounting_currency:610.08)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-002-Blue-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:82,production_cost_per_unit_accounting_currency:610.08)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-002-Blue-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:82,production_cost_per_unit_accounting_currency:610.08)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-005-Black-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:16,product_id:Product.where(SKU:'RMSS16-005-Black-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:24,product_id:Product.where(SKU:'RMSS16-005-Black-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:28,product_id:Product.where(SKU:'RMSS16-005-Black-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:16,product_id:Product.where(SKU:'RMSS16-005-Black-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-005-Black-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-005-Blue-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-005-Blue-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-005-Blue-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMSS16-005-Blue-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-005-Blue-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-005-Blue-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:89,production_cost_per_unit_accounting_currency:662.16)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-006-Black-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-006-Black-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-006-Black-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMSS16-006-Black-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-006-Black-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-006-Black-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-006-Grey-36').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-006-Grey-37').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-006-Grey-38').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:14,product_id:Product.where(SKU:'RMSS16-006-Grey-39').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-006-Grey-40').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-006-Grey-41').first.id,order_id:3,production_cost_per_unit_invoice_currency:98,production_cost_per_unit_accounting_currency:729.12)
 
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-001-Black-36').first.id,order_id:2,production_cost_per_unit_invoice_currency:85.4,production_cost_per_unit_accounting_currency:635.376)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-001-Black-37').first.id,order_id:2,production_cost_per_unit_invoice_currency:85.4,production_cost_per_unit_accounting_currency:635.376)
-# # OrderLine.create(qtty:10,product_id:Product.where(SKU:'RMSS16-001-Black-38').first.id,order_id:2,production_cost_per_unit_invoice_currency:85.4,production_cost_per_unit_accounting_currency:635.376)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-001-Black-39').first.id,order_id:2,production_cost_per_unit_invoice_currency:85.4,production_cost_per_unit_accounting_currency:635.376)
-# # OrderLine.create(qtty:10,product_id:Product.where(SKU:'RMSS16-001-Black-40').first.id,order_id:2,production_cost_per_unit_invoice_currency:85.4,production_cost_per_unit_accounting_currency:635.376)
-# # OrderLine.create(qtty:6,product_id:Product.where(SKU:'RMSS16-001-Black-41').first.id,order_id:2,production_cost_per_unit_invoice_currency:85.4,production_cost_per_unit_accounting_currency:635.376)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-005-Black-36').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:6,product_id:Product.where(SKU:'RMSS16-005-Black-37').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:10,product_id:Product.where(SKU:'RMSS16-005-Black-38').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-005-Black-39').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:12,product_id:Product.where(SKU:'RMSS16-005-Black-40').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:6,product_id:Product.where(SKU:'RMSS16-005-Black-41').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-006-Black-38').first.id,order_id:2,production_cost_per_unit_invoice_currency:98.4,production_cost_per_unit_accounting_currency:732.096)
-# # OrderLine.create(qtty:6,product_id:Product.where(SKU:'RMSS16-006-Black-39').first.id,order_id:2,production_cost_per_unit_invoice_currency:98.4,production_cost_per_unit_accounting_currency:732.096)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-006-Black-40').first.id,order_id:2,production_cost_per_unit_invoice_currency:98.4,production_cost_per_unit_accounting_currency:732.096)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-006-Black-41').first.id,order_id:2,production_cost_per_unit_invoice_currency:98.4,production_cost_per_unit_accounting_currency:732.096)
-# # OrderLine.create(qtty:1,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-36').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-37').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-38').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:3,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-39').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:3,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-40').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:1,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-41').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:1,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-36').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:1,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-37').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-38').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-39').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-40').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:1,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-41').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-36').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:2,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-37').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:6,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-38').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-39').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:8,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-40').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
-# # OrderLine.create(qtty:4,product_id:Product.where(SKU:'RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-41').first.id,order_id:2,production_cost_per_unit_invoice_currency:89.4,production_cost_per_unit_accounting_currency:665.136)
+# json_parsed = JSON.parse('{"body": {
+# 		"id": "11485",
+# 		"parent_id": 0,
+# 		"number": "11485",
+# 		"order_key": "wc_order_5a4b55564e014",
+# 		"created_via": "checkout",
+# 		"version": "3.1.2",
+# 		"status": "processing",
+# 		"currency": "DKK",
+# 		"date_created": "2018-01-02T10:48:06",
+# 		"date_created_gmt": "2018-01-02T09:48:06",
+# 		"date_modified": "2018-01-02T10:48:11",
+# 		"date_modified_gmt": "2018-01-02T09:48:11",
+# 		"discount_total": "0.00",
+# 		"discount_tax": "0.00",
+# 		"shipping_total": "0.00",
+# 		"shipping_tax": "0.00",
+# 		"cart_tax": "440.00",
+# 		"total": "2200.00",
+# 		"total_tax": "440.00",
+# 		"prices_include_tax": true,
+# 		"customer_id": 0,
+# 		"customer_ip_address": "80.62.117.134",
+# 		"customer_user_agent": "mozilla/5.0 (iphone; cpu iphone os 11_1_2 like mac os x) applewebkit/604.3.5 (khtml, like gecko) version/11.0 mobile/15b202 safari/604.1",
+# 		"customer_note": "",
+# 		"billing": {
+# 			"first_name": "Danske Spil",
+# 			"last_name": "Susanne Koch",
+# 			"company": "",
+# 			"address_1": "Korsdalsvej 135",
+# 			"address_2": "",
+# 			"city": "Broendby",
+# 			"state": "",
+# 			"postcode": "2605",
+# 			"country": "DK",
+# 			"email": "smk@danskespil.dk",
+# 			"phone": "30308889"
+# 		},
+# 		"shipping": {
+# 			"first_name": "Danske Spil",
+# 			"last_name": "Susanne Koch",
+# 			"company": "",
+# 			"address_1": "Korsdalsvej 135",
+# 			"address_2": "",
+# 			"city": "Broendby",
+# 			"state": "",
+# 			"postcode": "2605",
+# 			"country": "DK"
+# 		},
+# 		"payment_method": "stripe",
+# 		"payment_method_title": "Credit Card",
+# 		"transaction_id": "ch_1BfmNQJczEAsne03Zwqdgsqf",
+# 		"date_paid": "2018-01-02T10:48:11",
+# 		"date_paid_gmt": "2018-01-02T09:48:11",
+# 		"date_completed": null,
+# 		"date_completed_gmt": null,
+# 		"cart_hash": "64291015a618cc97c42bf797273d245e",
+# 		"meta_data": [{
+# 			"id": 156847,
+# 			"key": "mailchimp_woocommerce_is_subscribed",
+# 			"value": "0"
+# 		}, {
+# 			"id": 156848,
+# 			"key": "_stripe_card_id",
+# 			"value": "tok_1BfmNLJczEAsne032xFKs81A"
+# 		}, {
+# 			"id": 156849,
+# 			"key": "_stripe_charge_id",
+# 			"value": "ch_1BfmNQJczEAsne03Zwqdgsqf"
+# 		}, {
+# 			"id": 156850,
+# 			"key": "_stripe_charge_captured",
+# 			"value": "yes"
+# 		}, {
+# 			"id": 156851,
+# 			"key": "Stripe Fee",
+# 			"value": "4.30"
+# 		}, {
+# 			"id": 156852,
+# 			"key": "Net Revenue From Stripe",
+# 			"value": "285.30"
+# 		}, {
+# 			"id": 156853,
+# 			"key": "_wcj_invoicing_invoice_number_id",
+# 			"value": "11485"
+# 		}, {
+# 			"id": 156854,
+# 			"key": "_wcj_invoicing_invoice_date",
+# 			"value": "1514890092"
+# 		}, {
+# 			"id": 156855,
+# 			"key": "_download_permissions_granted",
+# 			"value": "yes"
+# 		}, {
+# 			"id": 156858,
+# 			"key": "_order_stock_reduced",
+# 			"value": "yes"
+# 		}],
+# 		"line_items": [{
+# 			"id": 6214,
+# 			"name": "sophie - 38",
+# 			"product_id": 10607,
+# 			"variation_id": 10610,
+# 			"quantity": 1,
+# 			"tax_class": "",
+# 			"subtotal": "1760.00",
+# 			"subtotal_tax": "440.00",
+# 			"total": "1760.00",
+# 			"total_tax": "440.00",
+# 			"taxes": [{
+# 				"id": 10,
+# 				"total": "440",
+# 				"subtotal": "440"
+# 			}],
+# 			"meta_data": [{
+# 				"id": 38792,
+# 				"key": "pa_size",
+# 				"value": "38"
+# 			}],
+# 			"sku": "5113036005262",
+# 			"price": 1760
+# 		}],
+# 		"tax_lines": [{
+# 			"id": 6216,
+# 			"rate_code": "DK-VALUE ADDED TAX DK - MOMS-1",
+# 			"rate_id": 10,
+# 			"label": "Value Added Tax DK - MOMS",
+# 			"compound": false,
+# 			"tax_total": "440.00",
+# 			"shipping_tax_total": "0.00",
+# 			"meta_data": []
+# 		}],
+# 		"shipping_lines": [{
+# 			"id": 6215,
+# 			"method_title": "Free shipping",
+# 			"method_id": "free_shipping:2",
+# 			"total": "0.00",
+# 			"total_tax": "0.00",
+# 			"taxes": [],
+# 			"meta_data": [{
+# 				"id": 38797,
+# 				"key": "Items",
+# 				"value": "sophie - 38 &times; 1"
+# 			}]
+# 		}],
+# 		"fee_lines": [],
+# 		"coupon_lines": [],
+# 		"refunds": []
+# 	}
+# }')
+# so1_attributes = {
+# 	date: Date.parse(json_parsed["body"]["date_created"]),
+# 	country: json_parsed["body"]["billing"]["country"],
+# 	woocommerce_id: json_parsed["body"]["id"]
+# }
+# so1 = SalesOrder.new so1_attributes
 
-# # puts "All OrderLines Created"
+# if so1.save 
+# 	p "Sales Order #{so1.woocommerce_id} saved" 
+# else
+# 	p "Error importing Sales Order #{so1.woocommerce_id}" 
+# end
 
+# json_parsed["body"]["line_items"].each do |li|
+# 	sol = SalesOrderLine.new
+# 	sol.date = Date.parse(json_parsed["body"]["date_created"])
+#   sol.qtty = li["quantity"].to_i
+#   # sol.SKU = li["sku"]
+#   sol.woocommerce_order_line_id = li["id"].to_i
+#   sol.sales_order = SalesOrder.first
+#   sol.product = Product.where(EAN: li["sku"]).first
+#   sol.subtotal = li["subtotal"].to_i
+# 	sol.subtotal_tax = li["subtotal_tax"].to_i
+# 	sol.total = li["total"].to_i
+# 	sol.total_tax = li["total_tax"].to_i
+# 	sol.price = li["price"].to_i
+#   if sol.save!
+# 		p "Sales Order Line #{sol.woocommerce_order_line_id} saved" 
+#   else
+# 		p "Error importing Sales Order Line #{so1.woocommerce_order_line_id}" 
+#   end
+# end
