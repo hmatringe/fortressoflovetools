@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114195158) do
+ActiveRecord::Schema.define(version: 20180114205410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,10 +125,10 @@ ActiveRecord::Schema.define(version: 20180114195158) do
     t.datetime "updated_at",             null: false
     t.string   "parentSKU"
     t.integer  "supplier_id"
-    t.integer  "heal_thickness"
+    t.integer  "heel_thickness"
     t.boolean  "platform"
     t.string   "material"
-    t.string   "heal_height"
+    t.string   "heel_height"
     t.string   "closing_type"
     t.bigint   "EAN"
     t.string   "woocommerce_product_id"

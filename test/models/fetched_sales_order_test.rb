@@ -7,7 +7,7 @@
 #  body                       :json
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  status                     :integer          default(0)
+#  status                     :integer          default("to_be_processed")
 #
 
 require 'test_helper'

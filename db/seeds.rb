@@ -38,10 +38,10 @@ csv.each do |row|
   pr.category = row["category"]
   pr.parentSKU = row["parentSKU"]
   pr.supplier = Supplier.where(name: row["supplier"]).first || Supplier.where(name: "unspecified").first
-  pr.heal_thickness = row["heal_thickness"]
+  pr.heel_thickness = row["heel_thickness"]
   pr.platform = true if row["platform"] == "1"
   pr.material = row["material"]
-  pr.heal_height = row["heal_height"]
+  pr.heel_height = row["heel_height"]
   pr.closing_type = row["closing_type"]
   pr.EAN = row["EAN"]
   pr.woocommerce_product_id = row["woocommerce_product_id"]
