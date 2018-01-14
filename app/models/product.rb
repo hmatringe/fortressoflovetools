@@ -32,17 +32,17 @@ class Product < ApplicationRecord
 
   validates :SKU, presence: true, uniqueness: true
   validates :EAN, presence: true, uniqueness: true
-  # validates :name, presence: true
-  # validates :size, presence: true
-  # validates :color, presence: true
-  # validates :structure, presence: true
-  # validates :category, presence: true
-  # validates :heel_thickness, presence: true
-  # validates :platform, presence: true
-  # validates :material, presence: true#, inclusion: {in: %w(combo suede napa)} 
-  # validates :heel_height, presence: true
-  # validates :closing_type, presence: true
-  # validates :woocommerce_product_id, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :size, presence: true
+  validates :color, presence: true
+  validates :structure, presence: true
+  validates :category, presence: true
+  validates :heel_thickness, presence: true
+  validates :platform, presence: true
+  validates :material, presence: true#, inclusion: {in: %w(combo suede napa)} 
+  validates :heel_height, presence: true
+  validates :closing_type, presence: true
+  validates :woocommerce_product_id, presence: true, uniqueness: true
 
   def select_label
     "#{self.name.capitalize} - Size: #{self.size } - #{self.color} - #{self.SKU}"
