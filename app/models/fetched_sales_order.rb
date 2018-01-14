@@ -7,7 +7,9 @@
 #  body                       :json
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
+#  status                     :integer          default(0)
 #
 
 class FetchedSalesOrder < ApplicationRecord
+	enum status: [:to_be_processed, :processed]
 end
