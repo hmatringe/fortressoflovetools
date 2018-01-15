@@ -38,7 +38,7 @@ class Product < ApplicationRecord
   validates :structure, presence: true
   validates :category, presence: true
   validates :heel_thickness, presence: true
-  validates :platform, presence: true
+  # validates :platform, presence: true
   validates :material, presence: true#, inclusion: {in: %w(combo suede napa)} 
   validates :heel_height, presence: true
   validates :closing_type, presence: true

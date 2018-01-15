@@ -11,5 +11,5 @@
 #
 
 class SalesOrder < ApplicationRecord
-	has_many :sales_order_lines
+	has_many :sales_order_lines, dependent: :destroy
 end
