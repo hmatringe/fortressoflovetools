@@ -5,8 +5,8 @@ class StatsController < ApplicationController
 	def main_stats
     sols ||= SalesOrderLine.all
     
-
-    # if params[:filters]
+    # raise
+    # if params[:filters] && 
     #   filter_start_date = Date.parse(params[:filters]["date_start(1i)"] + "-" + params[:filters]["date_start(2i)"] + "-" + params[:filters]["date_start(3i)"])
     #   filter_end_date = Date.parse(params[:filters]["date_end(1i)"] + "-" + params[:filters]["date_end(2i)"] + "-" + params[:filters]["date_end(3i)"])
     #   sols ||= SalesOrderLine.where('date BETWEEN ? AND ?', filter_start_date.beginning_of_day, filter_end_date.end_of_day)

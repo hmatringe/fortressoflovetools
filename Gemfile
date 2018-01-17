@@ -30,6 +30,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 
+gem 'woocommerce_api'
 
 group :development do
   gem 'better_errors'
