@@ -4,10 +4,13 @@
   <div class="row">
     <h1>Filters</h1>
     <div class="col-xs-12">
-    	<%= render partial: "stats/filters_form" %>
+      <%= render partial: "stats/filters_form" %>
     </div>
-    <h1>Statistics</h1>
-    <h3><%= @total_sold_units %> units sold for <%= number_to_currency(@total_sales, unit: "DKK", format: "%n %u") %></h3>
+    <div class="col-xs-12">
+      <h1>Statistics</h1>
+
+      <h3><%= @total_sold_units %> units sold for <%= number_to_currency(@total_sales, unit: "DKK", format: "%n %u") %></h3>
+    </div>
   </div>
 </div>
 
@@ -39,11 +42,55 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>(filtered) Sales</h1>
+      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">woocommerce <br> order_id</th>
+            <th scope="col">woocommerce <br> order_line_id</th>
+            <th scope="col">name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Qtty</th>
+            <th scope="col">SKU</th>
+            <th scope="col">price</th>
+            <th scope="col">total</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+        <% @sols.each do |sol| %>
+            <tr>
+              <th scope="row"><%= sol.sales_order.woocommerce_id %></th>
+              <th><%= sol.woocommerce_order_line_id %></th>
+              <td><%= sol.product.short_name %></td>
+              <td><%= sol.date.strftime("%F") %></td>
+              <td><%= sol.qtty %></td>
+              <td><%= sol.product.SKU %></td>
+              <td><%= sol.price %></td>
+              <td><%= sol.total %></td>
+            </tr>
+
+        <% end %>
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+</div>
 
 <% content_for :charts do %>
-  <%= render partial: "layouts/google_charts" %>
-  <%= render partial: "stats/sales_by_SKU" %>
-  <%= render partial: "stats/sales_by_SKU_bars" %>
+  <% if @sales_by_SKU.length == 0 %>
+    <script>alert('No results - update your filters')</script>
+  <% else %>
+    <%= render partial: "layouts/google_charts" %>
+    <%= render partial: "stats/sales_by_SKU" %>
+    <%= render partial: "stats/sales_by_SKU_bars" %>
+  <% end %>
   
 <% end %>
 

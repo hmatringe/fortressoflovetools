@@ -1,10 +1,13 @@
-<div class="col-xs-12 col-md-3">
-	<%= simple_form_for :filters, method: :get do |f| %>
-		<%= f.input :date_start, as: :date %>
+<%= simple_form_for :filters, method: :get do |f| %>
+<div class="col-xs-12 col-md-6">
+		<%= f.input :dates, as: :string, input_html: { id: 'datepickr_start'} %>
 </div>
-<div class="col-xs-12 col-md-3">
-		<%= f.input :date_end, as: :date %>
-</div>
+<!-- <div class="col-xs-12 col-md-3"> -->
+		<%#= f.input :date_start, as: :string, input_html: { id: 'datepickr_start'} %>
+<!-- </div> -->
+<!-- <div class="col-xs-12 col-md-3"> -->
+		<%#= f.input :date_end, as: :string, input_html: { id: 'datepickr_end'} %>
+<!-- </div> -->
 <div class="col-xs-12 col-md-3">
 		<%= f.input :country, priority: ["DK", "SE", "NO", "FR", "GB", "DE"] %>
 </div>
@@ -31,5 +34,17 @@
 </div>
 <div class="col-xs-12">
 		<%= f.submit "Apply", class: "cogs_btn" %>
+
+		<% unless params[:filters].nil? %>
+			<ul class="list-inline">
+			  <li>active filters</li>
+			  |
+			  <li>dates: <%= params[:filters][:dates] %></li>
+			  |
+			  <li>country: <%= params[:filters][:country] %></li>
+			  |
+			  <li>coupon: <%= params[:filters][:coupon] %></li>
+			</ul>
+		<% end %>
 	<% end %>
 </div>

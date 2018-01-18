@@ -48,6 +48,10 @@ class Product < ApplicationRecord
     "#{self.name.capitalize} - Size: #{self.size } - #{self.color} - #{self.SKU}"
   end
 
+  def short_name
+    "#{self.name.capitalize} - #{self.size }"
+  end
+
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names

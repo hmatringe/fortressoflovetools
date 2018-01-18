@@ -32,6 +32,8 @@ gem 'rails_admin', '>= 1.0.0.rc'
 
 gem 'woocommerce_api'
 
+gem 'webpacker', '~> 3.0'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
