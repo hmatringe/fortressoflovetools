@@ -27,14 +27,16 @@ class ProcessFetchedSalesOrderJob < ApplicationJob
 	  	  sol.woocommerce_order_line_id = li["id"]
 	  	  sol.sales_order = so
 	  	  
-	  	  if Product.where(EAN: li["sku"]).exists?
+	  	  if Product.where(EAN: li["sku"]).present?
 		  	  sol.product = Product.where(EAN: li["sku"]).first
 	  	  else
 	  	  	suppplier = Supplier.where(name: "unspecified").first
+	  	  	safe_ean = li["sku"].nil? ? 9999999999 : li["sku"]
+	  	  	safe_name = li["name"].nil? ? "missing" : li["name"]
 	  	  	attributes = {
-	  	  	  EAN: li["sku"],
+	  	  	  EAN: safe_ean,
 	  	  	  SKU: "missing_SKU_#{rand(1..10000000)}",
-	  	  	  name: "missing", 
+	  	  	  name: safe_name, 
 	  	  	  size: "missing",
 	  	  	  color: "missing",
 	  	  	  structure: "missing",

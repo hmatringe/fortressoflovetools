@@ -36,4 +36,5 @@ Rails.application.routes.draw do
     get :received
   end
   get "stats", to: 'stats#main_stats'
+  get "dashboard", to: 'stats#dashboard'
 end

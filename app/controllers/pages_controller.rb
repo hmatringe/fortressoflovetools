@@ -18,6 +18,8 @@ class PagesController < ApplicationController
   	@sales2 =	[ ['Boots', 10],
 				      	['Pumps', 10],
 	      				['Pumps Laces', 80]]
+
+    @sols = SalesOrderLine.all
   end
 
   def cogs

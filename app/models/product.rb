@@ -42,7 +42,7 @@ class Product < ApplicationRecord
   validates :material, presence: true#, inclusion: {in: %w(combo suede napa)} 
   validates :heel_height, presence: true
   validates :closing_type, presence: true
-  validates :woocommerce_product_id, presence: true, uniqueness: true
+  validates :woocommerce_product_id, presence: true, uniqueness: true, unless: "0"
 
   def select_label
     "#{self.name.capitalize} - Size: #{self.size } - #{self.color} - #{self.SKU}"

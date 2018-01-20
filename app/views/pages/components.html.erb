@@ -58,3 +58,35 @@
   <%= render partial: "pages/chart7" %>
   <%= render partial: "pages/chart8" %>
 <% end %>
+<ul>
+  <% @sols.each do |sol| %>  
+    <li>
+      ID: <%= sol.id %>
+      |
+      SO wocommerce_id:
+      <%= sol.sales_order.woocommerce_id %>
+      |
+      SKU: <%= sol.product.nil? ? "no product 9999" : sol.product.SKU %>
+    </li>
+  <% end %>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

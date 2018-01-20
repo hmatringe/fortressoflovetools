@@ -338,13 +338,3 @@ pages.each do |page|
 		end
 	end
 end
-
-
-
-Le Wagon brings technical skills to creative people
-
-
-
-
-
-

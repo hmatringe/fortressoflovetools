@@ -58,6 +58,15 @@ class StatsController < ApplicationController
   	# @sales_by_structure = ""
 	end
 
+  def dashboard
+    @fsos_processed_count = FetchedSalesOrder.processed.count
+    @fsos_to_be_processed_count = FetchedSalesOrder.to_be_processed.count
+    @fsos_total_count = @fsos_processed_count + @fsos_to_be_processed_count
+    @fsos = FetchedSalesOrder.all
+    @sos ||= SalesOrder.all
+    @sols ||= SalesOrderLine.all
+  end
+
   private 
   def filter_dates
     if @prmf && @prmf["dates"]
