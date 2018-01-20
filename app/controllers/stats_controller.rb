@@ -18,8 +18,10 @@ class StatsController < ApplicationController
     # for the view table
       
     # for the view graphs
-    total_sold_units_hash = @sols.each_with_object(Hash.new(0)) { |sol, h| h[sol.product.SKU] += sol.qtty.to_i }
-    total_sales_hash = @sols.each_with_object(Hash.new(0)) { |sol, h| h[sol.product.SKU] += sol.total.to_i }
+    # total_sold_units_hash = @sols.each_with_object(Hash.new(0)) { |sol, h| h[sol.product.SKU] += sol.qtty.to_i }
+    total_sold_units_hash = @sols.each_with_object(Hash.new(0)) { |sol, h| h[sol.product.short_name] += sol.qtty.to_i }
+    # total_sales_hash = @sols.each_with_object(Hash.new(0)) { |sol, h| h[sol.product.SKU] += sol.total.to_i }
+    total_sales_hash = @sols.each_with_object(Hash.new(0)) { |sol, h| h[sol.product.short_name] += sol.total.to_i }
 
     @total_sold_units = total_sold_units_hash.values.reduce(:+)
     @total_sales = total_sales_hash.values.reduce(:+)
