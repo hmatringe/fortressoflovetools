@@ -1,0 +1,30 @@
+<h3>Sales Orders for <%= product.short_name %></h3>
+
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">wooc. <br> order_id</th>
+            <th scope="col">wooc. <br> order_line_id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Qtty</th>
+            <th scope="col">total</th>
+            <th scope="col">country</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+        <% sols.each do |sol| %>
+            <tr>
+              <th scope="row"><%= sol.sales_order.woocommerce_id %></th>
+              <th><%= sol.woocommerce_order_line_id %></th>
+              <td><%= sol.date.strftime("%F") %></td>
+              <td><%= sol.qtty %></td>
+              <td><%= sol.total %></td>
+              <td><%= sol.country %></td>
+            </tr>
+
+        <% end %>
+        </tbody>
+
+      </table>
+<%= "This product was never sold yet." if sols.empty?%>

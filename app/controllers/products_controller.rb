@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :destroy]
+  before_action :set_product_sales_order_lines, only: [:show]
   # respond_to :html, :json, :csv
   def index
     @products = Product.all.order(:SKU)
@@ -51,6 +52,10 @@ class ProductsController < ApplicationController
   private
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def set_product_sales_order_lines
+    @product_sols = SalesOrderLine.where(product: @product).order("date desc")
   end
 
   def product_params
