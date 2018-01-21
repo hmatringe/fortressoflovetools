@@ -3,7 +3,7 @@
 <div class="container">
   <h1>All the inventories</h1>
   <%= simple_form_for @inventory do |o| %>
-    <%= o.input :date %>
+    <%= o.input :date, as: :string, input_html: { class: "datepickr" } %>
     <%= o.button :submit, class: "cogs_btn" %>
   <% end %>
 
