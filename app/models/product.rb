@@ -13,10 +13,10 @@
 #  updated_at             :datetime         not null
 #  parentSKU              :string
 #  supplier_id            :integer
-#  heal_thickness         :integer
+#  heel_thickness         :integer
 #  platform               :boolean
 #  material               :string
-#  heal_height            :string
+#  heel_height            :string
 #  closing_type           :string
 #  EAN                    :integer
 #  woocommerce_product_id :string
@@ -26,25 +26,30 @@ class Product < ApplicationRecord
   has_many :order_lines, dependent: :destroy
   has_many :orders, through: :order_lines
   has_many :inventory_primary_lines, dependent: :destroy
+  has_many :sales_order_lines, dependent: :destroy
   belongs_to :supplier
-  has_many :purchase_order_draft_lines
+  has_many :purchase_order_draft_lines, dependent: :destroy
 
-  validates :SKU, presence: true
+  validates :SKU, presence: true, uniqueness: true
+  validates :EAN, presence: true, uniqueness: true, unless: "9999999999"
   validates :name, presence: true
   validates :size, presence: true
   validates :color, presence: true
   validates :structure, presence: true
   validates :category, presence: true
-  validates :heal_thickness, presence: true
-  validates :platform, presence: true
+  validates :heel_thickness, presence: true
+  # validates :platform, presence: true
   validates :material, presence: true#, inclusion: {in: %w(combo suede napa)} 
-  validates :heal_height, presence: true
+  validates :heel_height, presence: true
   validates :closing_type, presence: true
-  validates :EAN, presence: true
-  validates :woocommerce_product_id, presence: true
+  validates :woocommerce_product_id, presence: true, uniqueness: true, unless: "0"
 
   def select_label
     "#{self.name.capitalize} - Size: #{self.size } - #{self.color} - #{self.SKU}"
+  end
+
+  def short_name
+    "#{self.name.capitalize} - #{self.size }"
   end
 
   def self.to_csv(options = {})

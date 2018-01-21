@@ -8,7 +8,6 @@ class WebhooksController < ApplicationController
     woocommerce_sales_order_id = data["id"]
     order = FetchedSalesOrder.new(body: data,
                                   woocommerce_sales_order_id: woocommerce_sales_order_id)
-  	# binding.pry
     order.save
   	render nothing: true
   end

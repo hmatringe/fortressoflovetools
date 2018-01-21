@@ -1,25 +1,92 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-
-      <h1>Components</h1>
-
-      <h2>Buttons</h2>
-      <%= link_to "Button", "", class: "cogs_btn" %>
-
-      <h2>Text</h2>
-
-      <h2>Menus</h2>
-
-      <h2>Buttons</h2>
-
-      <h2>Buttons</h2>
-
-      <h2>Buttons</h2>
-
-
-
-
+      <h1>stats for the period Date 1 - Date 2</h1>
     </div>
   </div>
 </div>
+<div class="fluid-container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <div id="chart1"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div id="chart2"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div id="chart3"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div id="chart4"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div id="chart5"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div id="chart6"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div id="chart7"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div id="chart8"></div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Components</h1>
+      <h2>Buttons</h2>
+      <div class="cogs_btn_wrapper">
+        <%= link_to "Button", "", class: "cogs_btn" %>
+      </div>
+      <h2>Text</h2>
+      <h2>Menus</h2>
+      <h2>Buttons</h2>
+    </div>
+  </div>
+</div>
+<% content_for :charts do %>
+  <%= render partial: "layouts/google_charts" %>
+  <%= render partial: "pages/chart1" %>
+  <%= render partial: "pages/chart2" %>
+  <%= render partial: "pages/chart3" %>
+  <%= render partial: "pages/chart4" %>
+  <%= render partial: "pages/chart5" %>
+  <%= render partial: "pages/chart6" %>
+  <%= render partial: "pages/chart7" %>
+  <%= render partial: "pages/chart8" %>
+<% end %>
+<ul>
+  <% @sols.each do |sol| %>  
+    <li>
+      ID: <%= sol.id %>
+      |
+      SO wocommerce_id:
+      <%= sol.sales_order.woocommerce_id %>
+      |
+      SKU: <%= sol.product.nil? ? "no product 9999" : sol.product.SKU %>
+    </li>
+  <% end %>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

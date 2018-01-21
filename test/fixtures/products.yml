@@ -13,10 +13,10 @@
 #  updated_at             :datetime         not null
 #  parentSKU              :string
 #  supplier_id            :integer
-#  heal_thickness         :integer
+#  heel_thickness         :integer
 #  platform               :boolean
 #  material               :string
-#  heal_height            :string
+#  heel_height            :string
 #  closing_type           :string
 #  EAN                    :integer
 #  woocommerce_product_id :string

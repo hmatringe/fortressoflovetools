@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171223104419) do
+ActiveRecord::Schema.define(version: 20180121102522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,31 @@ ActiveRecord::Schema.define(version: 20171223104419) do
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
+  create_table "coupon_lines", force: :cascade do |t|
+    t.integer  "coupon_id"
+    t.integer  "woo_id"
+    t.string   "woo_code"
+    t.decimal  "discount",            precision: 11, scale: 4
+    t.decimal  "discount_tax",        precision: 11, scale: 4
+    t.integer  "sales_order_line_id"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.index ["coupon_id"], name: "index_coupon_lines_on_coupon_id", using: :btree
+    t.index ["sales_order_line_id"], name: "index_coupon_lines_on_sales_order_line_id", using: :btree
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "fetched_sales_orders", force: :cascade do |t|
     t.string   "woocommerce_sales_order_id"
     t.json     "body"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.integer  "status",                     default: 0
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -105,10 +125,10 @@ ActiveRecord::Schema.define(version: 20171223104419) do
     t.datetime "updated_at",             null: false
     t.string   "parentSKU"
     t.integer  "supplier_id"
-    t.integer  "heal_thickness"
+    t.integer  "heel_thickness"
     t.boolean  "platform"
     t.string   "material"
-    t.string   "heal_height"
+    t.string   "heel_height"
     t.string   "closing_type"
     t.bigint   "EAN"
     t.string   "woocommerce_product_id"
@@ -145,10 +165,25 @@ ActiveRecord::Schema.define(version: 20171223104419) do
   create_table "sales_order_lines", force: :cascade do |t|
     t.datetime "date"
     t.integer  "qtty"
-    t.string   "SKU"
-    t.string   "woocommerce_order_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.integer  "sales_order_id"
+    t.integer  "product_id"
+    t.string   "woocommerce_order_line_id"
+    t.decimal  "subtotal",                  precision: 11, scale: 4
+    t.decimal  "subtotal_tax",              precision: 11, scale: 4
+    t.decimal  "total",                     precision: 11, scale: 4
+    t.decimal  "total_tax",                 precision: 11, scale: 4
+    t.decimal  "price",                     precision: 11, scale: 4
+    t.string   "country"
+  end
+
+  create_table "sales_orders", force: :cascade do |t|
+    t.date     "date"
+    t.string   "country"
+    t.integer  "woocommerce_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -175,6 +210,8 @@ ActiveRecord::Schema.define(version: 20171223104419) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "coupon_lines", "coupons"
+  add_foreign_key "coupon_lines", "sales_order_lines"
   add_foreign_key "inventory_primary_lines", "inventories"
   add_foreign_key "inventory_primary_lines", "products"
   add_foreign_key "invoices", "orders"
@@ -185,4 +222,6 @@ ActiveRecord::Schema.define(version: 20171223104419) do
   add_foreign_key "purchase_order_draft_lines", "purchase_order_drafts"
   add_foreign_key "purchase_order_drafts", "inventories"
   add_foreign_key "purchase_order_drafts", "suppliers"
+  add_foreign_key "sales_order_lines", "products"
+  add_foreign_key "sales_order_lines", "sales_orders"
 end

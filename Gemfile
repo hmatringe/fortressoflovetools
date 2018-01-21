@@ -18,7 +18,9 @@ gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
+gem 'country_select'
 gem 'uglifier'
+gem 'annotate'
 
 # attachements
 gem 'cloudinary'
@@ -28,6 +30,9 @@ gem 'carrierwave', '~> 1.2'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 
+gem 'woocommerce_api'
+
+gem 'webpacker', '~> 3.0'
 
 group :development do
   gem 'better_errors'

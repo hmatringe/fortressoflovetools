@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: coupon_lines
+#
+#  id                  :integer          not null, primary key
+#  coupon_id           :integer
+#  woo_id              :integer
+#  woo_code            :string
+#  discount            :decimal(11, 4)
+#  discount_tax        :decimal(11, 4)
+#  sales_order_line_id :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coupon: one
+  woo_id: 1
+  woo_code: MyString
+  discount: 9.99
+  discount_tax: 9.99
+  sales_order_line: one
+
+two:
+  coupon: two
+  woo_id: 1
+  woo_code: MyString
+  discount: 9.99
+  discount_tax: 9.99
+  sales_order_line: two

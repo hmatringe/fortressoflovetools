@@ -1,0 +1,50 @@
+<%= simple_form_for :filters, method: :get do |f| %>
+<div class="col-xs-12 col-md-6">
+		<%= f.input :dates, as: :string, input_html: { id: 'datepickr_start'} %>
+</div>
+<!-- <div class="col-xs-12 col-md-3"> -->
+		<%#= f.input :date_start, as: :string, input_html: { id: 'datepickr_start'} %>
+<!-- </div> -->
+<!-- <div class="col-xs-12 col-md-3"> -->
+		<%#= f.input :date_end, as: :string, input_html: { id: 'datepickr_end'} %>
+<!-- </div> -->
+<div class="col-xs-12 col-md-3">
+		<%= f.input :country, priority: ["DK", "SE", "NO", "FR", "GB", "DE"] %>
+</div>
+<div class="col-xs-12 col-md-3">
+		<%#= f.input :coupon, collection: @coupons, label_method: :label_code %>
+		<div class="form-group select required filters_coupon">
+			<label class="control-label select required" for="filters_coupon">
+				<abbr title="required">
+						*
+				</abbr>
+				Coupon
+			</label>
+			<select class="form-control select required" name="filters[coupon]" id="filters_coupon">
+	    <option value="" disabled selected>
+	    	<%= @selected_coupon ? @selected_coupon : "Select your option" %>
+			</option>
+			<option value="no coupon">no coupon</option>
+			<%= @coupons.each do |coupon| %>
+				<option value="<%= coupon.code %>"><%= coupon.code %></option>
+			<% end %>
+		</select>
+		</div>
+		<%#= f.input :coupon, collection: @coupons %>
+</div>
+<div class="col-xs-12">
+		<%= f.submit "Apply", class: "cogs_btn" %>
+
+		<% unless params[:filters].nil? %>
+			<ul class="list-inline color-red">
+			  <li>active filters</li>
+			  |
+			  <li>dates: <%= params[:filters][:dates] %></li>
+			  |
+			  <li>country: <%= params[:filters][:country] %></li>
+			  |
+			  <li>coupon: <%= params[:filters][:coupon] %></li>
+			</ul>
+		<% end %>
+	<% end %>
+</div>
