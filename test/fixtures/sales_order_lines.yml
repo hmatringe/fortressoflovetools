@@ -5,7 +5,6 @@
 #  id                        :integer          not null, primary key
 #  date                      :datetime
 #  qtty                      :integer
-#  SKU                       :string
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  sales_order_id            :integer
