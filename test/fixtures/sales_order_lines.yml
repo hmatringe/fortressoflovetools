@@ -23,11 +23,9 @@
 one:
   date: 2017-10-31 15:19:49
   qtty: 1
-  SKU: MyString
   woocommerce_order_id: MyString
 
 two:
   date: 2017-10-31 15:19:49
   qtty: 1
-  SKU: MyString
   woocommerce_order_id: MyString
