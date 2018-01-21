@@ -42,7 +42,11 @@ class PurchaseOrderDraftLine < ApplicationRecord
   end
   
   def sales_speed
-  	self.sales_speed = self.sold_in_supply_period_days / useful_supply_period.to_f
+  	if sold_in_supply_period_days.nil?
+      0
+    else
+      self.sales_speed = self.sold_in_supply_period_days / useful_supply_period.to_f
+    end
   end
   
   def full_supply_period

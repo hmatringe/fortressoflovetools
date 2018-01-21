@@ -1,9 +1,13 @@
-<%= simple_form_for [@order, @order_line] do |ol| %>
-  <%= ol.association :product, label_method: :select_label,include_blank: false %>
-  <%= ol.input :qtty, label: 'Quantity' %>
-  <%= ol.input :production_cost_per_unit_invoice_currency, label: 'Cost per unit in the invoice currency' %>
-  <%= ol.input :production_cost_per_unit_accounting_currency, label: 'Cost per unit in your accounting currency' %>
-  <div class="cog_btn_wrapper">
-  	<%= ol.button :submit, 'Add a product', class: "cogs_btn" %>
-  </div>
-<% end %>
+<div class="col-xs-12 col-sm-6">
+	<%= simple_form_for [@order, @order_line] do |ol| %>
+	  <%= ol.association :product, label_method: :select_label,include_blank: false %>
+	  <%= ol.input :qtty, label: 'Quantity', as: :integer, input_html: { min: '1'}  %>
+</div>
+<div class="col-xs-12 col-sm-6">
+	  <%= ol.input :production_cost_per_unit_invoice_currency, label: 'Cost per unit in the invoice currency' %>
+	  <%= ol.input :production_cost_per_unit_accounting_currency, label: 'Cost per unit in DKK' %>
+	  <div class="cog_btn_wrapper">
+	  	<%= ol.button :submit, 'Add a product', class: "cogs_btn" %>
+	  </div>
+	<% end %>
+</div>
