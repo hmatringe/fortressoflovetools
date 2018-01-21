@@ -1,5 +1,5 @@
 <%= simple_form_for [@inventory, @inventory_primary_line] do |ipl| %>
   <%= ipl.association :product, label_method: :select_label %>
-  <%= ipl.input :qtty, label: 'Quantity' %>
+  <%= ipl.input :qtty, as: :integer, label: 'Quantity', input_html: { min: '1'} %>
   <%= ipl.button :submit, 'Add a product count', class: "cogs_btn" %>
 <% end %>

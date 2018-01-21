@@ -16,20 +16,25 @@ class PurchaseOrderDraftsController < ApplicationController
     @purchase_order_draft.inventory = Inventory.find(params[:purchase_order_draft][:inventory_id].to_s)
     if @purchase_order_draft.save
       products = Product.all.reject { |p| p.supplier != @purchase_order_draft.supplier}
-      sold_in_supply_period_days = 11
       products.each do |p|
-          # getting qtty from selected inventory
-          qtty_in_stock = if @purchase_order_draft.inventory.inventory_primary_lines.where(product_id:p.id).pluck(:qtty)[0].to_i
-           @purchase_order_draft.inventory.inventory_primary_lines.where(product_id:p.id).pluck(:qtty)[0].to_i
-         else
+        # getting qtty from selected inventory
+        qtty_in_stock = if @purchase_order_draft.inventory.inventory_primary_lines.where(product_id:p.id).pluck(:qtty)[0].to_i
+            @purchase_order_draft.inventory.inventory_primary_lines.where(product_id:p.id).pluck(:qtty)[0].to_i
+        else
           0
         end
+        # filter by product
+        sols = SalesOrderLine.where(product: p)
+        # filter by date
+        period_start = Date.today - @purchase_order_draft.supply_period_days.to_i
+        sols = sols.reject {|sol| sol.date < period_start}
+        qtty_sold = sols.pluck(:qtty).reduce(:+)
         podl = PurchaseOrderDraftLine.new(
         qtty_in_stock:              qtty_in_stock,
         order_qtty:                 0,
         qtty_after_order:           qtty_in_stock,
         days_out_of_stock:          0,
-        sold_in_supply_period_days: sold_in_supply_period_days,
+        sold_in_supply_period_days: qtty_sold,
         )
         podl.product = p
         podl.purchase_order_draft = @purchase_order_draft

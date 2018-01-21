@@ -2,15 +2,15 @@
   <div class="col-xs-6">
     <%= simple_form_for [@order, @invoice] do |inv| %>
       <%= inv.input :amount_in_invoice_currency %>
-      <%= inv.input :invoice_currency %>
-      <%= inv.input :amount_in_accounting_currency %>
+      <%= inv.input :invoice_currency, collection: %w( DKK EUR USD SEK NOK) %>
+      <%= inv.input :amount_in_accounting_currency, label: "amount in DKK" %>
       <%= inv.input :reference %>
       </div>
       <div class="col-xs-6">
-      <%= inv.input :issue_date %>
-      <%= inv.input :due_date %>
-      <%= inv.input :payment_date, include_blank: true %>
-      <%= inv.input :document  %>
+      <%= inv.input :issue_date, as: :string, input_html: { class: "datepickr"} %>
+      <%= inv.input :due_date, as: :string, input_html: { class: "datepickr"} %>
+      <%= inv.input :payment_date, include_blank: true, as: :string, input_html: { class: "datepickr"} %>
+      <%= inv.input :document, input_html: { accept: "application/pdf" }  %>
       <%= inv.input :document_cache, as: :hidden %>
   </div>
 </div>

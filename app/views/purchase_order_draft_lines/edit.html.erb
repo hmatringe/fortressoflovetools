@@ -52,7 +52,8 @@
 					<br>
 					<br>
 					Recommended quantity to order:
-					<strong class="color-green">
+					<% color_class = (@podl.recommended_qtty >= 0) ? "color-green" : "color-red" %>
+					<strong class=<%= color_class %>>
 						<%= @podl.recommended_qtty.round %>
 					</strong>
 				</div>

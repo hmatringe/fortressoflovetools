@@ -26,6 +26,9 @@ gem 'annotate'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 
+# data-scheme
+gem "rails-erd"
+
 #admin
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
