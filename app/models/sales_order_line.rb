@@ -15,6 +15,7 @@
 #  total                     :decimal(11, 4)
 #  total_tax                 :decimal(11, 4)
 #  price                     :decimal(11, 4)
+#  country                   :string
 #
 
 class SalesOrderLine < ApplicationRecord

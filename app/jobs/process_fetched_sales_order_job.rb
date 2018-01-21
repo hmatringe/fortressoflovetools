@@ -7,10 +7,10 @@ class ProcessFetchedSalesOrderJob < ApplicationJob
     	puts "FetchedSalesOrder #{fso.id} already processed"
     else
 	  	date = Date.parse(fso.body["date_created"])
-
+	  	country = fso.body["billing"]["country"]
 	  	so_attributes = {
 	  		date: date, 
-	  		country: fso.body["billing"]["country"],
+	  		country: country,
 	  		woocommerce_id: fso.body["id"]
 	  	}
 	  	so = SalesOrder.new so_attributes
@@ -26,16 +26,18 @@ class ProcessFetchedSalesOrderJob < ApplicationJob
 	  	  sol.qtty = li["quantity"]
 	  	  sol.woocommerce_order_line_id = li["id"]
 	  	  sol.sales_order = so
-	  	  
 	  	  if Product.where(EAN: li["sku"]).present?
 		  	  sol.product = Product.where(EAN: li["sku"]).first
 	  	  else
-	  	  	suppplier = Supplier.where(name: "unspecified").first
+	  	  	supplier = Supplier.where(name: "unspecified").first
 	  	  	safe_ean = li["sku"].nil? ? 9999999999 : li["sku"]
 	  	  	safe_name = li["name"].nil? ? "missing" : li["name"]
+	  	  	known_missing_SKUs = ["Limited edition bicycle shopper",
+	  	  												"Kickstarted bundled",
+	  	  												"International Shipping"]
 	  	  	attributes = {
 	  	  	  EAN: safe_ean,
-	  	  	  SKU: "missing_SKU_#{rand(1..10000000)}",
+	  	  	  SKU: known_missing_SKUs.include?(safe_name) ? safe_name : "missing_SKU_#{rand(1..10000000)}",
 	  	  	  name: safe_name, 
 	  	  	  size: "missing",
 	  	  	  color: "missing",
@@ -47,7 +49,7 @@ class ProcessFetchedSalesOrderJob < ApplicationJob
 	  	  	  heel_height: 999,
 	  	  	  closing_type: "missing",
 	  	  	  woocommerce_product_id: li["variation_id"],
-	  	  	  supplier: suppplier
+	  	  	  supplier: supplier
 					}
 					new_product = Product.create attributes
 	  	  	sol.product = new_product
@@ -57,6 +59,7 @@ class ProcessFetchedSalesOrderJob < ApplicationJob
 	  		sol.total = li["total"].to_d
 	  		sol.total_tax = li["total_tax"].to_d
 	  		sol.price = li["price"].to_d
+	  		sol.country = country
 	  	  if sol.save!
 	  			puts "Sales Order Line #{sol.woocommerce_order_line_id} saved" 
 	  	  else

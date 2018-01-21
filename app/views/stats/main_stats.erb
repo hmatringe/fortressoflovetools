@@ -50,14 +50,15 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">woocommerce <br> order_id</th>
-            <th scope="col">woocommerce <br> order_line_id</th>
+            <th scope="col">wooc. <br> order_id</th>
+            <th scope="col">wooc. <br> order_line_id</th>
             <th scope="col">name</th>
             <th scope="col">Date</th>
             <th scope="col">Qtty</th>
             <th scope="col">SKU</th>
-            <th scope="col">price</th>
+            <!-- <th scope="col">price</th> -->
             <th scope="col">total</th>
+            <th scope="col">country</th>
           </tr>
         </thead>
       
@@ -70,8 +71,9 @@
               <td><%= sol.date.strftime("%F") %></td>
               <td><%= sol.qtty %></td>
               <td><%= sol.product.SKU %></td>
-              <td><%= sol.price %></td>
+              <!-- <td><%#= sol.price %></td> -->
               <td><%= sol.total %></td>
+              <td><%= sol.country %></td>
             </tr>
 
         <% end %>

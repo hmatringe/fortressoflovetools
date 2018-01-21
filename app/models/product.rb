@@ -31,7 +31,7 @@ class Product < ApplicationRecord
   has_many :purchase_order_draft_lines, dependent: :destroy
 
   validates :SKU, presence: true, uniqueness: true
-  validates :EAN, presence: true, uniqueness: true
+  validates :EAN, presence: true, uniqueness: true, unless: "9999999999"
   validates :name, presence: true
   validates :size, presence: true
   validates :color, presence: true

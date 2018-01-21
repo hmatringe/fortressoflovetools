@@ -5,18 +5,13 @@ class StatsController < ApplicationController
     @coupons ||= Coupon.all
 
     # shorthands
-    @sols ||= SalesOrderLine.all
+    @sols ||= SalesOrderLine.all.order("date DESC")
     @prmf = params[:filters]
-    # raise    
-    # filters
-    # filter_date_start
-    # filter_date_end
-    filter_dates
-    # filter_country
-    filter_coupon
     
-    # for the view table
-      
+    filter_dates
+    filter_country
+    filter_coupon
+          
     # for the view graphs
     # total_sold_units_hash = @sols.each_with_object(Hash.new(0)) { |sol, h| h[sol.product.SKU] += sol.qtty.to_i }
     total_sold_units_hash = @sols.each_with_object(Hash.new(0)) { |sol, h| h[sol.product.short_name] += sol.qtty.to_i }
@@ -71,7 +66,7 @@ class StatsController < ApplicationController
 
   private 
   def filter_dates
-    if @prmf && @prmf["dates"]
+    if @prmf && @prmf["dates"].present?
       dates = @prmf["dates"].split(/\s/)
       start_date = Date.parse(dates.first)
       end_date = Date.parse(dates.last)
@@ -79,34 +74,35 @@ class StatsController < ApplicationController
     end
   end
 
-  def filter_date_start
-    if @prmf && @prmf["date_start(1i)"]
-      concat_start = @prmf["date_start(1i)"] + "-" + @prmf["date_start(2i)"] + "-" + @prmf["date_start(3i)"]
-      filter_start_date = Date.parse(concat_start)
-      @sols.reject {|sol| sol.date < filter_start_date}
-    end
-  end
-
-  def filter_date_end
-    if @prmf && @prmf["date_end(1i)"] 
-      concat_end = @prmf["date_end(1i)"] + "-" + @prmf["date_end(2i)"]  + "-"  + @prmf["date_end(3i)"]
-      filter_end_date = Date.parse(concat_end)
-      @sols.reject {|sol| sol.date > filter_end_date}
-    end    
-  end
-
-
   def filter_country
-    # filter_country = @prmf[:country]    
+    if @prmf && @prmf[:country]
+      @sols = @sols.select {|sol| sol.country == @prmf[:country]}
+    end
   end
 
   def filter_coupon
     if @prmf && @prmf[:coupon] && @prmf[:coupon] != "no coupon"
       @selected_coupon = @prmf[:coupon]
       # filtering sol with coupon_lines
-      @sols.reject { |sol| sol.coupon_lines.size == 0 }
+      @sols = @sols.reject { |sol| sol.coupon_lines.size == 0 }
       # filtering sol with coupon = user's selected coupon
-      @sols.select { |sol| sol.sol_coupons.include?(@selected_coupon) }
+      @sols = @sols.select { |sol| sol.sol_coupons.include?(@selected_coupon) }
     end
   end
+
+  # def filter_date_start
+  #   if @prmf && @prmf["date_start(1i)"]
+  #     concat_start = @prmf["date_start(1i)"] + "-" + @prmf["date_start(2i)"] + "-" + @prmf["date_start(3i)"]
+  #     filter_start_date = Date.parse(concat_start)
+  #     @sols.reject {|sol| sol.date < filter_start_date}
+  #   end
+  # end
+
+  # def filter_date_end
+  #   if @prmf && @prmf["date_end(1i)"] 
+  #     concat_end = @prmf["date_end(1i)"] + "-" + @prmf["date_end(2i)"]  + "-"  + @prmf["date_end(3i)"]
+  #     filter_end_date = Date.parse(concat_end)
+  #     @sols.reject {|sol| sol.date > filter_end_date}
+  #   end    
+  # end
 end
