@@ -30,23 +30,8 @@
     </tr>
   </table>
 
-  <h3>Orders with this product</h3>
+  
+  <%= render partial: "products/order_history", locals: {product: @product} %>
 
-  <table class="table table-striped">
-    <tr>
-      <th>Order</th>
-      <th>Quantity</th>
-      <th>Costs per unit</th>
-      <th>Arrival in stock</th>
-    </tr>
-    <% @product.orders.each do |order| %>
-      <tr>
-        <td><%= order.name %></td>
-        <td><%= order.order_lines.where( product_id: @product.id ).first.qtty %></td>
-        <td><%= number_to_currency(order.order_lines.where( product_id: @product.id ).first.total_costs_per_unit, unit: "DKK", format: "%n %u") %></td>
-        <td><%= order.arrival_in_stock_date %></td>
-      </tr>
-    <% end %>
-  </table>
-  <%= "This product was never ordered yet." if @product.orders.empty?%>
+  <%= render partial: "products/sales_history", locals: {product: @product, sols: @product_sols} %>
 </div>
