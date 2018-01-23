@@ -1,32 +1,15 @@
 <%= render partial: "shared/subnavigation", locals: { current: :purchase_order_drafts} %>
-
-<div class="text-center">
-	<h1>Purchase Order Draft: <%= @purchase_order_draft.name %></h1>
-	<h5>
-    Created:
-    <strong>
-    <%= @purchase_order_draft.created_at.to_date %> 
-    </strong><br>
-    Supplier: 
-    <strong>
-    <%= @purchase_order_draft.supplier %>
-    </strong><br>
-    Supply Period in Days:
-    <strong>
-      <%= @purchase_order_draft.supply_period_days %>
-    </strong><br>
-    Inventory: 
-    <strong>
-    <%= link_to "#{@purchase_order_draft.inventory.date}", inventory_path(@purchase_order_draft.inventory) %>
-    </strong><br>
-	</h5>
+<div class="cogs_btn_wrapper">
+<%= link_to "Go to the beautiful version", beautiful_path(@purchase_order_draft), class: "cogs_btn" %>
 </div>
-<div class="container-fluid">
+<%= render partial: "header_show" %>
+
+
+<div class="container">
   <div class="row">
-  	<h3 class="text-center">Purchase Order Draft Lines</h3>
+  	<!-- <h3 class="text-center">Purchase Order Draft Lines</h3> -->
     <table class="table table-striped">
       <tr>
-        <th>parent SKU</th>
         <th>SKU</th>
         <th>Qtty in Stock</th>
         <th>Qtty to Order</th>
@@ -38,10 +21,9 @@
         <th>Status</th>
         <th>Actions</th>
       </tr>
-			<% @purchase_order_draft.purchase_order_draft_lines && @purchase_order_draft.purchase_order_draft_lines.order(:SKU).each do |podl| %>
+			<% @purchase_order_draft.purchase_order_draft_lines && @purchase_order_draft.purchase_order_draft_lines.order("days_of_sales_after_order asc").each do |podl| %>
         <tr>
-          <td><%= podl.product.parentSKU %></td>
-          <td><%= podl.product.select_label %></td>
+          <td><%= podl.product.short_name %></td>
           <td class="<%= "color-red" if podl.qtty_in_stock == 0 %>">
             <%= podl.qtty_in_stock %>
           </td>

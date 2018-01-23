@@ -18,4 +18,17 @@ class PurchaseOrderDraft < ApplicationRecord
 
   validates :name, presence: true
   validates :supply_period_days, presence: true
+
+  def total_quantity
+  	# inventory_primary_lines.each_with_object([]) do |ipl, a|
+  	# 	a << ipl.qtty.to_i
+  	# end.reduce(:+)
+    purchase_order_draft_lines.pluck(:qtty_after_order).map{|q| q.to_i}.reduce(:+)
+  end
+
+  def total_value
+    purchase_order_draft_lines.map do |podl|
+    	podl.product.parent_product.usual_production_price * podl.order_qtty.to_i
+    end.reduce(:+)
+  end
 end

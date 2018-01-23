@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   end
   resources :purchase_order_drafts, only: [:index, :show, :new, :create]
   resources :purchase_order_draft_lines, only: [:edit, :update]
+  get "beautiful_purchase_order_drafts/:id", to: 'purchase_order_drafts#beautiful', as: "beautiful"
+
   devise_for :users
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
@@ -37,4 +39,5 @@ Rails.application.routes.draw do
   end
   get "stats", to: 'stats#main_stats'
   get "dashboard", to: 'stats#dashboard'
+  resources :parent_products, only: [:index, :new, :create, :edit, :update]
 end

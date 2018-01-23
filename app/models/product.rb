@@ -20,6 +20,7 @@
 #  closing_type           :string
 #  EAN                    :integer
 #  woocommerce_product_id :string
+#  parent_product_id      :integer
 #
 
 class Product < ApplicationRecord
@@ -28,6 +29,7 @@ class Product < ApplicationRecord
   has_many :inventory_primary_lines, dependent: :destroy
   has_many :sales_order_lines, dependent: :destroy
   belongs_to :supplier
+  belongs_to :parent_product
   has_many :purchase_order_draft_lines, dependent: :destroy
 
   validates :SKU, presence: true, uniqueness: true

@@ -308,33 +308,2093 @@
 
 
 
-require "woocommerce_api"
+# require "woocommerce_api"
 
-woocommerce = WooCommerce::API.new(
-  "https://www.roccamore.com",
-  "ck_beda9bf5369892ae35c22a7cc68a1fa2805b7bd7",
-  "cs_d055fb14b13b19dd4c85171cc8591e23381629ae",
-  {
-    wp_api: true,
-    version: "wc/v1",
-    query_string_auth: true,
-  }
-)
+# woocommerce = WooCommerce::API.new(
+#   "https://www.roccamore.com",
+#   "ck_beda9bf5369892ae35c22a7cc68a1fa2805b7bd7",
+#   "cs_d055fb14b13b19dd4c85171cc8591e23381629ae",
+#   {
+#     wp_api: true,
+#     version: "wc/v1",
+#     query_string_auth: true,
+#   }
+# )
 
-pages = 1..100
+# pages = 1..100
 
-pages.each do |page|
+# pages.each do |page|
 
-	responses = woocommerce.get('orders',per_page: 30, page: page).parsed_response
+# 	responses = woocommerce.get('orders',per_page: 30, page: page).parsed_response
 
-	responses.each do |response|
-		if FetchedSalesOrder.where(woocommerce_sales_order_id: response["id"]).exists?
-			puts "FSO already exists, let's SKIP"
-		else
-		  woocommerce_sales_order_id = response["id"]
-		  order = FetchedSalesOrder.new(body: response, woocommerce_sales_order_id: woocommerce_sales_order_id)
-		  order.save!
-			puts "Order #{response["id"]} saved as FetchedSalesOrder #{order.id}"
-		end
-	end
+# 	responses.each do |response|
+# 		if FetchedSalesOrder.where(woocommerce_sales_order_id: response["id"]).exists?
+# 			puts "FSO already exists, let's SKIP"
+# 		else
+# 		  woocommerce_sales_order_id = response["id"]
+# 		  order = FetchedSalesOrder.new(body: response, woocommerce_sales_order_id: woocommerce_sales_order_id)
+# 		  order.save!
+# 			puts "Order #{response["id"]} saved as FetchedSalesOrder #{order.id}"
+# 		end
+# 	end
+# end
+
+
+# ____________________________PARENT PRODUCTS_______________________________________________
+# product = Product.new(SKU:"bssku")
+# product.supplier = Supplier.first
+# product.parent_product = ParentProduct.first
+# product.save!
+
+# product = Product.where(SKU: "bssku").first
+# if ParentProduct.where(sku: "RMSS16-001-Black").present?
+# pp = ParentProduct.where(sku: "RMSS16-001-Black").first
+# else	
+# pp = ParentProduct.create(sku: "RMSS16-001-Black", usual_production_price: 80)
+# end
+# p pp.sku
+# product.parent_product = pp
+# product.save!
+
+
+product = Product.where(SKU: "RMSS16-001-Black-36").first
+if ParentProduct.where(sku: "RMSS16-001-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Black", usual_production_price: 80)
 end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Black-37").first
+if ParentProduct.where(sku: "RMSS16-001-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Black-38").first
+if ParentProduct.where(sku: "RMSS16-001-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Black-39").first
+if ParentProduct.where(sku: "RMSS16-001-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Black-40").first
+if ParentProduct.where(sku: "RMSS16-001-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Black-41").first
+if ParentProduct.where(sku: "RMSS16-001-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Cream-36").first
+if ParentProduct.where(sku: "RMAW16-17-003-Cream").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Cream").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Cream", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Cream-37").first
+if ParentProduct.where(sku: "RMAW16-17-003-Cream").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Cream").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Cream", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Cream-38").first
+if ParentProduct.where(sku: "RMAW16-17-003-Cream").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Cream").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Cream", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Cream-39").first
+if ParentProduct.where(sku: "RMAW16-17-003-Cream").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Cream").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Cream", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Cream-40").first
+if ParentProduct.where(sku: "RMAW16-17-003-Cream").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Cream").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Cream", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Cream-41").first
+if ParentProduct.where(sku: "RMAW16-17-003-Cream").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Cream").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Cream", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Grey-36").first
+if ParentProduct.where(sku: "RMSS16-006-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Grey-37").first
+if ParentProduct.where(sku: "RMSS16-006-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Grey-38").first
+if ParentProduct.where(sku: "RMSS16-006-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Grey-39").first
+if ParentProduct.where(sku: "RMSS16-006-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Grey-40").first
+if ParentProduct.where(sku: "RMSS16-006-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Grey-41").first
+if ParentProduct.where(sku: "RMSS16-006-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-White-36").first
+if ParentProduct.where(sku: "RMAW16-17-003-White").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-White").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-White", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-White-37").first
+if ParentProduct.where(sku: "RMAW16-17-003-White").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-White").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-White", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-White-38").first
+if ParentProduct.where(sku: "RMAW16-17-003-White").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-White").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-White", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-White-39").first
+if ParentProduct.where(sku: "RMAW16-17-003-White").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-White").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-White", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-White-40").first
+if ParentProduct.where(sku: "RMAW16-17-003-White").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-White").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-White", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-White-41").first
+if ParentProduct.where(sku: "RMAW16-17-003-White").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-White").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-White", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Cordovan-36").first
+if ParentProduct.where(sku: "RMAW16-17-001-Cordovan").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Cordovan").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Cordovan", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Cordovan-37").first
+if ParentProduct.where(sku: "RMAW16-17-001-Cordovan").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Cordovan").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Cordovan", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Cordovan-38").first
+if ParentProduct.where(sku: "RMAW16-17-001-Cordovan").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Cordovan").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Cordovan", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Cordovan-39").first
+if ParentProduct.where(sku: "RMAW16-17-001-Cordovan").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Cordovan").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Cordovan", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Cordovan-40").first
+if ParentProduct.where(sku: "RMAW16-17-001-Cordovan").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Cordovan").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Cordovan", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Cordovan-41").first
+if ParentProduct.where(sku: "RMAW16-17-001-Cordovan").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Cordovan").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Cordovan", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Black-36").first
+if ParentProduct.where(sku: "RMAW16-17-003-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Black-37").first
+if ParentProduct.where(sku: "RMAW16-17-003-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Black-38").first
+if ParentProduct.where(sku: "RMAW16-17-003-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Black-39").first
+if ParentProduct.where(sku: "RMAW16-17-003-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Black-40").first
+if ParentProduct.where(sku: "RMAW16-17-003-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Black-41").first
+if ParentProduct.where(sku: "RMAW16-17-003-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Black-36").first
+if ParentProduct.where(sku: "RMSS16-006-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Black-37").first
+if ParentProduct.where(sku: "RMSS16-006-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Black-38").first
+if ParentProduct.where(sku: "RMSS16-006-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Black-39").first
+if ParentProduct.where(sku: "RMSS16-006-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Black-40").first
+if ParentProduct.where(sku: "RMSS16-006-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-006-Black-41").first
+if ParentProduct.where(sku: "RMSS16-006-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-006-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-006-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Gold/Blush-36").first
+if ParentProduct.where(sku: "RMSS16-001-Gold/Blush").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Gold/Blush").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Gold/Blush", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Gold/Blush-37").first
+if ParentProduct.where(sku: "RMSS16-001-Gold/Blush").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Gold/Blush").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Gold/Blush", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Gold/Blush-38").first
+if ParentProduct.where(sku: "RMSS16-001-Gold/Blush").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Gold/Blush").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Gold/Blush", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Gold/Blush-39").first
+if ParentProduct.where(sku: "RMSS16-001-Gold/Blush").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Gold/Blush").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Gold/Blush", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Gold/Blush-40").first
+if ParentProduct.where(sku: "RMSS16-001-Gold/Blush").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Gold/Blush").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Gold/Blush", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Gold/Blush-41").first
+if ParentProduct.where(sku: "RMSS16-001-Gold/Blush").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Gold/Blush").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Gold/Blush", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Pink/Grey-36").first
+if ParentProduct.where(sku: "RMSS16-001-Pink/Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Pink/Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Pink/Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Pink/Grey-37").first
+if ParentProduct.where(sku: "RMSS16-001-Pink/Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Pink/Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Pink/Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Pink/Grey-38").first
+if ParentProduct.where(sku: "RMSS16-001-Pink/Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Pink/Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Pink/Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Pink/Grey-39").first
+if ParentProduct.where(sku: "RMSS16-001-Pink/Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Pink/Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Pink/Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Pink/Grey-40").first
+if ParentProduct.where(sku: "RMSS16-001-Pink/Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Pink/Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Pink/Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-001-Pink/Grey-41").first
+if ParentProduct.where(sku: "RMSS16-001-Pink/Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-001-Pink/Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-001-Pink/Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Python-36").first
+if ParentProduct.where(sku: "RMSS16-002-Python").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Python").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Python", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Python-37").first
+if ParentProduct.where(sku: "RMSS16-002-Python").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Python").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Python", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Python-38").first
+if ParentProduct.where(sku: "RMSS16-002-Python").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Python").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Python", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Python-39").first
+if ParentProduct.where(sku: "RMSS16-002-Python").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Python").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Python", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Python-40").first
+if ParentProduct.where(sku: "RMSS16-002-Python").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Python").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Python", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Python-41").first
+if ParentProduct.where(sku: "RMSS16-002-Python").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Python").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Python", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Black-36").first
+if ParentProduct.where(sku: "RMSS16-005-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Black-37").first
+if ParentProduct.where(sku: "RMSS16-005-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Black-38").first
+if ParentProduct.where(sku: "RMSS16-005-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Black-39").first
+if ParentProduct.where(sku: "RMSS16-005-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Black-40").first
+if ParentProduct.where(sku: "RMSS16-005-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Black-41").first
+if ParentProduct.where(sku: "RMSS16-005-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-36").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-37").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-38").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-39").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-40").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black-41").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-36").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-37").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-38").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-39").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-40").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow-41").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Shadow", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Blue-36").first
+if ParentProduct.where(sku: "RMSS16-005-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Blue-37").first
+if ParentProduct.where(sku: "RMSS16-005-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Blue-38").first
+if ParentProduct.where(sku: "RMSS16-005-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Blue-39").first
+if ParentProduct.where(sku: "RMSS16-005-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Blue-40").first
+if ParentProduct.where(sku: "RMSS16-005-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-Blue-41").first
+if ParentProduct.where(sku: "RMSS16-005-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Blue-36").first
+if ParentProduct.where(sku: "RMSS16-002-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Blue-37").first
+if ParentProduct.where(sku: "RMSS16-002-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Blue-38").first
+if ParentProduct.where(sku: "RMSS16-002-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Blue-39").first
+if ParentProduct.where(sku: "RMSS16-002-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Blue-40").first
+if ParentProduct.where(sku: "RMSS16-002-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-002-Blue-41").first
+if ParentProduct.where(sku: "RMSS16-002-Blue").present?
+	pp = ParentProduct.where(sku: "RMSS16-002-Blue").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-002-Blue", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Eclipse-36").first
+if ParentProduct.where(sku: "RMAW16-17-003-Eclipse").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Eclipse").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Eclipse", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Eclipse-37").first
+if ParentProduct.where(sku: "RMAW16-17-003-Eclipse").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Eclipse").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Eclipse", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Eclipse-38").first
+if ParentProduct.where(sku: "RMAW16-17-003-Eclipse").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Eclipse").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Eclipse", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Eclipse-39").first
+if ParentProduct.where(sku: "RMAW16-17-003-Eclipse").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Eclipse").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Eclipse", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Eclipse-40").first
+if ParentProduct.where(sku: "RMAW16-17-003-Eclipse").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Eclipse").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Eclipse", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-003-Eclipse-41").first
+if ParentProduct.where(sku: "RMAW16-17-003-Eclipse").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-003-Eclipse").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-003-Eclipse", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-36").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-37").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-38").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-39").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-40").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey-41").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Grey", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-36").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-37").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-38").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-39").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-40").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine-41").first
+if ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-005-HH85-HT18-P0-E-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-36").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-37").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-38").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-39").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-40").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero-41").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-36").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-37").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-38").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-39").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-40").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight-41").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Midnight", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Black-36").first
+if ParentProduct.where(sku: "RMAW16-17-001-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Black-37").first
+if ParentProduct.where(sku: "RMAW16-17-001-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Black-38").first
+if ParentProduct.where(sku: "RMAW16-17-001-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Black-39").first
+if ParentProduct.where(sku: "RMAW16-17-001-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Black-40").first
+if ParentProduct.where(sku: "RMAW16-17-001-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW16-17-001-Black-41").first
+if ParentProduct.where(sku: "RMAW16-17-001-Black").present?
+	pp = ParentProduct.where(sku: "RMAW16-17-001-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW16-17-001-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-36").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-37").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-38").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-39").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-40").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero-41").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Nero", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-36").first
+if ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").present?
+	pp = ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-37").first
+if ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").present?
+	pp = ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-38").first
+if ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").present?
+	pp = ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-39").first
+if ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").present?
+	pp = ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-40").first
+if ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").present?
+	pp = ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro-41").first
+if ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").present?
+	pp = ParentProduct.where(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-06-HH55-HT45-P0-S-SU0-NA1-Nero/Oro", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-36").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-37").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-38").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-39").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-40").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes-41").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Ribes", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri-36").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri-37").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri-38").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri-39").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri-40").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri-41").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Bolgheri", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock-36").first
+if ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock-37").first
+if ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock-38").first
+if ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock-39").first
+if ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock-40").first
+if ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock-41").first
+if ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH85-HT18-P0-E-SU0-NA1-Navy/Rock", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde-36").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde-37").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde-38").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde-39").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde-40").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde-41").first
+if ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH75-HT11-P0-Z-SU1-NA0-Verde", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine-36").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine-37").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine-38").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine-39").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine-40").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine-41").first
+if ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").present?
+	pp = ParentProduct.where(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-05-HH55-HT45-P0-S-SU1-NA0-Wine", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver-36").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver-37").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver-38").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver-39").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver-40").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver-41").first
+if ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").present?
+	pp = ParentProduct.where(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver").first
+else
+	pp = ParentProduct.create(sku: "RMSS16-05-HH65-HT11-P0-S-SU1-NA1-Grey/Silver", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Red-36").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Red").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Red").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Red", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Red-37").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Red").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Red").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Red", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Red-38").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Red").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Red").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Red", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Red-39").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Red").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Red").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Red", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Red-40").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Red").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Red").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Red", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Red-41").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Red").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Red").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Red", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Black-36").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Black").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Black-37").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Black").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Black-38").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Black").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Black-39").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Black").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Black-40").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Black").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-11-Black-41").first
+if ParentProduct.where(sku: "RMAW-17-18-11-Black").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-11-Black").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-11-Black", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Gold-36").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Gold").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Gold").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Gold", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Gold-37").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Gold").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Gold").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Gold", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Gold-38").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Gold").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Gold").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Gold", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Gold-39").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Gold").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Gold").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Gold", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Gold-40").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Gold").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Gold").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Gold", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Gold-41").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Gold").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Gold").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Gold", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Burgundy-36").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Burgundy", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Burgundy-37").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Burgundy", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Burgundy-38").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Burgundy", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Burgundy-39").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Burgundy", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Burgundy-40").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Burgundy", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMAW-17-18-02-Burgundy-41").first
+if ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").present?
+	pp = ParentProduct.where(sku: "RMAW-17-18-02-Burgundy").first
+else
+	pp = ParentProduct.create(sku: "RMAW-17-18-02-Burgundy", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso-36").first
+if ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso-37").first
+if ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso-38").first
+if ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso-39").first
+if ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso-40").first
+if ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+product = Product.where(SKU: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso-41").first
+if ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").present?
+	pp = ParentProduct.where(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso").first
+else
+	pp = ParentProduct.create(sku: "RMSS17-09-HH55-HH45-P0-S-SU1-NA0-Ribes/Rosso", usual_production_price: 80)
+end
+p pp.sku
+product.parent_product = pp
+product.save!
+
+

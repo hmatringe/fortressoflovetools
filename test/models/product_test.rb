@@ -20,6 +20,7 @@
 #  closing_type           :string
 #  EAN                    :integer
 #  woocommerce_product_id :string
+#  parent_product_id      :integer
 #
 
 require 'test_helper'

@@ -1,0 +1,33 @@
+<div class="text-center">
+	<h1>Purchase Order Draft: <%= @purchase_order_draft.name %></h1>
+	<p>
+    Created:
+    <strong>
+    <%= @purchase_order_draft.created_at.to_date %> 
+    </strong><br>
+    Supplier: 
+    <strong>
+    <%= @purchase_order_draft.supplier.name %>
+    </strong><br>
+    Supply Period in Days:
+    <strong>
+      <%= @purchase_order_draft.supply_period_days %>
+    </strong><br>
+    Inventory: 
+    <strong>
+    <%= link_to "#{@purchase_order_draft.inventory.date}", inventory_path(@purchase_order_draft.inventory), target: "_blank" %>
+    </strong><br>
+    SKUs: 
+    <strong>
+      <%= @purchase_order_draft.purchase_order_draft_lines.count %>
+    </strong><br>
+    Purchase Order quantity: 
+    <strong>
+      <%= @purchase_order_draft.total_quantity %>
+    </strong><br>
+    Purchase Order value in supplier currency: 
+    <strong>
+      <%= @purchase_order_draft.total_value %>
+    </strong><br>
+	</p>
+</div>

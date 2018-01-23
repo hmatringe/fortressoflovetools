@@ -1,10 +1,13 @@
 class PurchaseOrderDraftsController < ApplicationController
-  before_action :set_purchase_order_draft, only: [:show, :edit]
+  before_action :set_purchase_order_draft_and_podl, only: [:show, :edit, :beautiful]
   def index
     @purchase_order_drafts = PurchaseOrderDraft.all
   end
 
   def show
+  end
+
+  def beautiful
   end
 
   def new
@@ -49,8 +52,9 @@ class PurchaseOrderDraftsController < ApplicationController
 
   private
 
-  def set_purchase_order_draft
+  def set_purchase_order_draft_and_podl
     @purchase_order_draft = PurchaseOrderDraft.find(params[:id])
+    @podl = @purchase_order_draft.purchase_order_draft_lines
   end
 
   def purchase_order_draft_params

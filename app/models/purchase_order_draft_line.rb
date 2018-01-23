@@ -60,6 +60,14 @@ class PurchaseOrderDraftLine < ApplicationRecord
   def recommended_qtty
   	recommended_qtty = full_supply_period * sales_speed - self.qtty_in_stock
   end
+  
+  def product_sku
+    product.SKU
+  end
+
+  def parent_product_sku
+    product.parent_product.sku
+  end
 end
 
 
