@@ -32,19 +32,19 @@ class Product < ApplicationRecord
   belongs_to :parent_product
   has_many :purchase_order_draft_lines, dependent: :destroy
 
-  validates :SKU, presence: true, uniqueness: true
-  validates :EAN, presence: true, uniqueness: true, unless: "9999999999"
-  validates :name, presence: true
-  validates :size, presence: true
-  validates :color, presence: true
-  validates :structure, presence: true
-  validates :category, presence: true
-  validates :heel_thickness, presence: true
-  # validates :platform, presence: true
-  validates :material, presence: true#, inclusion: {in: %w(combo suede napa)} 
-  validates :heel_height, presence: true
-  validates :closing_type, presence: true
-  validates :woocommerce_product_id, presence: true, uniqueness: true, unless: "0"
+  # validates :SKU, presence: true, uniqueness: true
+  # validates :EAN, presence: true, uniqueness: true, unless: "9999999999"
+  # validates :name, presence: true
+  # validates :size, presence: true
+  # validates :color, presence: true
+  # validates :structure, presence: true
+  # validates :category, presence: true
+  # validates :heel_thickness, presence: true
+  # # validates :platform, presence: true
+  # validates :material, presence: true#, inclusion: {in: %w(combo suede napa)} 
+  # validates :heel_height, presence: true
+  # validates :closing_type, presence: true
+  # validates :woocommerce_product_id, presence: true, uniqueness: true, unless: "0"
 
   def select_label
     "#{self.name.capitalize} - Size: #{self.size } - #{self.color} - #{self.SKU}"
