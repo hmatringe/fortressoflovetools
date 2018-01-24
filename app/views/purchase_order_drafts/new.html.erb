@@ -5,9 +5,9 @@
     <div class="col-xs-8 col-xs-offset-2">
 			<h1>New Purchase Order Drafts</h1>
 			<%= simple_form_for @purchase_order_draft do |pod| %>
-				<%= pod.input :name %>
-				<%= pod.input :supply_period_days %>
-				<%= pod.association :inventory, label_method: :select_label %>
+				<%= pod.input :name, placeholder: "PO-SEASON-YEAR-SUPPLIER" %>
+				<%= pod.input :supply_period_days, placeholder: "90" %>
+				<%= pod.association :inventory, label_method: :select_label, label: "choose (or upload and come back) an up-to-date inventory" %>
 				<%= pod.association :supplier %>
 				<%= pod.button :submit, class: "cogs_btn" %>
 			<% end %> 

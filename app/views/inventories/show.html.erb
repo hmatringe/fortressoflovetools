@@ -2,6 +2,7 @@
 
 <div class="container">
   <h1>Inventory of the <%= @inventory.date %></h1>
+  <h4><%= @inventory.total_quantity %> units</h4>
   <p>
     Download:
     <%= link_to "CSV", inventory_inventory_primary_lines_path(@inventory, format: "csv") %> |
@@ -17,7 +18,7 @@
     </div>
     <div class="col-xs-6">
     <h2 class="text-center">Import from csv</h2>
-    <p>Your csv file must contain one headers row with 2 columns exactly named: "SKU" and "Quantity"</p>
+    <p>Your csv file must contain one headers row with 2 columns exactly named: "SKU" and "Quantity" and the separator must be a comma.</p>
       <%= form_tag import_inventory_inventory_primary_lines_path(@inventory), multipart: true do %>
         <%= file_field_tag :file, class: "" %> <br>
         <%= submit_tag "Import", class: "cogs_btn" %>

@@ -15,7 +15,7 @@
 <div class="col-xs-12 col-md-6">
 	<%= pod.input :name %>
 	<%= pod.input :SKU %>
-	<%= pod.input :parentSKU %>
+	<%= pod.association :parent_product, label_method: lambda { |pp| pp.sku} %>
 	<%= pod.input :size, collection: (36..41) %>
 	<%= pod.input :color %>
 	<%= pod.input :structure %>

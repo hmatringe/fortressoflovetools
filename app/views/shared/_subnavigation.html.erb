@@ -1,5 +1,6 @@
 <%
   steps = [
+    :parent_products,
     :products,
     :purchase_orders,
     :invoices,
@@ -11,6 +12,7 @@
   ]
 
   labels = {
+    parent_products: "Parent Products",
     products: "Products",
     purchase_orders: "Purchase Orders",
     invoices: "Invoices",
@@ -22,6 +24,7 @@
   }
 
   paths = {
+    parent_products: parent_products_path,
     products: products_path,
     purchase_orders: orders_path,
     invoices: invoices_path,

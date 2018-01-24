@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121102522) do
+ActiveRecord::Schema.define(version: 20180123220150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,15 @@ ActiveRecord::Schema.define(version: 20180121102522) do
     t.date     "arrival_in_stock_date"
   end
 
+  create_table "parent_products", force: :cascade do |t|
+    t.string   "sku"
+    t.decimal  "usual_production_price",    precision: 11, scale: 4
+    t.string   "usual_production_currency",                          default: "EUR"
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
+    t.string   "photo"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "SKU"
     t.string   "name"
@@ -132,6 +141,7 @@ ActiveRecord::Schema.define(version: 20180121102522) do
     t.string   "closing_type"
     t.bigint   "EAN"
     t.string   "woocommerce_product_id"
+    t.integer  "parent_product_id"
   end
 
   create_table "purchase_order_draft_lines", force: :cascade do |t|
@@ -217,6 +227,7 @@ ActiveRecord::Schema.define(version: 20180121102522) do
   add_foreign_key "invoices", "orders"
   add_foreign_key "order_lines", "orders"
   add_foreign_key "order_lines", "products"
+  add_foreign_key "products", "parent_products"
   add_foreign_key "products", "suppliers"
   add_foreign_key "purchase_order_draft_lines", "products"
   add_foreign_key "purchase_order_draft_lines", "purchase_order_drafts"

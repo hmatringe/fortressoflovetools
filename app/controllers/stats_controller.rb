@@ -6,6 +6,7 @@ class StatsController < ApplicationController
 
     # shorthands
     @sols ||= SalesOrderLine.all.order("date DESC")
+    # @sols_top_10 ||= SalesOrderLine.all.order("date DESC").first(10)
     @prmf = params[:filters]
     
     filter_dates

@@ -1,0 +1,38 @@
+<%= render partial: "shared/subnavigation", locals: { current: :parent_products} %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+			
+			<h1>All Parent Products</h1>
+			<div class="cogs_btn_wrapper">
+			<%= link_to "Create Parent Product", new_parent_product_path, class: "cogs_btn" %>
+			</div>
+			
+			<table class="table table-striped">
+			    <tr>
+			      <th>SKU</th>
+			      <th>Usual Purchase Amount</th>
+			      <th>Usual Purchase Currency</th>
+			      <th>Products</th>
+			      <th>Tof</th>
+			    </tr>
+			    <% @parent_products.each do |parent_product| %>
+			      <tr>
+			        <td><%= link_to parent_product.sku, edit_parent_product_path(parent_product) %></td>
+			        <td><%= parent_product.usual_production_price %></td>
+			        <td><%= parent_product.usual_production_currency %></td>
+			        <td>
+			        	<% parent_product.products.each do |product| %>
+			        		<%= link_to product.short_name, product_path(product) %> <br>
+			        	<% end %>
+			        	</td>
+			        <td><%= cl_image_tag parent_product.photo, height: 100, width: 150, crop: :fill %></td>
+			      </tr>
+			    <% end %>
+			  </table>
+      
+    </div>
+  </div>
+</div>

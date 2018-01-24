@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: parent_products
+#
+#  id                        :integer          not null, primary key
+#  sku                       :string
+#  usual_production_price    :decimal(11, 4)
+#  usual_production_currency :string           default("EUR")
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sku: MyString
+  usual_production_price: 1
+
+two:
+  sku: MyString
+  usual_production_price: 1

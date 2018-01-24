@@ -38,7 +38,11 @@ class PurchaseOrderDraftLine < ApplicationRecord
   enum status: [ :processing, :finalized ]
 
   def update_days_of_sales_after_order
-  	self.days_of_sales_after_order = self.qtty_after_order / sales_speed
+  	if sales_speed == 0
+      self.days_of_sales_after_order = 999999999
+    else
+      self.days_of_sales_after_order = self.qtty_after_order / sales_speed
+    end
   end
   
   def sales_speed
@@ -59,6 +63,14 @@ class PurchaseOrderDraftLine < ApplicationRecord
   
   def recommended_qtty
   	recommended_qtty = full_supply_period * sales_speed - self.qtty_in_stock
+  end
+  
+  def product_sku
+    product.SKU
+  end
+
+  def parent_product_sku
+    product.parent_product.sku
   end
 end
 
