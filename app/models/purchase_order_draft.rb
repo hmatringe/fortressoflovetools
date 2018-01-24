@@ -23,7 +23,7 @@ class PurchaseOrderDraft < ApplicationRecord
   	# inventory_primary_lines.each_with_object([]) do |ipl, a|
   	# 	a << ipl.qtty.to_i
   	# end.reduce(:+)
-    purchase_order_draft_lines.pluck(:qtty_after_order).map{|q| q.to_i}.reduce(:+)
+    purchase_order_draft_lines.pluck(:order_qtty).map{|q| q.to_i}.reduce(:+)
   end
 
   def total_value
