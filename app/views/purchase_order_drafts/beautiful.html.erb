@@ -19,11 +19,24 @@
 
 			    </tr>
 					
+			  	<% last_parent_sku = "" %>
 					<% @podl.sort_by{|i| i.product_sku}.each do |podl| %>
 			    
 			    <tr>
-		        <td><%= cl_image_tag podl.product.parent_product.photo, height: 50, width: 50, crop: :fill %></td>
-			      <td><%= podl.product.parent_product.sku %></td>
+			      <% if podl.product.parent_product.sku != last_parent_sku %>
+		        		<td>
+		        			<%= cl_image_tag podl.product.parent_product.photo, height: 100, width: 100, crop: :fill %>
+	        			</td>
+					      <td>
+			        		<%= link_to edit_parent_product_path(podl.product.parent_product), target: "_blank" do %>
+					      		<%= podl.product.parent_product.sku %>
+			        		<% end %>
+			      		</td>
+	        	<% else %>
+	        		<td></td>
+	        		<td></td>
+			      <% end %>
+			      <% last_parent_sku = podl.product.parent_product.sku %>
 			      <td><%= link_to podl.product.short_name, edit_purchase_order_draft_line_path(podl), target: "_blank" %></td>
 			      <td>
 			      	<%= link_to edit_parent_product_path(podl.product.parent_product), target: "_blank" do %>
@@ -31,7 +44,7 @@
 			      	<%= podl.product.parent_product.usual_production_currency %>
 			      	<% end %>
 			      </td>
-			      <td><%= link_to podl.order_qtty, edit_purchase_order_draft_line_path(podl), target: "_blank" %></td>
+		      	<td><%= link_to podl.order_qtty, edit_purchase_order_draft_line_path(podl), target: "_blank" %></td>
 			      <td
 			      class="color-<%= podl.days_of_sales_after_order >= @purchase_order_draft.supply_period_days%>"
 			      >
