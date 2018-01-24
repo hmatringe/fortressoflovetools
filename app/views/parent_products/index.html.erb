@@ -25,7 +25,7 @@
 			        <td><%= parent_product.usual_production_currency %></td>
 			        <td>
 			        	<% parent_product.products.each do |product| %>
-			        		<%= product.short_name %> <br>
+			        		<%= link_to product.short_name, product_path(product) %> <br>
 			        	<% end %>
 			        	</td>
 			        <td><%= cl_image_tag parent_product.photo, height: 100, width: 150, crop: :fill %></td>
