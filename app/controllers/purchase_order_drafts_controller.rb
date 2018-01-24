@@ -37,7 +37,7 @@ class PurchaseOrderDraftsController < ApplicationController
         order_qtty:                 0,
         qtty_after_order:           qtty_in_stock,
         days_out_of_stock:          0,
-        sold_in_supply_period_days: qtty_sold,
+        sold_in_supply_period_days: qtty_sold.to_i,
         )
         podl.product = p
         podl.purchase_order_draft = @purchase_order_draft
