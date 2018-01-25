@@ -1,0 +1,19 @@
+<%= render partial: "form" %>
+<table class="table table-striped">
+  <tr>
+    <th>SKU</th>
+    <th>EAN</th>
+    <th>name</th>
+    <th>Date Range</th>
+    <th>Number of days</th>
+  </tr>
+  <% @out_of_stock_ranges.each do |ofsr| %>
+    <tr>
+      <td><%= link_to ofsr.product.SKU, product_path(ofsr.product) %></td>
+      <td><%= link_to ofsr.product.EAN, product_path(ofsr.product) %></td>
+      <td><%= link_to ofsr.product.short_name, product_path(ofsr.product) %></td>
+      <td><%= ofsr.date_range %></td>
+      <td><%= ofsr.days %></td>
+    </tr>
+  <% end %>
+</table>

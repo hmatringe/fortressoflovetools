@@ -1,0 +1,8 @@
+<%= simple_form_for @out_of_stock_range do |ofsr| %>
+  
+<div class="col-xs-12 col-md-6">
+	<%= ofsr.input :date_range, as: :string, input_html: { id: "datepickr_start"} %>
+	<%= ofsr.association :product, collection: Product.order(SKU: :asc), label_method: :select_label %>
+	<%= ofsr.button :submit, class: "cogs_btn" %>
+<% end %>
+</div>

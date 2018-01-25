@@ -1,41 +1,41 @@
 <table class="table table-striped">
+  <tr>
+    <th>SKU</th>
+    <th>Name</th>
+    <th>EAN</th>
+    <th>Size</th>
+    <th>Color</th>
+    <th>Structure</th>
+    <th>Category</th>
+    <th>Heel Thickness</th>
+    <th>Heel Height</th>
+    <th>Platform</th>
+    <th>Material</th>
+    <th>Closing Type</th>
+    <th>Supplier</th>
+    <th>Parent <br> Product <br> SKU</th>
+    <!-- <th>Actions</th> -->
+  </tr>
+  <% @products.each do |product| %>
     <tr>
-      <th>SKU</th>
-      <th>Name</th>
-      <th>EAN</th>
-      <th>Size</th>
-      <th>Color</th>
-      <th>Structure</th>
-      <th>Category</th>
-      <th>Heel Thickness</th>
-      <th>Heel Height</th>
-      <th>Platform</th>
-      <th>Material</th>
-      <th>Closing Type</th>
-      <th>Supplier</th>
-      <th>Parent <br> Product <br> SKU</th>
-      <!-- <th>Actions</th> -->
-    </tr>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= link_to product.SKU, product_path(product) %></td>
-        <td><%= product.name && product.name.capitalize %></td>
-        <td><%= product.EAN && product.EAN %></td>
-        <td><%= product.size && product.size %></td>
-        <td><%= product.color && product.color %></td>
-        <td><%= product.structure && product.structure %></td>
-        <td><%= product.category && product.category %></td>
-        <td><%= product.heel_thickness && product.heel_thickness %></td>
-        <td><%= product.heel_height && product.heel_height %></td>
-        <td><%= product.platform && product.platform %></td>
-        <td><%= product.material && product.material %></td>
-        <td><%= product.closing_type && product.closing_type %></td>
-        <td><%= product.supplier && product.supplier.name  %></td>
-        <td><%= product.parent_product && product.parent_product.sku  %></td>
-        <!-- <td> -->
-          <%#= link_to "Edit", edit_product_path(product), class: "cogs_btn" %>
-        <!-- </td> -->
+      <td><%= link_to product.SKU, product_path(product) %></td>
+      <td><%= product.name && product.name.capitalize %></td>
+      <td><%= product.EAN && product.EAN %></td>
+      <td><%= product.size && product.size %></td>
+      <td><%= product.color && product.color %></td>
+      <td><%= product.structure && product.structure %></td>
+      <td><%= product.category && product.category %></td>
+      <td><%= product.heel_thickness && product.heel_thickness %></td>
+      <td><%= product.heel_height && product.heel_height %></td>
+      <td><%= product.platform && product.platform %></td>
+      <td><%= product.material && product.material %></td>
+      <td><%= product.closing_type && product.closing_type %></td>
+      <td><%= product.supplier && product.supplier.name  %></td>
+      <td><%= product.parent_product && product.parent_product.sku  %></td>
+      <!-- <td> -->
+        <%#= link_to "Edit", edit_product_path(product), class: "cogs_btn" %>
+      <!-- </td> -->
 
-      </tr>
-    <% end %>
-  </table>
+    </tr>
+  <% end %>
+</table>

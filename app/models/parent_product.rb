@@ -8,6 +8,7 @@
 #  usual_production_currency :string           default("EUR")
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  photo                     :string
 #
 
 class ParentProduct < ApplicationRecord

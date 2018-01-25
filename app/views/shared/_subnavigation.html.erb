@@ -8,7 +8,8 @@
     :sales_orders,
     :stats,
     :purchase_order_drafts,
-    :cogs
+    :out_of_stock_ranges
+    # :cogs
   ]
 
   labels = {
@@ -20,7 +21,8 @@
     sales_orders: "Sales Orders",
     stats: "Stats",
     purchase_order_drafts: "Purchase Order Drafts",
-    cogs: "COGS"
+    out_of_stock_ranges: "Out of Stocks"
+    # cogs: "COGS"
   }
 
   paths = {
@@ -32,7 +34,8 @@
     sales_orders: sales_order_lines_path,
     stats: stats_path,
     purchase_order_drafts: purchase_order_drafts_path,
-    cogs: cogs_path
+    out_of_stock_ranges: out_of_stock_ranges_path
+    # cogs: cogs_path
   }
 
   index = steps.index current
