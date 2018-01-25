@@ -40,4 +40,5 @@ Rails.application.routes.draw do
   get "stats", to: 'stats#main_stats'
   get "dashboard", to: 'stats#dashboard'
   resources :parent_products, only: [:index, :new, :create, :edit, :update]
+  resources :out_of_stock_ranges, only: [:index, :create, :destroy]
 end

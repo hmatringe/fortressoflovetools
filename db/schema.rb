@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123220150) do
+ActiveRecord::Schema.define(version: 20180124183151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,22 @@ ActiveRecord::Schema.define(version: 20180123220150) do
     t.decimal  "additional_costs_per_unit", precision: 11, scale: 4
     t.decimal  "additional_costs",          precision: 11, scale: 4
     t.date     "arrival_in_stock_date"
+  end
+
+  create_table "out_of_stock_days", force: :cascade do |t|
+    t.integer  "out_of_stock_range_id"
+    t.date     "date"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["out_of_stock_range_id"], name: "index_out_of_stock_days_on_out_of_stock_range_id", using: :btree
+  end
+
+  create_table "out_of_stock_ranges", force: :cascade do |t|
+    t.integer  "product_id"
+    t.string   "date_range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_out_of_stock_ranges_on_product_id", using: :btree
   end
 
   create_table "parent_products", force: :cascade do |t|
@@ -227,6 +243,8 @@ ActiveRecord::Schema.define(version: 20180123220150) do
   add_foreign_key "invoices", "orders"
   add_foreign_key "order_lines", "orders"
   add_foreign_key "order_lines", "products"
+  add_foreign_key "out_of_stock_days", "out_of_stock_ranges"
+  add_foreign_key "out_of_stock_ranges", "products"
   add_foreign_key "products", "parent_products"
   add_foreign_key "products", "suppliers"
   add_foreign_key "purchase_order_draft_lines", "products"

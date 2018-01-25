@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: out_of_stock_days
+#
+#  id                    :integer          not null, primary key
+#  out_of_stock_range_id :integer
+#  date                  :date
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  out_of_stock_range: one
+  date: 2018-01-24
+
+two:
+  out_of_stock_range: two
+  date: 2018-01-24

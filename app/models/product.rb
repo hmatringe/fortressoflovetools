@@ -31,6 +31,8 @@ class Product < ApplicationRecord
   belongs_to :supplier
   belongs_to :parent_product
   has_many :purchase_order_draft_lines, dependent: :destroy
+  has_many :out_of_stock_ranges, dependent: :destroy
+  has_many :out_of_stock_days, through: :out_of_stock_ranges
 
   validates :SKU, presence: true, uniqueness: true
   validates :EAN, presence: true, uniqueness: true, unless: "9999999999"
@@ -47,7 +49,7 @@ class Product < ApplicationRecord
   validates :woocommerce_product_id, presence: true, uniqueness: true, unless: "0"
 
   def select_label
-    "#{self.name.capitalize} - Size: #{self.size } - #{self.color} - #{self.SKU}"
+    "#{self.name.capitalize} - #{self.size } - #{self.SKU}"
   end
 
   def short_name
@@ -70,5 +72,9 @@ class Product < ApplicationRecord
       product.attributes = row.to_hash
       product.save
     end
+  end
+
+  def days_out_of_stock_since(period_start)
+     out_of_stock_days.reject{|d| d.date < period_start}.count
   end
 end
