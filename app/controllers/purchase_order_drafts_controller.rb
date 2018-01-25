@@ -32,11 +32,12 @@ class PurchaseOrderDraftsController < ApplicationController
         period_start = Date.today - @purchase_order_draft.supply_period_days.to_i
         sols = sols.reject {|sol| sol.date < period_start}
         qtty_sold = sols.pluck(:qtty).reduce(:+)
+        days_out_of_stock = p.days_out_of_stock_since(period_start)
         podl = PurchaseOrderDraftLine.new(
         qtty_in_stock:              qtty_in_stock,
         order_qtty:                 0,
         qtty_after_order:           qtty_in_stock,
-        days_out_of_stock:          0,
+        days_out_of_stock:          days_out_of_stock,
         sold_in_supply_period_days: qtty_sold.to_i,
         )
         podl.product = p

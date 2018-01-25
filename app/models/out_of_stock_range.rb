@@ -11,7 +11,7 @@
 
 class OutOfStockRange < ApplicationRecord
   belongs_to :product
-  has_many :out_of_stock_days
+  has_many :out_of_stock_days, dependent: :destroy
 
   after_create :create_out_of_stock_days
 
@@ -23,7 +23,9 @@ class OutOfStockRange < ApplicationRecord
   	range = date_range.split(" ")
   	dates = (Date.parse(range.first)..Date.parse(range.last)).to_a
   	dates.each do |date|
-  		ofsd = OutOfStockDay.create date: date, out_of_stock_range: self
+  		unless OutOfStockDay.where(date: date).present?
+        ofsd = OutOfStockDay.create date: date, out_of_stock_range: self
+      end
   	end
   end
 end
